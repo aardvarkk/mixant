@@ -25,7 +25,14 @@ void MixStep::SetPlayKey(Camelot::Key const& key)
 std::ostream& operator<<(std::ostream& out, const Mix& mix)
 {
   for (auto s : mix.steps) {
-    out << s.track.name << std::endl;
+    out 
+        << s.track.name
+        << std::endl
+        << s.GetPlayKey().short_name
+        << " (" << s.GetTuning() << ") " 
+        << std::endl
+        << s.bpm_beg << "bpm -> " << s.bpm_end << "bpm"
+        << std::endl << std::endl;
   }
   return out;
 }

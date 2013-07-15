@@ -5,8 +5,8 @@
 #include "utils.h"
 
 static std::tr1::mt19937 eng;
-static int kMixRuns = 20;
-static int kNumAnts = 50;
+static int kMixRuns = 100;
+static int kNumAnts = 5000;
 static double kPheromoneDrop = 0.01;
 static double kPheromonePop = 2 * kPheromoneDrop;
 static double kBPMDiffMult = 1;
@@ -135,6 +135,7 @@ Mix MixAnt::FindMix(Tracks const& tracks)
       if (total_dist < min_dist) {
         min_dist = total_dist;
         min_order = order;
+        std::cout << "New min dist: " << min_dist << std::endl;
       }
     }
 
@@ -195,36 +196,37 @@ Mix MixAnt::MakeMix(TrackOrder const& order)
     }
 
     // Is the current track compatible with the previous?
-    bool compatible = false;
-    for (auto k : Camelot::GetCompatibleKeys(prv_ms.GetPlayKey())) {
-      compatible |= Camelot::AreCompatibleKeys(cur_ms.track.key, k);
-    }
+    bool compatible = Camelot::AreCompatibleKeys(cur_ms.track.key, prv_ms.GetPlayKey());
 
     // We're done if we're already compatible
     if (compatible) {
       mix.steps.push_back(cur_ms);
+      prv_ms = cur_ms;
       continue;
     }
 
     // We're not compatible, so we need a tuning change in the current track
     // Choose the key with the smallest combined distance between previous and next
     int min_dist = INT_MAX;
-    int min_prv_dist = INT_MAX;
+    int min_cur_dist = INT_MAX;
     int min_nxt_dist = INT_MAX;
     for (auto k : Camelot::GetKeys()) {
+      
       // Can't switch between min-maj!
-      if (k.type != cur_ms.track.key.type) {
+      // And we only care about compatible keys
+      if (k.type != cur_ms.track.key.type || !Camelot::AreCompatibleKeys(k, prv_ms.GetPlayKey())) {
         continue;
       }
 
-      int prv_dist = Camelot::GetCamelotDistance(prv_ms.GetPlayKey(), k);
+      // Want the smallest distance between our natural key and the next one
+      int cur_dist = Camelot::GetCamelotDistance(cur_ms.track.key, k);
       int nxt_dist = nxt ? Camelot::GetCamelotDistance(k, nxt->key) : 0;
       // Check the total distance -- want the best value
-      if (abs(prv_dist) + abs(nxt_dist) <= min_dist) {
+      if (abs(cur_dist) + abs(nxt_dist) <= min_dist) {
         // Prefer to stay closer to what we've already played
-        if (abs(prv_dist) < abs(min_prv_dist)) {
-          min_dist = abs(prv_dist) + abs(nxt_dist);
-          min_prv_dist = prv_dist;
+        if (abs(cur_dist) < abs(min_cur_dist)) {
+          min_dist = abs(cur_dist) + abs(nxt_dist);
+          min_cur_dist = cur_dist;
           min_nxt_dist = nxt_dist;
           cur_ms.SetPlayKey(k);
         }
@@ -232,8 +234,6 @@ Mix MixAnt::MakeMix(TrackOrder const& order)
     }
 
     mix.steps.push_back(cur_ms);
-
-    // Set our previous for the next time through
     prv_ms = cur_ms;
   }
 

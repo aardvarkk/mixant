@@ -104,7 +104,7 @@ int Camelot::GetCamelotDistance(Camelot::Key const& k1, Camelot::Key const& k2)
 {
   int diff = k2.num - k1.num;
   int keydiff = abs(diff) > 6 ? 12 - abs(diff) : diff;
-  return keydiff + abs(k1.type - k2.type);
+  return keydiff + Utils::sgn(diff) * abs(k1.type - k2.type);
 }
 
 Camelot::Keys Camelot::GetCompatibleKeys(Camelot::Key const& key)

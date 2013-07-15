@@ -8,6 +8,15 @@
 
 int main(int argc, char* argv[])
 {
+  // TESTS
+  Camelot::Key Am = Camelot::KeyFromString("Am");
+  Camelot::Key F = Camelot::KeyFromString("F");
+  int d = Camelot::GetCamelotDistance(Am, F); // should be 2
+
+  Camelot::Key Fm = Camelot::KeyFromString("Fm");
+  Camelot::Key Eb = Camelot::KeyFromString("Eb");
+  bool c = Camelot::AreCompatibleKeys(Fm, Eb); // should be false
+
   // Our tracks
   Tracks tracks;
 
