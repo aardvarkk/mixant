@@ -1,0 +1,36 @@
+Black Eyed Peas - The Time (Dirty Bit)
+E -> E (0) 
+128bpm -> 133.9bpm
+
+Baauer - Harlem Shake
+Bb -> A (-1) 
+133.9bpm -> 134.9bpm
+
+Katy Perry - I Kissed A Girl (Dr. Luke & Benny Blanco Remix)
+Am -> F#m (-3) 
+134.9bpm -> 128.45bpm
+
+Basement Jaxx - Red Alert
+Fm -> F#m (1) 
+128.45bpm -> 127.4bpm
+
+Black Eyed Peas - I Gotta Feeling
+G -> A (2) 
+127.4bpm -> 106.5bpm
+
+Biz Markie - Just A Friend
+G -> A (2) 
+106.5bpm -> 83.85bpm
+
+Dion & The Belmonts - Runaround Sue
+D -> D (0) 
+83.85bpm -> 82.5bpm
+
+Armin Van Buuren - This Is What It Feels Like
+Ab -> A (1) 
+82.5bpm -> 82.4bpm
+
+The Isley Brothers - Shout!
+F -> E (-1) 
+82.4bpm -> 81.55bpm
+

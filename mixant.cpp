@@ -6,7 +6,7 @@
 
 static std::tr1::mt19937 eng;
 static int kMixRuns = 100;
-static int kNumAnts = 5000;
+static int kNumAnts = 2500;
 static double kPheromoneDrop = 0.01;
 static double kPheromonePop = 2 * kPheromoneDrop;
 static double kBPMDiffMult = 1;

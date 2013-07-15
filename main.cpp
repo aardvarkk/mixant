@@ -44,4 +44,9 @@ int main(int argc, char* argv[])
 
   // Print the mix
   std::cout << m << std::endl;
+
+  // Save the mix to a file
+  std::ofstream ofs("mix.txt");
+  ofs << m;
+  ofs.close();
 }
