@@ -31,17 +31,15 @@ public:
   typedef std::vector<Key> Keys;
 
   static Keys GetKeys();
+  static Keys GetOrdering(Type type);
   static Key  KeyFromString(std::string const& str);
   static Key  GetShiftedKey(Key const& original_key, double old_bpm, double new_bpm);
   static int  GetKeyIndex(Key const& key);
   static int  GetCamelotDistance(Key const& k1, Key const& k2);
+  static int  GetTransposeDistance(Key const& k1, Key const& k2);
   static bool AreCompatibleKeys(Key const& k1, Key const& k2);
   static Keys GetCompatibleKeys(Key const& key);
   static Key  GetKey(int num, Type type);
-
-private:
-
-  static Keys keys;
 };
 
 #endif

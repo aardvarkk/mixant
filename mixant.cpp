@@ -5,8 +5,8 @@
 #include "utils.h"
 
 static std::tr1::mt19937 eng;
-static int kMixRuns = 100;
-static int kNumAnts = 5000;
+static int kMixRuns = 10;
+static int kNumAnts = 50;
 static double kPheromoneDrop = 0.01;
 static double kPheromonePop = 2 * kPheromoneDrop;
 static double kBPMDiffMult = 1;
@@ -37,7 +37,7 @@ Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
       //int camelot_dist = Camelot::GetCamelotDistance(new_key_i, new_key_j);
       int camelot_dist = Camelot::GetCamelotDistance(tracks[i].key, tracks[j].key);
 
-      double dist = kBPMDiffMult * bpm_ratio_st + kCamelotDiffMult * abs(camelot_dist);
+      double dist = kBPMDiffMult * bpm_ratio_st + kCamelotDiffMult * (abs(camelot_dist) > 1);
       dists[i][j] = dist;
       dists[j][i] = dist;
     }
@@ -208,8 +208,6 @@ Mix MixAnt::MakeMix(TrackOrder const& order)
     // We're not compatible, so we need a tuning change in the current track
     // Choose the key with the smallest combined distance between previous and next
     int min_dist = INT_MAX;
-    int min_cur_dist = INT_MAX;
-    int min_nxt_dist = INT_MAX;
     for (auto k : Camelot::GetKeys()) {
       
       // Can't switch between min-maj!
@@ -219,17 +217,11 @@ Mix MixAnt::MakeMix(TrackOrder const& order)
       }
 
       // Want the smallest distance between our natural key and the next one
-      int cur_dist = Camelot::GetCamelotDistance(cur_ms.track.key, k);
-      int nxt_dist = nxt ? Camelot::GetCamelotDistance(k, nxt->key) : 0;
+      int cur_dist = Camelot::GetTransposeDistance(cur_ms.track.key, k);
       // Check the total distance -- want the best value
-      if (abs(cur_dist) + abs(nxt_dist) <= min_dist) {
-        // Prefer to stay closer to what we've already played
-        if (abs(cur_dist) < abs(min_cur_dist)) {
-          min_dist = abs(cur_dist) + abs(nxt_dist);
-          min_cur_dist = cur_dist;
-          min_nxt_dist = nxt_dist;
-          cur_ms.SetPlayKey(k);
-        }
+      if (abs(cur_dist) <= min_dist) {
+        min_dist = abs(cur_dist);
+        cur_ms.SetPlayKey(k);
       }
     }
 

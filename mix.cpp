@@ -19,7 +19,7 @@ int MixStep::GetTuning()
 void MixStep::SetPlayKey(Camelot::Key const& key)
 {
   play_key = key;
-  tuning = Camelot::GetCamelotDistance(track.key, play_key);
+  tuning = Camelot::GetTransposeDistance(track.key, play_key);
 }
 
 std::ostream& operator<<(std::ostream& out, const Mix& mix)
@@ -28,7 +28,7 @@ std::ostream& operator<<(std::ostream& out, const Mix& mix)
     out 
         << s.track.name
         << std::endl
-        << s.GetPlayKey().short_name
+        << s.track.key.short_name << " -> " << s.GetPlayKey().short_name
         << " (" << s.GetTuning() << ") " 
         << std::endl
         << s.bpm_beg << "bpm -> " << s.bpm_end << "bpm"

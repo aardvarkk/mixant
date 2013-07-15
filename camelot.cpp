@@ -5,14 +5,9 @@
 #include "camelot.h"
 #include "utils.h"
 
-Camelot::Keys Camelot::keys;
-
 Camelot::Keys Camelot::GetKeys()
 {
-  if (!keys.empty()) {
-    return keys;
-  }
-
+  Camelot::Keys keys;
   keys.push_back(Key(1, kMinor, "A-Flat Minor", "Abm", "G#m"));
   keys.push_back(Key(1, kMajor, "B Major", "B", ""));
   keys.push_back(Key(2, kMinor, "E-Flat Minor", "Ebm", "D#m"));
@@ -37,8 +32,45 @@ Camelot::Keys Camelot::GetKeys()
   keys.push_back(Key(11, kMajor, "A Major", "A", ""));
   keys.push_back(Key(12, kMinor, "D-Flat Minor", "Dbm", "C#m"));
   keys.push_back(Key(12, kMajor, "E Major", "E", ""));
-
   return keys;
+}
+
+Camelot::Keys Camelot::GetOrdering(Camelot::Type type)
+{
+  Keys ordering;
+
+  switch (type) {
+  case kMinor:
+    ordering.push_back(Camelot::GetKey(5,  kMinor));
+    ordering.push_back(Camelot::GetKey(12, kMinor));
+    ordering.push_back(Camelot::GetKey(7,  kMinor));
+    ordering.push_back(Camelot::GetKey(2,  kMinor));
+    ordering.push_back(Camelot::GetKey(9,  kMinor));
+    ordering.push_back(Camelot::GetKey(4,  kMinor));
+    ordering.push_back(Camelot::GetKey(11, kMinor));
+    ordering.push_back(Camelot::GetKey(6,  kMinor));
+    ordering.push_back(Camelot::GetKey(1,  kMinor));
+    ordering.push_back(Camelot::GetKey(8,  kMinor));
+    ordering.push_back(Camelot::GetKey(3,  kMinor));
+    ordering.push_back(Camelot::GetKey(10, kMinor));
+    break;
+  case kMajor:
+    ordering.push_back(Camelot::GetKey(8,  kMajor));
+    ordering.push_back(Camelot::GetKey(3,  kMajor));
+    ordering.push_back(Camelot::GetKey(10, kMajor));
+    ordering.push_back(Camelot::GetKey(5,  kMajor));
+    ordering.push_back(Camelot::GetKey(12, kMajor));
+    ordering.push_back(Camelot::GetKey(7,  kMajor));
+    ordering.push_back(Camelot::GetKey(2,  kMajor));
+    ordering.push_back(Camelot::GetKey(9,  kMajor));
+    ordering.push_back(Camelot::GetKey(4,  kMajor));
+    ordering.push_back(Camelot::GetKey(11, kMajor));
+    ordering.push_back(Camelot::GetKey(6,  kMajor));
+    ordering.push_back(Camelot::GetKey(1,  kMajor));
+    break;
+  }
+
+  return ordering;
 }
 
 Camelot::Key Camelot::KeyFromString(std::string const& str)
@@ -71,8 +103,8 @@ Camelot::Key Camelot::Key::operator+(int semitones) const
   }
 
   int key_index = Camelot::GetKeyIndex(*this);
-  int key_shifted = (key_index + 2 * semitones) % keys.size();
-  return keys[key_shifted];
+  int key_shifted = (key_index + 2 * semitones) % GetKeys().size();
+  return GetKeys()[key_shifted];
 }
 
 Camelot::Key Camelot::Key::operator-(int semitones) const
@@ -82,8 +114,8 @@ Camelot::Key Camelot::Key::operator-(int semitones) const
 
 int Camelot::GetKeyIndex(Camelot::Key const& key)
 {
-  for (size_t i = 0; i < keys.size(); ++i) {
-    if (key == keys[i]) {
+  for (size_t i = 0; i < GetKeys().size(); ++i) {
+    if (key == GetKeys()[i]) {
       return i;
     }
   }
@@ -105,6 +137,32 @@ int Camelot::GetCamelotDistance(Camelot::Key const& k1, Camelot::Key const& k2)
   int diff = k2.num - k1.num;
   int keydiff = abs(diff) > 6 ? 12 - abs(diff) : diff;
   return keydiff + Utils::sgn(diff) * abs(k1.type - k2.type);
+}
+
+// Use a lookup: http://community.mixedinkey.com/Topics/6718
+int Camelot::GetTransposeDistance(Camelot::Key const& k1, Camelot::Key const& k2)
+{
+  // Must be of the same type!
+  assert(k1.type == k2.type);
+
+  // Get the ordering
+  Keys ordering = Camelot::GetOrdering(k1.type);
+
+  // Find the two indices for each key, then calculate modular distance
+  int i1, i2;
+  int idx = 0;
+  for (auto k : ordering) {
+    if (k == k1) {
+      i1 = idx;
+    }
+    if (k == k2) {
+      i2 = idx;
+    }
+    idx++;
+  }
+
+  int diff = i2 - i1;
+  return abs(diff) > 6 ? 12 - abs(diff) : diff;
 }
 
 Camelot::Keys Camelot::GetCompatibleKeys(Camelot::Key const& key)
@@ -134,7 +192,7 @@ bool Camelot::AreCompatibleKeys(Camelot::Key const& k1, Camelot::Key const& k2)
 
 Camelot::Key Camelot::GetKey(int num, Type type)
 {
-  for (auto k : keys) {
+  for (auto k : GetKeys()) {
     if (k.num == num && k.type == type) {
       return k;
     }
