@@ -2,6 +2,7 @@
 #include <sstream>
 
 #include "camelot.h"
+#include "mixant.h"
 #include "track.h"
 
 int main(int argc, char* argv[])
@@ -26,4 +27,8 @@ int main(int argc, char* argv[])
     tracks.push_back(Track(name, bpm, key));
   }
   ifs.close();
+
+  // Find a mix that works!
+  MixAnt ma;
+  Mix m = ma.FindMix(tracks);
 }

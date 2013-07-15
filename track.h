@@ -5,15 +5,13 @@
 
 #include "camelot.h"
 
-class Track
+struct Track
 {
-public:
-  Track(std::string const& name, double bpm, Camelot::Key const& key) : name(name), bpm(bpm), key(key) {}
-
-protected:
   std::string name;
   double bpm;
   Camelot::Key key;
+
+  Track(std::string const& name, double bpm, Camelot::Key const& key) : name(name), bpm(bpm), key(key) {}
 };
 
 typedef std::vector<Track> Tracks;

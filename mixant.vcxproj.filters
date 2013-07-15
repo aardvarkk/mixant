@@ -21,6 +21,9 @@
     <ClCompile Include="camelot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mixant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="tracks.txt">
@@ -32,6 +35,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="track.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mixant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
