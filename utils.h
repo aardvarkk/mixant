@@ -1,11 +1,13 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <vector>
+
 class Utils
 {
 public:
 
-  static double GetSemitoneRatio() { return pow(2, 1.0 / 12); }
+  static double GetSemitoneRatio();
 };
 
 #endif

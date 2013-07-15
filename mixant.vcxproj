@@ -69,6 +69,7 @@
     <ClCompile Include="camelot.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mixant.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="tracks.txt" />

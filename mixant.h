@@ -13,6 +13,9 @@ public:
   Mix FindMix(Tracks const& tracks);
 
 protected:
+  
+  typedef std::vector< std::pair<Track, int> > TrackOrder;
+  Mix MakeMix(TrackOrder const& order);
 
   Matrix FindTrackDistances(Tracks const& tracks);
 
