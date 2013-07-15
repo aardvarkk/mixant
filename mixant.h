@@ -17,6 +17,7 @@ protected:
   Matrix FindTrackDistances(Tracks const& tracks);
 
   Matrix distances;
+  Matrix pheromone;
 };
 
 #endif
