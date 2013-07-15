@@ -5,12 +5,12 @@
 #include "utils.h"
 
 static std::tr1::mt19937 eng;
-static int kMixRuns = 10;
-static int kNumAnts = 50;
+static int kMixRuns = 100;
+static int kNumAnts = 5000;
 static double kPheromoneDrop = 0.01;
 static double kPheromonePop = 2 * kPheromoneDrop;
 static double kBPMDiffMult = 1;
-static double kCamelotDiffMult = 10;
+static double kTransposeDiffMult = 1;
 
 Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
 {
@@ -30,14 +30,20 @@ Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
       double bpm_ratio    = (min_bpm + bpm_diff) / min_bpm;
       double bpm_ratio_st = log(bpm_ratio) / log(Utils::GetSemitoneRatio());
 
-      // Get the key portion _after_ BPM match (in semitones)
-      //double target_bpm = min_bpm / 2;
-      //Camelot::Key new_key_i = Camelot::GetShiftedKey(tracks[i].key, tracks[i].bpm, target_bpm);
-      //Camelot::Key new_key_j = Camelot::GetShiftedKey(tracks[j].key, tracks[j].bpm, target_bpm);
-      //int camelot_dist = Camelot::GetCamelotDistance(new_key_i, new_key_j);
-      int camelot_dist = Camelot::GetCamelotDistance(tracks[i].key, tracks[j].key);
+      // How far must we transpose the "second" track to make it compatible with the "first"?
+      int min_transpose_dist = INT_MAX;
+      for (auto k : Camelot::GetKeys()) {
+        // Only care about keys compatible with "first", and ones of the same type as our "second" track
+        if (!Camelot::AreCompatibleKeys(k, tracks[i].key) || k.type != tracks[j].key.type) {
+          continue;
+        }
+        int transpose_dist = Camelot::GetTransposeDistance(tracks[j].key, k);
+        if (abs(transpose_dist) < min_transpose_dist) {
+          min_transpose_dist = abs(transpose_dist);
+        }
+      }
 
-      double dist = kBPMDiffMult * bpm_ratio_st + kCamelotDiffMult * (abs(camelot_dist) > 1);
+      double dist = kBPMDiffMult * bpm_ratio_st + kTransposeDiffMult * min_transpose_dist;
       dists[i][j] = dist;
       dists[j][i] = dist;
     }
