@@ -5,13 +5,12 @@
 #include "utils.h"
 
 static std::tr1::mt19937 eng;
-static int kMixRuns = 5;
-static int kNumAnts = 1000;
+static int kMixRuns = 20;
+static int kNumAnts = 50;
 static double kPheromoneDrop = 0.01;
 static double kPheromonePop = 2 * kPheromoneDrop;
-
-static double kBPM_diff_multiplier = 1;
-static double kCamelot_diff_multiplier = 1;
+static double kBPMDiffMult = 1;
+static double kCamelotDiffMult = 10;
   
 Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
 {
@@ -38,7 +37,7 @@ Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
       //int camelot_dist = Camelot::GetCamelotDistance(new_key_i, new_key_j);
       int camelot_dist = Camelot::GetCamelotDistance(tracks[i].key, tracks[j].key);
 
-      double dist = kBPM_diff_multiplier * bpm_ratio_st + kCamelot_diff_multiplier * camelot_dist;
+      double dist = kBPMDiffMult * bpm_ratio_st + kCamelotDiffMult * abs(camelot_dist);
       dists[i][j] = dist;
       dists[j][i] = dist;
     }
@@ -164,5 +163,25 @@ Mix MixAnt::FindMix(Tracks const& tracks)
 
 Mix MixAnt::MakeMix(TrackOrder const& order)
 {
-  return Mix();
+  Mix mix;
+  
+  // Create instructions for the mix
+  for (size_t i = 2; i < order.size(); ++i) {
+    
+    // Select a target BPM as a BPM between the two tracks that's closest to a semitone change for each (if necessary)
+    // Alternatively, just keep one track at its original BPM, and adjust the other to match it
+    // Can adjust speed after starting, but can't adjust pitch!
+    
+    Track const& t1 = order[i-2].first;
+    Track const& t2 = order[i-1].first;
+    Track const& t3 = order[i-0].first;
+
+    // Do these tracks match?
+    int dist12 = Camelot::GetCamelotDistance(t1.key, t2.key);
+    int dist23 = Camelot::GetCamelotDistance(t2.key, t3.key);
+
+    mix.steps.push_back(order[i].first.name);
+  }
+
+  return mix;
 }

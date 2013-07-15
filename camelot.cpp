@@ -92,7 +92,7 @@ Camelot::Key Camelot::GetShiftedKey(Camelot::Key const& original_key, double old
 
 int Camelot::GetCamelotDistance(Camelot::Key const& k1, Camelot::Key const& k2)
 {
-  int absdiff = std::abs(k1.num - k2.num);
-  int keydiff = absdiff > 6 ? 12 - absdiff : absdiff;
-  return keydiff + abs(k1.type - k2.type);
+  int diff = k2.num - k1.num;
+  int keydiff = abs(diff) > 6 ? 12 - abs(diff) : abs(diff);
+  return Utils::sgn(diff) * (keydiff + abs(k1.type - k2.type));
 }

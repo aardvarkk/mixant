@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iostream>
 #include <sstream>
 
 #include "camelot.h"
@@ -31,4 +32,7 @@ int main(int argc, char* argv[])
   // Find a mix that works!
   MixAnt ma;
   Mix m = ma.FindMix(tracks);
+
+  // Print the mix
+  std::cout << m << std::endl;
 }
