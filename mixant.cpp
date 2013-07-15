@@ -165,23 +165,30 @@ Mix MixAnt::MakeMix(TrackOrder const& order)
 {
   Mix mix;
   
-  // Create instructions for the mix
-  for (size_t i = 2; i < order.size(); ++i) {
-    
-    // Select a target BPM as a BPM between the two tracks that's closest to a semitone change for each (if necessary)
-    // Alternatively, just keep one track at its original BPM, and adjust the other to match it
-    // Can adjust speed after starting, but can't adjust pitch!
-    
-    Track const& t1 = order[i-2].first;
-    Track const& t2 = order[i-1].first;
-    Track const& t3 = order[i-0].first;
+  // For now, just play the first song normally
+  mix.steps.push_back(order.front().first.name);
 
-    // Do these tracks match?
-    int dist12 = Camelot::GetCamelotDistance(t1.key, t2.key);
-    int dist23 = Camelot::GetCamelotDistance(t2.key, t3.key);
+  // Create instructions for the mix
+  // Look at the previous and next at each step
+  for (size_t i = 1; i < order.size()-1; ++i) {
+
+    Track const& prv = order[i-1].first;
+    Track const& cur = order[i].first;
+    Track const& nxt = order[i+1].first;
+
+    // Choose BPM halfway between
+    double bpm = (nxt.bpm + prv.bpm) / 2;
+
+    // See what kind of pitch shift that would naturally induce, then see what the minimum tuning
+    // adjustment is to get us in tune with the previous track (we have 4 options -- exact same key,
+    // major/minor switch, or +1 -1 in same major/minor)
+
 
     mix.steps.push_back(order[i].first.name);
   }
+
+  // Just play the last song normally too!
+  mix.steps.push_back(order.back().first.name);
 
   return mix;
 }
