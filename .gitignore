@@ -13,8 +13,10 @@
 *.a
 
 boost
+ipch
 Debug
 Release
 *.sdf
 *.opensdf
 *.suo
+*.user

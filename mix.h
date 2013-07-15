@@ -4,7 +4,27 @@
 #include <iostream>
 #include <vector>
 
-typedef std::string MixStep;
+#include "track.h"
+
+struct MixStep
+{
+public:
+
+  Track        track;
+  double       bpm_beg;
+  double       bpm_end;
+
+  MixStep(Track const& track);
+  Camelot::Key GetPlayKey();
+  void SetPlayKey(Camelot::Key const& key);
+  int GetTuning();
+
+protected:
+
+  Camelot::Key play_key;
+  int          tuning;
+};
+
 typedef std::vector<MixStep> MixSteps;
 
 struct Mix

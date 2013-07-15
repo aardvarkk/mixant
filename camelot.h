@@ -25,17 +25,22 @@ public:
     Key(int num, Type type, std::string name, std::string short_name, std::string alternate) : num(num), type(type), name(name), short_name(short_name), alternate(alternate) {}
     bool operator==(Camelot::Key const& key) const;
     Key operator+(int semitones) const;
+    Key operator-(int semitones) const;
   };
 
   typedef std::vector<Key> Keys;
 
   static Keys GetKeys();
   static Key  KeyFromString(std::string const& str);
-  static Key  GetShiftedKey(Camelot::Key const& original_key, double old_bpm, double new_bpm);
-  static int  GetKeyIndex(Camelot::Key const& key);
-  static int  GetCamelotDistance(Camelot::Key const& k1, Camelot::Key const& k2);
+  static Key  GetShiftedKey(Key const& original_key, double old_bpm, double new_bpm);
+  static int  GetKeyIndex(Key const& key);
+  static int  GetCamelotDistance(Key const& k1, Key const& k2);
+  static bool AreCompatibleKeys(Key const& k1, Key const& k2);
+  static Keys GetCompatibleKeys(Key const& key);
+  static Key  GetKey(int num, Type type);
 
 private:
+
   static Keys keys;
 };
 

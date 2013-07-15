@@ -11,11 +11,11 @@ static double kPheromoneDrop = 0.01;
 static double kPheromonePop = 2 * kPheromoneDrop;
 static double kBPMDiffMult = 1;
 static double kCamelotDiffMult = 10;
-  
+
 Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
 {
   Matrix dists;
-  
+
   dists.resize(tracks.size());
   for (auto i = dists.begin(); i != dists.end(); ++i) {
     i->resize(tracks.size());
@@ -66,7 +66,7 @@ Mix MixAnt::FindMix(Tracks const& tracks)
   for (size_t i = 0; i < pheromone.size(); ++i) {
     pheromone[i].resize(tracks.size(), 1);
   }
-  
+
   // Best distance and order found...
   double min_dist = DBL_MAX;
   TrackOrder min_order;
@@ -130,7 +130,7 @@ Mix MixAnt::FindMix(Tracks const& tracks)
         cur_track = nxt_track;
         order.push_back(std::make_pair(tracks[cur_track], cur_track));
       }
-    
+
       // Score the mix based on the sum of all distances
       if (total_dist < min_dist) {
         min_dist = total_dist;
@@ -139,10 +139,10 @@ Mix MixAnt::FindMix(Tracks const& tracks)
     }
 
     // Lay down a set amount of pheromone along the track from this ant, and reduce all pheromone by twice that amount
-    
+
     // Reward the start track
     pheromone[min_order.front().second][min_order.front().second] += kPheromonePop;
-    
+
     // Reward all choices along the route (edges from i->j)
     for (size_t i = 1; i < min_order.size(); ++i) {
       pheromone[min_order[i-1].second][min_order[i].second] += kPheromonePop;
@@ -164,31 +164,78 @@ Mix MixAnt::FindMix(Tracks const& tracks)
 Mix MixAnt::MakeMix(TrackOrder const& order)
 {
   Mix mix;
-  
-  // For now, just play the first song normally
-  mix.steps.push_back(order.front().first.name);
+
+  // If there's only one track, we're done!
+  if (order.size() < 2) {
+    mix.steps.push_back(order.front().first);
+    return mix;
+  }
+
+  // For now, just play the first song and only change its BPM
+  // such that it ends at a balance between its BPM and the next BPM
+  MixStep prv_ms(order.front().first);
+  prv_ms.bpm_end = (prv_ms.bpm_beg + order[1].first.bpm) / 2;
+  mix.steps.push_back(prv_ms);
 
   // Create instructions for the mix
   // Look at the previous and next at each step
   for (size_t i = 1; i < order.size()-1; ++i) {
 
-    Track const& prv = order[i-1].first;
-    Track const& cur = order[i].first;
-    Track const& nxt = order[i+1].first;
+    // Our current and next tracks
+    Track const* cur = &order[i].first;
+    Track const* nxt = i < order.size() - 1 ? &order[i+1].first : nullptr;
 
-    // Choose BPM halfway between
-    double bpm = (nxt.bpm + prv.bpm) / 2;
+    // Set up our current mix step
+    MixStep cur_ms(*cur);
+    cur_ms.bpm_beg = prv_ms.bpm_end;
 
-    // See what kind of pitch shift that would naturally induce, then see what the minimum tuning
-    // adjustment is to get us in tune with the previous track (we have 4 options -- exact same key,
-    // major/minor switch, or +1 -1 in same major/minor)
+    // If we have a next track...
+    if (nxt) {
+      cur_ms.bpm_end = (cur->bpm + nxt->bpm) / 2;
+    }
 
+    // Is the current track compatible with the previous?
+    bool compatible = false;
+    for (auto k : Camelot::GetCompatibleKeys(prv_ms.GetPlayKey())) {
+      compatible |= Camelot::AreCompatibleKeys(cur_ms.track.key, k);
+    }
 
-    mix.steps.push_back(order[i].first.name);
+    // We're done if we're already compatible
+    if (compatible) {
+      mix.steps.push_back(cur_ms);
+      continue;
+    }
+
+    // We're not compatible, so we need a tuning change in the current track
+    // Choose the key with the smallest combined distance between previous and next
+    int min_dist = INT_MAX;
+    int min_prv_dist = INT_MAX;
+    int min_nxt_dist = INT_MAX;
+    for (auto k : Camelot::GetKeys()) {
+      // Can't switch between min-maj!
+      if (k.type != cur_ms.track.key.type) {
+        continue;
+      }
+
+      int prv_dist = Camelot::GetCamelotDistance(prv_ms.GetPlayKey(), k);
+      int nxt_dist = nxt ? Camelot::GetCamelotDistance(k, nxt->key) : 0;
+      // Check the total distance -- want the best value
+      if (abs(prv_dist) + abs(nxt_dist) <= min_dist) {
+        // Prefer to stay closer to what we've already played
+        if (abs(prv_dist) < abs(min_prv_dist)) {
+          min_dist = abs(prv_dist) + abs(nxt_dist);
+          min_prv_dist = prv_dist;
+          min_nxt_dist = nxt_dist;
+          cur_ms.SetPlayKey(k);
+        }
+      }
+    }
+
+    mix.steps.push_back(cur_ms);
+
+    // Set our previous for the next time through
+    prv_ms = cur_ms;
   }
-
-  // Just play the last song normally too!
-  mix.steps.push_back(order.back().first.name);
 
   return mix;
 }
