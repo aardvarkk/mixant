@@ -30,8 +30,8 @@ public:
 
   typedef std::vector<Key> Keys;
 
-  static Keys GetKeys();
-  static Keys GetOrdering(Type type);
+  static Keys const& GetKeys();
+  static Keys const& GetOrdering(Type type);
   static Key  KeyFromString(std::string const& str);
   static Key  GetShiftedKey(Key const& original_key, double old_bpm, double new_bpm);
   static int  GetKeyIndex(Key const& key);

@@ -26,13 +26,18 @@ int main(int argc, char* argv[])
   while (std::getline(ifs, line)) {
     std::string name = line;
     
+    std::getline(ifs, line);
+    Camelot::Key key = Camelot::KeyFromString(line);
+
     double bpm;
     std::getline(ifs, line);
     std::stringstream ss(line);
     ss >> bpm;
 
-    std::getline(ifs, line);
-    Camelot::Key key = Camelot::KeyFromString(line);
+    // Allow commenting out tracks
+    if (!name.substr(0, 2).compare("//")) {
+      continue;
+    }
 
     tracks.push_back(Track(name, bpm, key));
   }
@@ -43,10 +48,12 @@ int main(int argc, char* argv[])
   Mix m = ma.FindMix(tracks);
 
   // Print the mix
-  std::cout << m << std::endl;
+  //std::cout << m << std::endl;
 
   // Save the mix to a file
   std::ofstream ofs("mix.txt");
   ofs << m;
   ofs.close();
+
+  std::cin.get();
 }

@@ -5,9 +5,16 @@
 #include "camelot.h"
 #include "utils.h"
 
-Camelot::Keys Camelot::GetKeys()
+static Camelot::Keys keys;
+static Camelot::Keys ordering_min;
+static Camelot::Keys ordering_maj;
+
+Camelot::Keys const& Camelot::GetKeys()
 {
-  Camelot::Keys keys;
+  if (!keys.empty()) {
+    return keys;
+  }
+
   keys.push_back(Key(1, kMinor, "A-Flat Minor", "Abm", "G#m"));
   keys.push_back(Key(1, kMajor, "B Major", "B", ""));
   keys.push_back(Key(2, kMinor, "E-Flat Minor", "Ebm", "D#m"));
@@ -32,45 +39,50 @@ Camelot::Keys Camelot::GetKeys()
   keys.push_back(Key(11, kMajor, "A Major", "A", ""));
   keys.push_back(Key(12, kMinor, "D-Flat Minor", "Dbm", "C#m"));
   keys.push_back(Key(12, kMajor, "E Major", "E", ""));
+
   return keys;
 }
 
-Camelot::Keys Camelot::GetOrdering(Camelot::Type type)
+Camelot::Keys const& Camelot::GetOrdering(Camelot::Type type)
 {
-  Keys ordering;
-
   switch (type) {
   case kMinor:
-    ordering.push_back(Camelot::GetKey(5,  kMinor));
-    ordering.push_back(Camelot::GetKey(12, kMinor));
-    ordering.push_back(Camelot::GetKey(7,  kMinor));
-    ordering.push_back(Camelot::GetKey(2,  kMinor));
-    ordering.push_back(Camelot::GetKey(9,  kMinor));
-    ordering.push_back(Camelot::GetKey(4,  kMinor));
-    ordering.push_back(Camelot::GetKey(11, kMinor));
-    ordering.push_back(Camelot::GetKey(6,  kMinor));
-    ordering.push_back(Camelot::GetKey(1,  kMinor));
-    ordering.push_back(Camelot::GetKey(8,  kMinor));
-    ordering.push_back(Camelot::GetKey(3,  kMinor));
-    ordering.push_back(Camelot::GetKey(10, kMinor));
-    break;
+    if (!ordering_min.empty()) {
+      return ordering_min;
+    }
+    ordering_min.push_back(Camelot::GetKey(5,  kMinor));
+    ordering_min.push_back(Camelot::GetKey(12, kMinor));
+    ordering_min.push_back(Camelot::GetKey(7,  kMinor));
+    ordering_min.push_back(Camelot::GetKey(2,  kMinor));
+    ordering_min.push_back(Camelot::GetKey(9,  kMinor));
+    ordering_min.push_back(Camelot::GetKey(4,  kMinor));
+    ordering_min.push_back(Camelot::GetKey(11, kMinor));
+    ordering_min.push_back(Camelot::GetKey(6,  kMinor));
+    ordering_min.push_back(Camelot::GetKey(1,  kMinor));
+    ordering_min.push_back(Camelot::GetKey(8,  kMinor));
+    ordering_min.push_back(Camelot::GetKey(3,  kMinor));
+    ordering_min.push_back(Camelot::GetKey(10, kMinor));
+    return ordering_min;
   case kMajor:
-    ordering.push_back(Camelot::GetKey(8,  kMajor));
-    ordering.push_back(Camelot::GetKey(3,  kMajor));
-    ordering.push_back(Camelot::GetKey(10, kMajor));
-    ordering.push_back(Camelot::GetKey(5,  kMajor));
-    ordering.push_back(Camelot::GetKey(12, kMajor));
-    ordering.push_back(Camelot::GetKey(7,  kMajor));
-    ordering.push_back(Camelot::GetKey(2,  kMajor));
-    ordering.push_back(Camelot::GetKey(9,  kMajor));
-    ordering.push_back(Camelot::GetKey(4,  kMajor));
-    ordering.push_back(Camelot::GetKey(11, kMajor));
-    ordering.push_back(Camelot::GetKey(6,  kMajor));
-    ordering.push_back(Camelot::GetKey(1,  kMajor));
-    break;
+    if (!ordering_maj.empty()) {
+      return ordering_maj;
+    }
+    ordering_maj.push_back(Camelot::GetKey(8,  kMajor));
+    ordering_maj.push_back(Camelot::GetKey(3,  kMajor));
+    ordering_maj.push_back(Camelot::GetKey(10, kMajor));
+    ordering_maj.push_back(Camelot::GetKey(5,  kMajor));
+    ordering_maj.push_back(Camelot::GetKey(12, kMajor));
+    ordering_maj.push_back(Camelot::GetKey(7,  kMajor));
+    ordering_maj.push_back(Camelot::GetKey(2,  kMajor));
+    ordering_maj.push_back(Camelot::GetKey(9,  kMajor));
+    ordering_maj.push_back(Camelot::GetKey(4,  kMajor));
+    ordering_maj.push_back(Camelot::GetKey(11, kMajor));
+    ordering_maj.push_back(Camelot::GetKey(6,  kMajor));
+    ordering_maj.push_back(Camelot::GetKey(1,  kMajor));
+    return ordering_maj;
   }
 
-  return ordering;
+  throw "Invalid key type";
 }
 
 Camelot::Key Camelot::KeyFromString(std::string const& str)

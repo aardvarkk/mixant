@@ -5,9 +5,9 @@
 #include "utils.h"
 
 static std::tr1::mt19937 eng;
-static int kMixRuns = 100;
-static int kNumAnts = 2500;
-static double kPheromoneDrop = 0.01;
+static int kMixRuns = 1000;
+static int kNumAnts = 1000;
+static double kPheromoneDrop = 1.0 / kMixRuns;
 static double kPheromonePop = 2 * kPheromoneDrop;
 static double kBPMDiffMult = 1;
 static double kTransposeDiffMult = 1;
@@ -80,6 +80,10 @@ Mix MixAnt::FindMix(Tracks const& tracks)
   // For some set number of iterations...
   for (int r = 0; r < kMixRuns; ++r) {
 
+    // Best distance found this run
+    double min_run_dist = DBL_MAX;
+    TrackOrder min_run_order;
+
     // Run a set number of ants through the entire collection, creating a mix
     for (int i = 0; i < kNumAnts; ++i) {
 
@@ -137,7 +141,14 @@ Mix MixAnt::FindMix(Tracks const& tracks)
         order.push_back(std::make_pair(tracks[cur_track], cur_track));
       }
 
-      // Score the mix based on the sum of all distances
+      // This is the best this run
+      if (total_dist < min_run_dist) {
+        min_run_dist = total_dist;
+        min_run_order = order;
+        //std::cout << "New min run dist: " << min_run_dist << std::endl;
+      }
+
+      // We did better than we EVER have
       if (total_dist < min_dist) {
         min_dist = total_dist;
         min_order = order;
@@ -148,11 +159,11 @@ Mix MixAnt::FindMix(Tracks const& tracks)
     // Lay down a set amount of pheromone along the track from this ant, and reduce all pheromone by twice that amount
 
     // Reward the start track
-    pheromone[min_order.front().second][min_order.front().second] += kPheromonePop;
+    pheromone[min_run_order.front().second][min_run_order.front().second] += kPheromonePop;
 
     // Reward all choices along the route (edges from i->j)
-    for (size_t i = 1; i < min_order.size(); ++i) {
-      pheromone[min_order[i-1].second][min_order[i].second] += kPheromonePop;
+    for (size_t i = 1; i < min_run_order.size(); ++i) {
+      pheromone[min_run_order[i-1].second][min_run_order[i].second] += kPheromonePop;
     }
 
     // Now drop everything across the board
@@ -164,6 +175,8 @@ Mix MixAnt::FindMix(Tracks const& tracks)
 
     std::cout << "Finished run " << r+1 << " of " << kMixRuns << std::endl;
   }
+
+  std::cout << "Final min dist: " << min_dist << std::endl;
 
   return MakeMix(min_order);
 }
