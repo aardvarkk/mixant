@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <sstream>
 
 #include "camelot.h"
@@ -43,17 +44,47 @@ int main(int argc, char* argv[])
   }
   ifs.close();
 
-  // Find a mix that works!
-  MixAnt ma;
-  Mix m = ma.FindMix(tracks);
+  // Write separate values out
+  std::ofstream names("names.txt");
+  std::ofstream bpms("bpms.txt");
+  std::ofstream keys("keys.txt");
+  for (auto t : tracks) {
+    names << t.name           << std::endl;
+    bpms  << t.bpm            << std::endl;
+    keys  << t.key.short_name << std::endl;
+  }
+  names.close();
+  bpms.close();
+  keys.close();
 
-  // Print the mix
-  //std::cout << m << std::endl;
+  // Collect stats on how many tracks are in which keys
+  std::map< Camelot::Key, std::vector<Track> > key_counts;
+  for (auto t : tracks) {
+    key_counts[t.key].push_back(t);
+  }
 
-  // Save the mix to a file
-  std::ofstream ofs("mix.txt");
-  ofs << m;
-  ofs.close();
+  // Write the key counts
+  std::ofstream key_counts_f("key_counts.txt");
+  for (auto k : key_counts) {
+    key_counts_f << k.first.short_name << "\t" << k.second.size() << std::endl << std::endl;
+    for (auto t : k.second) {
+      key_counts_f << t.name << std::endl;
+    }
+    key_counts_f << std::endl;
+  }
+  key_counts_f.close();
 
-  std::cin.get();
+  //// Find a mix that works!
+  //MixAnt ma;
+  //Mix m = ma.FindMix(tracks);
+
+  //// Print the mix
+  ////std::cout << m << std::endl;
+
+  //// Save the mix to a file
+  //std::ofstream ofs("mix.txt");
+  //ofs << m;
+  //ofs.close();
+
+  //std::cin.get();
 }

@@ -1,345 +1,114 @@
 Avicii - Levels
-E
-126
 Martin Solveig - The Night Out (Madeon Remix)
-B
-127
 Armin Van Buuren - This Is What It Feels Like
-Ab
-130
 Baauer - Harlem Shake
-Bbm
-140
 Basement Jaxx - Red Alert
-Fm
-127
 Biz Markie - Just A Friend
-C
-85
 Black Eyed Peas - I Gotta Feeling
-G
-128
 Black Eyed Peas - The Time (Dirty Bit)
-E
-128
 Blackstreet ft. Dr. Dre - No Diggity
-F#m
-89
 Bon Jovi - Livin' On A Prayer
-Em
-123
 Bon Jovi - You Give Love A Bad Name
-Cm
-122
 Britney Spears - Toxic
-Cm
-141
 Cee Lo Green - Fuck You
-C
-128
 Chic - Good Times
-Em
-110
 Chic - Le Freak
-Am
-118
 Chromeo - Night By Night
-Cm
-125
 Daft Punk - Around The World
-Am
-121
 Daft Punk - One More Time
-Bm
-123
 Daft Punk - Get Lucky
-F#m
-115
-//Hall & Oates - You Make My Dreams Come True
-F
-82
 Deadmau5 - Raise Your Weapon (Madeon Remix)
-Abm
-126
 Dion & The Belmonts
-D
-78
 Earth, Wind & Fire - September
-A
-124
 Eiffel 65 - Blue (Da Ba Dee)
-Gm
-129
 Eiffel 65 - Move Your Body
-Dm
-130
 Eminem - Without Me
-Gm
-113
 Enur ft. Natasja - Calabria 2007
-Ebm
-126
 Fat Joe ft. Ashanti - What's Luv?
-Cm
-94
 Fatboy Slim - Weapon of Choice
-Abm
-97
 Fatman Scoop - Be Faithful
-Dm
-100
 Feed Me - Mordez Moi
-Fm
-128
 Flo Rida - Wild Ones
-Ab
-127
 Icona Pop - I Love It
-Ab
-126
 J.Lo - Jenny From The Block
-Abm
-100
 James Brown - Get Up
-Ebm
-108
 James Brown - Get Up Offa That Thing
-Gm
-119
 James Brown - I Got You
-Dm
-71
 James Brown - Papa's Got A Brand New Bag
-Em
-127
 Jamiroquai - Canned Heat
-Dm
-128
 Janelle Monae - Tightrope
-Fm
-84
 Justin Timberlake - Rock Your Body
-Em
-101
 Justin Timberlake - Senorita
-Ebm
-99
 Justin Timberlake - SexyBack
-Am
-117
 Kaskade - Raining
-Dm
-128
 Katy Perry - I Kissed A Girl Remix
-Am
-130
 KC & The Sunshine Band - Get Down Tonight
-Fm
-112
 KC & The Sunshine Band - That's The Way
-Cm
-110
 Kesha - Tik Tok
-Dm
-120
 Kid Cudi vs. Crookers - Day 'n' Nite
-Bm
-132
 Kool & The Gang - Celebration
-Ab
-122
 Kool & The Gang - Get Down On It
-Em
-110
 Kool & The Gang - Jungle Boogie
-Gm
-105
 Kool & The Gang - Ladies Night
-Dbm
-111
 Kool & The Gang - Open Sesame
-Em
-118
 LCD Soundsystem - Daft Punk Is Playing At My House
-Am
-136
 Lionel Richie - All Night Long
-Ab
-108
 LMFAO - Party Rock
-Fm
-130
 LMFAO - Sexy And I Know It
-Gm
-130
 Lou Bega - Mambo No. 5
-Fm
-87
 Macklemore - Thrift Shop
-Abm
-95
 Marvin Gaye - Got To Give It Up
-Am
-118
 Mase - Feel So Good
-Eb
-105
 Men Without Hats - Safety Dance
-C
-101
 Michael Jackson - Don't Stop 'Til You Get Enough
-B
-119
 Michael Jackson - ABC
-Ab
-94
 Michael Jackson - I Want You Back
-Ab
-99
 Missy Elliott - Pass That Dutch
-Am
-111
 Missy Elliott - Work It
-Cm
-102
 Nelly - Hot In Herre
-Em
-106
 Next - Too Close
-D
-100
 Ne-Yo - Let Me Love You
-F
-125
 ODB - Got Your Money
-Fm
-103
 Outkast - Hey Ya!
-Em
-80
 O-Zone - Dragostea Din Tei
-Am
-130
 Parliament - Give Up The Funk
-Em
-106
 Pitbull ft. Ne-Yo - Give Me Everything
-Eb
-130
 Porter Robinson - Say My Name
-Abm
-128
 Porter Robinson - Unison
-F#m
-128
 Rihanna - Disturbia
-Bm
-125
 Rihanna - Don't Stop The MUsic
-F#m
-122
 Rihanna - Pon De Replay
-F#m
-99
 Ritchie Valens - La Bamba
-C
-75
 Robin Thicke - Blurred Lines
-G
-119
 S Club 7 - S CLub Party
-D
-102
 Salt 'n Pepa - Push It
-Am
-128
 Sean Paul - Everblazin'
-Dm
-104
 Sean Paul - Get Busy
-Fm
-100
 Sean Paul - Gimme The Light
-Dm
-108
 Sean Paul - Like Glue
-Db
-98
 Sean Paul - Temperature
-Bbm
-125
 Simian Mobile Disco - Hustler
-Cm
-127
 The B52s - Love Shack
-C
-132
 The Champs - Tequila
-E
-91
 The Commodores - Brick House
-Am
-107
 The Isley Brothers - Shout!
-F
-140
 The Jacksons - Blame It On The Boogie
-Eb
-112
 Notorious BIG - Hypnotize
-Em
-94
 Tiesto - Feel It In My Bones
-C
-130
 Tommy James & The Shondells - Mony Mony
-A
-130
 Tupac - California Love
-Gm
-91
 Vengaboys - Boom Boom Boom Boom
-F#
-138
 Vengaboys - Up & Down
-F#
-137
 Vengaboys - We Like To Party
-Ab
-136
 Wild Cherry - Play That Funky Music
-Em
-109
 Will Smith - Gettin' Jiggy Wit It
-F#m
-108
 Will Smith - Men In Black
-Fm
-108
 Will Smith - Miami
-Bbm
-108
 will.i.am ft. Britney Spears - Scream & Shout
-Gm
-130
 Wolfgang Gartner ft. will.i.am - Forever
-Ebm
-128
 Wilson Pickett - Land Of 1000 Dances
-D
-86
 Yeah Yeah Yeahs - Heads Will Roll
-Abm
-132
 Yolanda Be Cool - We No Speak Americano
-Bbm
-125
 The SOFAR Channel - Helena Beat
-Fm
-132
 Jay-Z - Empire State Of Mind
-F#
-87
 Pras Michael - Ghetto Superstar
-F#
-100

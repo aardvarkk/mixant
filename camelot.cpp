@@ -124,6 +124,17 @@ Camelot::Key Camelot::Key::operator-(int semitones) const
   return operator+(-semitones);
 }
 
+bool Camelot::Key::operator<(Camelot::Key const& k) const
+{
+  if (this->num > k.num) {
+    return false;
+  } else if (this->num == k.num) {
+    return this->type < k.type;
+  } else {
+    return true;
+  }
+}
+
 int Camelot::GetKeyIndex(Camelot::Key const& key)
 {
   for (size_t i = 0; i < GetKeys().size(); ++i) {

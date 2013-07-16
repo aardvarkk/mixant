@@ -26,6 +26,7 @@ public:
     bool operator==(Camelot::Key const& key) const;
     Key operator+(int semitones) const;
     Key operator-(int semitones) const;
+    bool operator<(Camelot::Key const& k) const;
   };
 
   typedef std::vector<Key> Keys;
