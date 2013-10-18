@@ -185,25 +185,22 @@ int Camelot::GetTransposeDistance(Camelot::Key const& k1, Camelot::Key const& k2
   return abs(diff) > 6 ? abs(diff) - 12 : diff;
 }
 
-Camelot::Keys Camelot::GetCompatibleKeys(Camelot::Key const& key)
+void Camelot::GetCompatibleKeys(Camelot::Key const& key, Camelot::Keys& compatible)
 {
-  Keys keys;
-  keys.reserve(4);
+  compatible.resize(4);
 
   int  root_num  = key.num;
   Type root_type = key.type;
 
   // Trivial compatible one is the same key
-  keys.push_back(Camelot::GetKey(root_num, root_type));
+  compatible[0] = key;
 
   // Next compatible one is the min-maj opposite of this key
-  keys.push_back(Camelot::GetKey(root_num, static_cast<Type>(!root_type)));
+  compatible[1] = Camelot::GetKey(root_num, static_cast<Type>(!root_type));
 
   // Now shift it + and - 1 semiton from its existing type
-  keys.push_back(key + 1);
-  keys.push_back(key - 1);
-
-  return keys;
+  compatible[2] = key + 1;
+  compatible[3] = key - 1;
 }
 
 bool Camelot::AreCompatibleKeys(Camelot::Key const& k1, Camelot::Key const& k2)

@@ -22,6 +22,7 @@ public:
     std::string name;
     std::string alternate;
 
+    Key() : num(0), type(static_cast<Type>(0)) {}
     Key(int num, Type type, std::string name, std::string short_name, std::string alternate) : num(num), type(type), name(name), short_name(short_name), alternate(alternate) {}
     bool operator==(Camelot::Key const& key) const;
     Key operator+(int semitones) const;
@@ -39,7 +40,7 @@ public:
   static int  GetCamelotDistance(Key const& k1, Key const& k2);
   static int  GetTransposeDistance(Key const& k1, Key const& k2);
   static bool AreCompatibleKeys(Key const& k1, Key const& k2);
-  static Keys GetCompatibleKeys(Key const& key);
+  static void GetCompatibleKeys(Key const& key, Keys& compatible);
   static Key  GetKey(int num, Type type);
 };
 

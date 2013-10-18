@@ -62,7 +62,8 @@ bool ChooseKey(Camelot::Key const& key, KeyCount const& key_count, Camelot::Keys
   
   // Find all compatible tracks, then try to choose each one in turn
   bool found_compatible = false;
-  Camelot::Keys compatible = Camelot::GetCompatibleKeys(key);
+  Camelot::Keys compatible;
+  Camelot::GetCompatibleKeys(key, compatible);
   for (auto k : compatible) {
     if (new_counts.find(k) != new_counts.end()) {
       ChooseKey(k, new_counts, order, depth + 1, max_depth);
@@ -261,16 +262,6 @@ int main(int argc, char* argv[])
   //}
   //order_f.close();
 
-  //// Write our unused tracks
-  //std::ofstream unused_f("unused.txt");
-  //std::vector<Track> unused;
-  //for (auto t : tracks) {
-  //  unused_f << t.name << std::endl;
-  //  unused_f << t.key.short_name << std::endl;
-  //  unused_f << t.bpm << std::endl;
-  //}
-  //unused_f.close();
-
   //// Start by just choosing a base track (try each one)
   //std::vector<Tracks> options;
   //// Our starting track
@@ -302,10 +293,31 @@ int main(int argc, char* argv[])
   // Print the mix
   //std::cout << m << std::endl;
 
+  std::cout << "Mix uses " << m.steps.size() << " of " << tracks.size() << " input tracks" << std::endl << std::endl;
+
   // Save the mix to a file
   std::ofstream ofs("mix.txt");
   ofs << m;
   ofs.close();
+
+  // write our unused tracks
+  Tracks unused(tracks);
+  for (auto s : m.steps) {
+    for (auto it = unused.begin(); it != unused.end(); ++it) {
+      if (*it == s.track) {
+        unused.erase(it);
+        break;
+      }
+    }
+  }
+    
+  std::ofstream unused_f("unused.txt");
+  for (auto u : unused) {
+    unused_f << u.name << std::endl;
+    unused_f << u.key.short_name << std::endl;
+    unused_f << u.bpm << std::endl;
+  }
+  unused_f.close();
 
   //std::cin.get();
 }

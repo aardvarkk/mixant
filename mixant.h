@@ -6,7 +6,7 @@
 
 typedef std::vector< std::vector<double> > Matrix;
 
-static const int kMixRuns = 500;
+static const int kMixRuns = 1000;
 static const int kNumAnts = 1000;
 static const double kPheromoneDrop = 2.0 / kMixRuns;
 static const double kPheromonePop = 2 * kPheromoneDrop;

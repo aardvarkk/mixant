@@ -24,7 +24,9 @@ double MixAnt::FindDistance(
 
   // How far must we transpose the "second" track to make it compatible with the "first"?
   int min_transpose_dist = INT_MAX;
-  for (auto k : Camelot::GetCompatibleKeys(key_a)) {
+  Camelot::Keys compatible;
+  Camelot::GetCompatibleKeys(key_a, compatible);
+  for (auto k : compatible) {
     // Only care about keys compatible with "first", and ones of the same type as our "second" track
     if (k.type != key_b.type) {
       continue;
@@ -93,7 +95,7 @@ Mix MixAnt::FindMix(Tracks const& tracks)
       Mix m;
       MixStep cur_ms(tracks[i]);
       MixStep prv_ms(tracks[i]);
-      int chain = 1;
+      size_t chain = 1;
 
       //std::cout << "Trying " << tracks[i].name << " as start..." << std::endl;
 
@@ -152,21 +154,25 @@ Mix MixAnt::FindMix(Tracks const& tracks)
 
         // We're not compatible, so we need a tuning change in the current track
         // Choose the key with the smallest combined distance between previous and next
-        int min_dist = INT_MAX;
-        for (auto k : Camelot::GetCompatibleKeys(prv_ms.GetPlayKey())) {
+        {
+          int min_dist = INT_MAX;
+          Camelot::Keys compatible_keys;
+          Camelot::GetCompatibleKeys(prv_ms.GetPlayKey(), compatible_keys);
+          for (auto k : compatible_keys) {
 
-          // Can't switch between min-maj!
-          // And we only care about compatible keys
-          if (k.type != cur_ms.track.key.type) {
-            continue;
-          }
+            // Can't switch between min-maj!
+            // And we only care about compatible keys
+            if (k.type != cur_ms.track.key.type) {
+              continue;
+            }
 
-          // Want the smallest distance between our natural key and the next one
-          int cur_dist = Camelot::GetTransposeDistance(cur_ms.track.key, k);
-          // Check the total distance -- want the best value
-          if (abs(cur_dist) <= min_dist) {
-            min_dist = abs(cur_dist);
-            cur_ms.SetPlayKey(k);
+            // Want the smallest distance between our natural key and the next one
+            int cur_dist = Camelot::GetTransposeDistance(cur_ms.track.key, k);
+            // Check the total distance -- want the best value
+            if (abs(cur_dist) <= min_dist) {
+              min_dist = abs(cur_dist);
+              cur_ms.SetPlayKey(k);
+            }
           }
         }
 
