@@ -5,7 +5,7 @@
 #include "utils.h"
 
 static std::tr1::mt19937 eng;
-static int kMixRuns = 100;
+static int kMixRuns = 500;
 static int kNumAnts = 1000;
 static double kPheromoneDrop = 2.0 / kMixRuns;
 static double kPheromonePop = 2 * kPheromoneDrop;

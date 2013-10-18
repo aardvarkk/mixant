@@ -142,6 +142,10 @@ int main(int argc, char* argv[])
   //Camelot::Key Eb = Camelot::KeyFromString("Eb");
   //bool c = Camelot::AreCompatibleKeys(Fm, Eb); // should be false
 
+  Camelot::Key Db = Camelot::KeyFromString("Db");
+  Camelot::Key B = Camelot::KeyFromString("B");
+  int d = Camelot::GetTransposeDistance(Db, B);
+
   // Our tracks
   Tracks tracks;
   GetTracks("tracks.txt", tracks);
