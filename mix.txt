@@ -1,448 +1,454 @@
-Vengaboys - Boom Boom Boom Boom
-F# -> F# (0) 
-138bpm -> 134bpm
-
-Eiffel 65 - Move Your Body
-Dm -> Dbm (-1) 
-134bpm -> 129bpm
-
-Feed Me - Mordez Moi
-Fm -> F#m (1) 
-129bpm -> 116.5bpm
-
-Mase - Feel So Good
-Eb -> A (6) 
-116.5bpm -> 113.5bpm
-
-Kool & The Gang - Celebration
-Ab -> A (1) 
-113.5bpm -> 120.5bpm
-
-James Brown - Get Up Offa That Thing
-Gm -> F#m (-1) 
-120.5bpm -> 112.5bpm
-
-Nelly - Hot In Herre
-Em -> F#m (2) 
-112.5bpm -> 108bpm
-
-KC & The Sunshine Band - That's The Way
-Cm -> Dbm (1) 
-108bpm -> 108bpm
-
-Parliament - Give Up The Funk
-Em -> F#m (2) 
-108bpm -> 118bpm
-
-will.i.am ft. Britney Spears - Scream & Shout
-Gm -> F#m (-1) 
-118bpm -> 135bpm
-
-Baauer - Harlem Shake
-Bbm -> Bm (1) 
-135bpm -> 124.5bpm
-
-Wild Cherry - Play That Funky Music
-Em -> Em (0) 
-124.5bpm -> 118.5bpm
-
-Porter Robinson - Say My Name
-Abm -> Am (1) 
-118.5bpm -> 106.5bpm
+Score: 4.75239
 
 Biz Markie - Just A Friend
-C -> C (0) 
-106.5bpm -> 95bpm
+C -> C (+0) 
++85bpm -> +90bpm
 
-Kool & The Gang - Jungle Boogie
-Gm -> Am (2) 
-95bpm -> 116bpm
+Macklemore - Thrift Shop
+Abm -> Am (+1) 
++90bpm -> +97bpm
 
-Simian Mobile Disco - Hustler
-Cm -> Dm (2) 
-116bpm -> 125bpm
-
-Daft Punk - One More Time
-Bm -> Am (-2) 
-125bpm -> 126bpm
-
-Eiffel 65 - Blue (Da Ba Dee)
-Gm -> Am (2) 
-126bpm -> 125.5bpm
-
-Bon Jovi - You Give Love A Bad Name
-Cm -> Dm (2) 
-125.5bpm -> 124.5bpm
-
-Basement Jaxx - Red Alert
-Fm -> Gm (2) 
-124.5bpm -> 126bpm
-
-Chromeo - Night By Night
-Cm -> Cm (0) 
-126bpm -> 128.5bpm
-
-Kid Cudi vs. Crookers - Day 'n' Nite
-Bm -> Cm (1) 
-128.5bpm -> 131bpm
-
-Tommy James & The Shondells - Mony Mony
-A -> Eb (-6) 
-131bpm -> 129bpm
-
-Salt 'n Pepa - Push It
-Am -> Cm (3) 
-129bpm -> 123bpm
-
-Chic - Le Freak
-Am -> Gm (-2) 
-123bpm -> 122.5bpm
-
-James Brown - Papa's Got A Brand New Bag
-Em -> Dm (-2) 
-122.5bpm -> 113.5bpm
-
-J.Lo - Jenny From The Block
-Abm -> Am (1) 
-113.5bpm -> 95.5bpm
-
-Tupac - California Love
-Gm -> Am (2) 
-95.5bpm -> 97.5bpm
-
-Sean Paul - Everblazin'
-Dm -> Dm (0) 
-97.5bpm -> 106bpm
-
-Will Smith - Miami
-Bbm -> Am (-1) 
-106bpm -> 110.5bpm
-
-Eminem - Without Me
-Gm -> Am (2) 
-110.5bpm -> 107.5bpm
-
-Missy Elliott - Work It
-Cm -> Dm (2) 
-107.5bpm -> 98bpm
-
-Fat Joe ft. Ashanti - What's Luv?
-Cm -> Dm (2) 
-98bpm -> 102.5bpm
-
-Missy Elliott - Pass That Dutch
-Am -> Am (0) 
-102.5bpm -> 118.5bpm
-
-Deadmau5 - Raise Your Weapon (Madeon Remix)
-Abm -> Am (1) 
-118.5bpm -> 122.5bpm
-
-Michael Jackson - Don't Stop 'Til You Get Enough
-B -> C (1) 
-122.5bpm -> 113bpm
-
-The Commodores - Brick House
-Am -> Am (0) 
-113bpm -> 118.5bpm
-
-LMFAO - Party Rock
-Fm -> Em (-1) 
-118.5bpm -> 126bpm
-
-Rihanna - Don't Stop The MUsic
-F#m -> Em (-2) 
-126bpm -> 105.5bpm
-
-Blackstreet ft. Dr. Dre - No Diggity
-F#m -> Em (-2) 
-105.5bpm -> 108.5bpm
-
-Wolfgang Gartner ft. will.i.am - Forever
-Ebm -> Em (1) 
-108.5bpm -> 134.5bpm
-
-Britney Spears - Toxic
-Cm -> Bm (1) 
-134.5bpm -> 134.5bpm
-
-Black Eyed Peas - The Time (Dirty Bit)
-E -> D (-2) 
-134.5bpm -> 134bpm
-
-The Isley Brothers - Shout!
-F -> G (2) 
-134bpm -> 132.5bpm
-
-Ne-Yo - Let Me Love You
-F -> G (2) 
-132.5bpm -> 127.5bpm
-
-Tiesto - Feel It In My Bones
-C -> C (0) 
-127.5bpm -> 129bpm
-
-Black Eyed Peas - I Gotta Feeling
-G -> G (0) 
-129bpm -> 119bpm
-
-Kool & The Gang - Get Down On It
-Em -> Em (0) 
-119bpm -> 109bpm
-
-Lionel Richie - All Night Long
-Ab -> G (-1) 
-109bpm -> 101bpm
-
-Michael Jackson - ABC
-Ab -> G (-1) 
-101bpm -> 103bpm
-
-KC & The Sunshine Band - Get Down Tonight
-Fm -> Em (-1) 
-103bpm -> 111bpm
-
-Chic - Good Times
-Em -> Em (0) 
-111bpm -> 109bpm
-
-Will Smith - Men In Black
-Fm -> Em (-1) 
-109bpm -> 105bpm
-
-S Club 7 - S CLub Party
-D -> G (5) 
-105bpm -> 119bpm
-
-Vengaboys - We Like To Party
-Ab -> G (-1) 
-119bpm -> 130bpm
+Justin Timberlake - Senorita
+Ebm -> Em (+1) 
++97bpm -> +111.5bpm
 
 Earth, Wind & Fire - September
 A -> G (-2) 
-130bpm -> 127bpm
-
-Armin Van Buuren - This Is What It Feels Like
-Ab -> G (-1) 
-127bpm -> 128bpm
-
-Enur ft. Natasja - Calabria 2007
-Ebm -> Em (1) 
-128bpm -> 117bpm
-
-Sean Paul - Gimme The Light
-Dm -> Em (2) 
-117bpm -> 117bpm
-
-Icona Pop - I Love It
-Ab -> G (-1) 
-117bpm -> 122bpm
-
-Kool & The Gang - Open Sesame
-Em -> Em (0) 
-122bpm -> 122.5bpm
-
-Martin Solveig - The Night Out (Madeon Remix)
-B -> G (-4) 
-122.5bpm -> 126bpm
-
-Yolanda Be Cool - We No Speak Americano
-Bbm -> Em (-6) 
-126bpm -> 130.5bpm
-
-LCD Soundsystem - Daft Punk Is Playing At My House
-Am -> Am (0) 
-130.5bpm -> 134bpm
++111.5bpm -> +128bpm
 
 The B52s - Love Shack
-C -> C (0) 
-134bpm -> 128.5bpm
-
-Sean Paul - Temperature
-Bbm -> Am (-1) 
-128.5bpm -> 126.5bpm
-
-Porter Robinson - Unison
-F#m -> Em (-2) 
-126.5bpm -> 113.5bpm
-
-Rihanna - Pon De Replay
-F#m -> Em (-2) 
-113.5bpm -> 99.5bpm
-
-Sean Paul - Get Busy
-Fm -> Em (-1) 
-99.5bpm -> 98.5bpm
-
-Fatboy Slim - Weapon of Choice
-Abm -> Am (1) 
-98.5bpm -> 98.5bpm
-
-Next - Too Close
-D -> C (-2) 
-98.5bpm -> 115bpm
-
-Pitbull ft. Ne-Yo - Give Me Everything
-Eb -> F (2) 
-115bpm -> 129bpm
-
-Jamiroquai - Canned Heat
-Dm -> Dm (0) 
-129bpm -> 120bpm
-
-The Jacksons - Blame It On The Boogie
-Eb -> F (2) 
-120bpm -> 110bpm
-
-Will Smith - Gettin' Jiggy Wit It
-F#m -> Dm (-4) 
-110bpm -> 97.5bpm
-
-Lou Bega - Mambo No. 5
-Fm -> Gm (2) 
-97.5bpm -> 90.5bpm
-
-Notorious BIG - Hypnotize
-Em -> Dm (-2) 
-90.5bpm -> 106.5bpm
+C -> C (+0) 
++128bpm -> +125.5bpm
 
 Robin Thicke - Blurred Lines
-G -> F (-2) 
-106.5bpm -> 123.5bpm
+G -> G (+0) 
++125.5bpm -> +109.5bpm
 
-Kaskade - Raining
-Dm -> Dm (0) 
-123.5bpm -> 129bpm
-
-O-Zone - Dragostea Din Tei
-Am -> Am (0) 
-129bpm -> 114.5bpm
-
-Justin Timberlake - Senorita
-Ebm -> Em (1) 
-114.5bpm -> 97bpm
-
-Macklemore - Thrift Shop
-Abm -> Am (1) 
-97bpm -> 97.5bpm
-
-Fatman Scoop - Be Faithful
-Dm -> Dm (0) 
-97.5bpm -> 85.5bpm
-
-James Brown - I Got You
-Dm -> Dm (0) 
-85.5bpm -> 74.5bpm
-
-Dion & The Belmonts
-D -> F (3) 
-74.5bpm -> 76.5bpm
-
-Ritchie Valens - La Bamba
-C -> C (0) 
-76.5bpm -> 81bpm
-
-Jay-Z - Empire State Of Mind
-F# -> G (1) 
-81bpm -> 93bpm
-
-Michael Jackson - I Want You Back
-Ab -> G (-1) 
-93bpm -> 95bpm
-
-The Champs - Tequila
-E -> D (-2) 
-95bpm -> 109.5bpm
-
-Cee Lo Green - Fuck You
-C -> D (2) 
-109.5bpm -> 129bpm
-
-Katy Perry - I Kissed A Girl Remix
-Am -> Bm (2) 
-129bpm -> 123.5bpm
-
-Justin Timberlake - SexyBack
-Am -> Bm (2) 
-123.5bpm -> 138bpm
-
-Outkast - Hey Ya!
-Em -> Em (0) 
-138bpm -> 145.5bpm
-
-Yeah Yeah Yeahs - Heads Will Roll
-Abm -> Am (1) 
-145.5bpm -> 134.5bpm
-
-Vengaboys - Up & Down
-F# -> C (-6) 
-134.5bpm -> 119bpm
+Next - Too Close
+D -> D (+0) 
++109.5bpm -> +100.5bpm
 
 Men Without Hats - Safety Dance
-C -> C (0) 
-119bpm -> 111bpm
+C -> D (+2) 
++100.5bpm -> +89.5bpm
 
-Daft Punk - Around The World
-Am -> Am (0) 
-111bpm -> 125.5bpm
+Dion & The Belmonts
+D -> D (+0) 
++89.5bpm -> +91.5bpm
 
-LMFAO - Sexy And I Know It
-Gm -> Am (2) 
-125.5bpm -> 122.5bpm
+Mase - Feel So Good
+Eb -> D (-1) 
++91.5bpm -> +111.5bpm
 
-Daft Punk - Get Lucky
+Chic - Le Freak
+Am -> Bm (+2) 
++111.5bpm -> +127bpm
+
+Vengaboys - We Like To Party
+Ab -> D (-6) 
++127bpm -> +118bpm
+
+Pras Michael - Ghetto Superstar
+F# -> G (+1) 
++118bpm -> +104bpm
+
+Sean Paul - Gimme The Light
+Dm -> Em (+2) 
++104bpm -> +119bpm
+
+Tiesto - Feel It In My Bones
+C -> G (+5) 
++119bpm -> +119bpm
+
+Will Smith - Men In Black
+Fm -> Em (-1) 
++119bpm -> +109bpm
+
+KC & The Sunshine Band - That's The Way
+Cm -> Bm (+1) 
++109bpm -> +109bpm
+
+Will Smith - Miami
+Bbm -> Bm (+1) 
++109bpm -> +108.5bpm
+
+Wild Cherry - Play That Funky Music
+Em -> Em (+0) 
++108.5bpm -> +100bpm
+
+Tupac - California Love
+Gm -> Am (+2) 
++100bpm -> +106.5bpm
+
+Rihanna - Don't Stop The MUsic
 F#m -> Em (-2) 
-122.5bpm -> 121bpm
-
-Flo Rida - Wild Ones
-Ab -> G (-1) 
-121bpm -> 114bpm
-
-Justin Timberlake - Rock Your Body
-Em -> Em (0) 
-114bpm -> 92.5bpm
-
-Janelle Monae - Tightrope
-Fm -> Em (-1) 
-92.5bpm -> 91bpm
-
-Sean Paul - Like Glue
-Db -> G (6) 
-91bpm -> 103bpm
-
-James Brown - Get Up
-Ebm -> Em (1) 
-103bpm -> 114bpm
-
-Kesha - Tik Tok
-Dm -> Em (2) 
-114bpm -> 126bpm
-
-The SOFAR Channel - Helena Beat
-Fm -> Em (-1) 
-126bpm -> 117.5bpm
++106.5bpm -> +112.5bpm
 
 ODB - Got Your Money
 Fm -> Em (-1) 
-117.5bpm -> 94.5bpm
++112.5bpm -> +113bpm
 
-Wilson Pickett - Land Of 1000 Dances
-D -> G (5) 
-94.5bpm -> 93bpm
+Daft Punk - One More Time
+Bm -> Bm (+0) 
++113bpm -> +125.5bpm
 
-Pras Michael - Ghetto Superstar
-F# -> G (1) 
-93bpm -> 105.5bpm
+Porter Robinson - Unison
+F#m -> F#m (+0) 
++125.5bpm -> +116bpm
 
-Kool & The Gang - Ladies Night
-Dbm -> Em (3) 
-105.5bpm -> 117bpm
+Sean Paul - Everblazin'
+Dm -> Dbm (-1) 
++116bpm -> +109.5bpm
+
+Daft Punk - Get Lucky
+F#m -> F#m (+0) 
++109.5bpm -> +107.5bpm
+
+Sean Paul - Get Busy
+Fm -> F#m (+1) 
++107.5bpm -> +120.5bpm
+
+Britney Spears - Toxic
+Cm -> Dbm (+1) 
++120.5bpm -> +136.5bpm
+
+The SOFAR Channel - Helena Beat
+Fm -> F#m (+1) 
++136.5bpm -> +120bpm
+
+Lionel Richie - All Night Long
+Ab -> A (+1) 
++120bpm -> +116.5bpm
+
+Chromeo - Night By Night
+Cm -> F#m (+6) 
++116.5bpm -> +126bpm
+
+Basement Jaxx - Red Alert
+Fm -> F#m (+1) 
++126bpm -> +126bpm
+
+Sean Paul - Temperature
+Bbm -> Bm (+1) 
++126bpm -> +125.5bpm
+
+Icona Pop - I Love It
+Ab -> D (-6) 
++125.5bpm -> +126.5bpm
+
+Flo Rida - Wild Ones
+Ab -> A (+1) 
++126.5bpm -> +109bpm
+
+The Champs - Tequila
+E -> E (+0) 
++109bpm -> +92.5bpm
+
+Fat Joe ft. Ashanti - What's Luv?
+Cm -> Dbm (+1) 
++92.5bpm -> +97.5bpm
+
+Justin Timberlake - Rock Your Body
+Em -> F#m (+2) 
++97.5bpm -> +115.5bpm
+
+will.i.am ft. Britney Spears - Scream & Shout
+Gm -> F#m (-1) 
++115.5bpm -> +130bpm
+
+Armin Van Buuren - This Is What It Feels Like
+Ab -> A (+1) 
++130bpm -> +134bpm
+
+Vengaboys - Boom Boom Boom Boom
+F# -> E (-2) 
++134bpm -> +132bpm
+
+Deadmau5 - Raise Your Weapon (Madeon Remix)
+Abm -> Dbm (+5) 
++132bpm -> +126.5bpm
+
+James Brown - Papa's Got A Brand New Bag
+Em -> F#m (+2) 
++126.5bpm -> +125bpm
 
 Bon Jovi - Livin' On A Prayer
-Em -> Em (0) 
-117bpm -> 124bpm
+Em -> F#m (+2) 
++125bpm -> +105bpm
+
+Lou Bega - Mambo No. 5
+Fm -> F#m (+1) 
++105bpm -> +81bpm
+
+Ritchie Valens - La Bamba
+C -> A (+3) 
++81bpm -> +81bpm
+
+Jay-Z - Empire State Of Mind
+F# -> E (-2) 
++81bpm -> +99bpm
+
+Kool & The Gang - Ladies Night
+Dbm -> Dbm (+0) 
++99bpm -> +95.5bpm
+
+Outkast - Hey Ya!
+Em -> F#m (+2) 
++95.5bpm -> +83bpm
+
+Wilson Pickett - Land Of 1000 Dances
+D -> A (+5) 
++83bpm -> +78.5bpm
+
+James Brown - I Got You
+Dm -> F#m (+4) 
++78.5bpm -> +85bpm
+
+Rihanna - Pon De Replay
+F#m -> F#m (+0) 
++85bpm -> +110.5bpm
+
+Bon Jovi - You Give Love A Bad Name
+Cm -> Dbm (+1) 
++110.5bpm -> +110bpm
+
+Sean Paul - Like Glue
+Db -> E (+3) 
++110bpm -> +114bpm
+
+Tommy James & The Shondells - Mony Mony
+A -> A (+0) 
++114bpm -> +130bpm
+
+Katy Perry - I Kissed A Girl Remix
+Am -> F#m (-3) 
++130bpm -> +128bpm
+
+Enur ft. Natasja - Calabria 2007
+Ebm -> Dbm (-2) 
++128bpm -> +133bpm
+
+Baauer - Harlem Shake
+Bbm -> Abm (-2) 
++133bpm -> +124bpm
+
+James Brown - Get Up
+Ebm -> Ebm (+0) 
++124bpm -> +118bpm
+
+Cee Lo Green - Fuck You
+C -> E (+4) 
++118bpm -> +114bpm
+
+Fatman Scoop - Be Faithful
+Dm -> Dbm (-1) 
++114bpm -> +114bpm
+
+Porter Robinson - Say My Name
+Abm -> Abm (+0) 
++114bpm -> +111bpm
+
+Notorious BIG - Hypnotize
+Em -> Ebm (-1) 
++111bpm -> +110.5bpm
+
+Simian Mobile Disco - Hustler
+Cm -> Bbm (+2) 
++110.5bpm -> +133.5bpm
+
+The Isley Brothers - Shout!
+F -> Db (-4) 
++133.5bpm -> +136bpm
+
+Yeah Yeah Yeahs - Heads Will Roll
+Abm -> Bbm (+2) 
++136bpm -> +119bpm
+
+Parliament - Give Up The Funk
+Em -> Fm (+1) 
++119bpm -> +116bpm
+
+Avicii - Levels
+E -> Ab (+4) 
++116bpm -> +116bpm
+
+Nelly - Hot In Herre
+Em -> Fm (+1) 
++116bpm -> +112.5bpm
+
+James Brown - Get Up Offa That Thing
+Gm -> Fm (-2) 
++112.5bpm -> +124.5bpm
+
+LMFAO - Sexy And I Know It
+Gm -> Fm (-2) 
++124.5bpm -> +131bpm
+
+Kid Cudi vs. Crookers - Day 'n' Nite
+Bm -> Cm (+1) 
++131bpm -> +122bpm
+
+KC & The Sunshine Band - Get Down Tonight
+Fm -> Fm (+0) 
++122bpm -> +115bpm
+
+Kool & The Gang - Open Sesame
+Em -> Fm (+1) 
++115bpm -> +122.5bpm
+
+Martin Solveig - The Night Out (Madeon Remix)
+B -> Ab (-3) 
++122.5bpm -> +127.5bpm
+
+Salt 'n Pepa - Push It
+Am -> Fm (-4) 
++127.5bpm -> +128bpm
+
+Black Eyed Peas - I Gotta Feeling
+G -> Ab (+1) 
++128bpm -> +125bpm
+
+Kool & The Gang - Celebration
+Ab -> Ab (+0) 
++125bpm -> +117bpm
+
+The Jacksons - Blame It On The Boogie
+Eb -> Eb (+0) 
++117bpm -> +106bpm
+
+J.Lo - Jenny From The Block
+Abm -> Cm (+4) 
++106bpm -> +115bpm
+
+LMFAO - Party Rock
+Fm -> Fm (+0) 
++115bpm -> +114.5bpm
+
+Michael Jackson - I Want You Back
+Ab -> Ab (+0) 
++114.5bpm -> +113.5bpm
+
+Black Eyed Peas - The Time (Dirty Bit)
+E -> Eb (-1) 
++113.5bpm -> +126.5bpm
+
+Yolanda Be Cool - We No Speak Americano
+Bbm -> Cm (+2) 
++126.5bpm -> +127.5bpm
+
+O-Zone - Dragostea Din Tei
+Am -> Gm (-2) 
++127.5bpm -> +129bpm
+
+Wolfgang Gartner ft. will.i.am - Forever
+Ebm -> Dm (-1) 
++129bpm -> +126.5bpm
 
 Rihanna - Disturbia
-Bm -> Bm (0) 
-124bpm -> 121.5bpm
+Bm -> Am (-2) 
++126.5bpm -> +107bpm
+
+Blackstreet ft. Dr. Dre - No Diggity
+F#m -> Em (-2) 
++107bpm -> +99.5bpm
+
+Chic - Good Times
+Em -> Em (+0) 
++99.5bpm -> +120bpm
+
+Pitbull ft. Ne-Yo - Give Me Everything
+Eb -> G (+4) 
++120bpm -> +125.5bpm
+
+Daft Punk - Around The World
+Am -> Em (-5) 
++125.5bpm -> +119bpm
+
+Justin Timberlake - SexyBack
+Am -> Am (+0) 
++119bpm -> +123.5bpm
+
+Eiffel 65 - Move Your Body
+Dm -> Dm (+0) 
++123.5bpm -> +120bpm
+
+Kool & The Gang - Get Down On It
+Em -> Dm (-2) 
++120bpm -> +119bpm
+
+Feed Me - Mordez Moi
+Fm -> Gm (+2) 
++119bpm -> +128.5bpm
+
+Eiffel 65 - Blue (Da Ba Dee)
+Gm -> Gm (+0) 
++128.5bpm -> +115.5bpm
+
+Missy Elliott - Work It
+Cm -> Cm (+0) 
++115.5bpm -> +107.5bpm
+
+Eminem - Without Me
+Gm -> Gm (+0) 
++107.5bpm -> +105bpm
+
+Fatboy Slim - Weapon of Choice
+Abm -> Gm (-1) 
++105bpm -> +90.5bpm
+
+Janelle Monae - Tightrope
+Fm -> Gm (+2) 
++90.5bpm -> +89bpm
+
+Michael Jackson - ABC
+Ab -> Bb (+2) 
++89bpm -> +109.5bpm
+
+Ne-Yo - Let Me Love You
+F -> F (+0) 
++109.5bpm -> +126.5bpm
+
+Jamiroquai - Canned Heat
+Dm -> Dm (+0) 
++126.5bpm -> +128bpm
+
+Kaskade - Raining
+Dm -> Dm (+0) 
++128bpm -> +116.5bpm
+
+Kool & The Gang - Jungle Boogie
+Gm -> Gm (+0) 
++116.5bpm -> +106bpm
+
+The Commodores - Brick House
+Am -> Gm (-2) 
++106bpm -> +122bpm
+
+Vengaboys - Up & Down
+F# -> Bb (+4) 
++122bpm -> +128.5bpm
+
+Kesha - Tik Tok
+Dm -> Gm (+5) 
++128.5bpm -> +128bpm
+
+LCD Soundsystem - Daft Punk Is Playing At My House
+Am -> Gm (-2) 
++128bpm -> +127bpm
+
+Marvin Gaye - Got To Give It Up
+Am -> Gm (-2) 
++127bpm -> +118.5bpm
+
+Michael Jackson - Don't Stop 'Til You Get Enough
+B -> Bb (-1) 
++118.5bpm -> +115bpm
+
+Missy Elliott - Pass That Dutch
+Am -> Gm (-2) 
++115bpm -> +106.5bpm
+
+S Club 7 - S CLub Party
+D -> Bb (+4) 
++106.5bpm -> +105bpm
 

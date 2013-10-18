@@ -103,26 +103,16 @@ bool ChooseTrack(Track const& track, Tracks const& available, Tracks order)
   return found_compatible;
 }
 
-int main(int argc, char* argv[])
+void GetTracks(std::string const& path, Tracks& tracks)
 {
-  //// TESTS
-  //Camelot::Key Am = Camelot::KeyFromString("Am");
-  //Camelot::Key F = Camelot::KeyFromString("F");
-  //int d = Camelot::GetCamelotDistance(Am, F); // should be 2
-
-  //Camelot::Key Fm = Camelot::KeyFromString("Fm");
-  //Camelot::Key Eb = Camelot::KeyFromString("Eb");
-  //bool c = Camelot::AreCompatibleKeys(Fm, Eb); // should be false
-
-  // Our tracks
-  Tracks tracks;
+  tracks.clear();
 
   // Read the file to get our tracks
   std::ifstream ifs("tracks.txt");
   std::string line;
   while (std::getline(ifs, line)) {
     std::string name = line;
-    
+
     std::getline(ifs, line);
     Camelot::Key key = Camelot::KeyFromString(line);
 
@@ -139,6 +129,22 @@ int main(int argc, char* argv[])
     tracks.push_back(Track(name, bpm, key));
   }
   ifs.close();
+}
+
+int main(int argc, char* argv[])
+{
+  //// TESTS
+  //Camelot::Key Am = Camelot::KeyFromString("Am");
+  //Camelot::Key F = Camelot::KeyFromString("F");
+  //int d = Camelot::GetCamelotDistance(Am, F); // should be 2
+
+  //Camelot::Key Fm = Camelot::KeyFromString("Fm");
+  //Camelot::Key Eb = Camelot::KeyFromString("Eb");
+  //bool c = Camelot::AreCompatibleKeys(Fm, Eb); // should be false
+
+  // Our tracks
+  Tracks tracks;
+  GetTracks("tracks.txt", tracks);
 
   //// Write separate values out
   //std::ofstream names("names.txt");
@@ -160,16 +166,10 @@ int main(int argc, char* argv[])
     key_counts[t.key]++;
   }
 
-  //// Write the key counts
-  //std::ofstream key_counts_f("key_counts.txt");
-  //for (auto k : key_counts) {
-  //  key_counts_f << k.first.short_name << "\t" << k.second.size() << std::endl << std::endl;
-  //  for (auto t : k.second) {
-  //    key_counts_f << t.name << std::endl;
-  //  }
-  //  key_counts_f << std::endl;
-  //}
-  //key_counts_f.close();
+  // Write the key counts
+  for (auto k : key_counts) {
+    std::cout << k.first.short_name << ": " << k.second << std::endl;
+  }
 
   //// Sort by BPM
   //std::sort(tracks.begin(), tracks.end(), [](Track const& a, Track const& b)
@@ -263,29 +263,31 @@ int main(int argc, char* argv[])
   //  }
   //}
 
-  // Select a key ordering
-  std::vector<Camelot::Keys> options;
-  int max_depth = 0;
-  for (auto k : key_counts) {
-    std::cout << "Starting with " << k.first.short_name << std::endl;
-    Camelot::Keys order;
-    if (ChooseKey(Camelot::KeyFromString("Db") /*k.first*/, key_counts, order, 1, max_depth)) {
-      options.push_back(order);
-      std::cout << "Found " << options.size() << " solutions!" << std::endl;
-    }
-  }
+  //// Select a key ordering
+  //std::vector<Camelot::Keys> options;
+  //int max_depth = 0;
+  //for (auto k : key_counts) {
+  //  std::cout << "Starting with " << k.first.short_name << std::endl;
+  //  Camelot::Keys order;
+  //  if (ChooseKey(Camelot::KeyFromString("Dbm") /*k.first*/, key_counts, order, 1, max_depth)) {
+  //    options.push_back(order);
+  //    std::cout << "Found " << options.size() << " solutions!" << std::endl;
+  //  }
+  //}
 
-  //// Find a mix that works!
-  //MixAnt ma;
-  //Mix m = ma.FindMix(tracks);
+  // Find a mix that works!
+  MixAnt ma;
+  double min_dist;
+  Mix m = ma.FindMix(tracks, &min_dist);
 
-  //// Print the mix
-  ////std::cout << m << std::endl;
+  // Print the mix
+  //std::cout << m << std::endl;
 
-  //// Save the mix to a file
-  //std::ofstream ofs("mix.txt");
-  //ofs << m;
-  //ofs.close();
+  // Save the mix to a file
+  std::ofstream ofs("mix.txt");
+  ofs << "Score: " << min_dist << std::endl << std::endl;
+  ofs << m;
+  ofs.close();
 
   //std::cin.get();
 }

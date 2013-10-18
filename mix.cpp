@@ -29,7 +29,7 @@ std::ostream& operator<<(std::ostream& out, const Mix& mix)
         << s.track.name
         << std::endl
         << s.track.key.short_name << " -> " << s.GetPlayKey().short_name
-        << " (" << s.GetTuning() << ") " 
+        << " (" << std::showpos << s.GetTuning() << ") " 
         << std::endl
         << s.bpm_beg << "bpm -> " << s.bpm_end << "bpm"
         << std::endl << std::endl;

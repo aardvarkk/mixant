@@ -5,12 +5,12 @@
 #include "utils.h"
 
 static std::tr1::mt19937 eng;
-static int kMixRuns = 1000;
+static int kMixRuns = 100;
 static int kNumAnts = 1000;
-static double kPheromoneDrop = 1.0 / kMixRuns;
+static double kPheromoneDrop = 2.0 / kMixRuns;
 static double kPheromonePop = 2 * kPheromoneDrop;
-static double kBPMDiffMult = 1;
-static double kTransposeDiffMult = 1;
+static double kBPMDiffMult = 0.75; // People can "feel" the correct BPM, but can't "feel" the correct key as much
+static double kTransposeDiffMult = 1 - kBPMDiffMult;
 
 Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
 {
@@ -51,7 +51,7 @@ Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
   return dists;
 }
 
-Mix MixAnt::FindMix(Tracks const& tracks)
+Mix MixAnt::FindMix(Tracks const& tracks, double* min_dist_val)
 {
   distances = FindTrackDistances(tracks);
 
@@ -89,6 +89,7 @@ Mix MixAnt::FindMix(Tracks const& tracks)
 
       // The track order we chose
       TrackOrder order;
+      order.reserve(tracks.size());
 
       // Which tracks are available...
       std::vector<bool> available(tracks.size(), true);
@@ -105,14 +106,15 @@ Mix MixAnt::FindMix(Tracks const& tracks)
         cur_track++;
       }
       available[cur_track] = false;
-      order.push_back(std::make_pair(tracks[cur_track], cur_track));
+      order.emplace_back(TrackSpot(&tracks[cur_track], cur_track));
 
       // Total "song distance" walked by this ant
       double total_dist = 0;
-
       for (size_t k = 1; k < tracks.size(); ++k) {
+
         // Make an array of all available indices
         std::vector<int> available_idx;
+        available_idx.reserve(available.size());
         for (size_t j = 0; j < available.size(); ++j) {
           if (available[j]) {
             available_idx.push_back(j);
@@ -133,13 +135,20 @@ Mix MixAnt::FindMix(Tracks const& tracks)
         int nxt_track = available_idx[chosen_available_idx];
         available[nxt_track] = false;
 
-        // Adjust our distance
+        // Adjust our distance 
+        // OPTION 1: take into account the distance along the whole path
         total_dist += distances[cur_track][nxt_track];
+
+        // OPTION 2: take into account the worst case distance
+        //total_dist = std::max(total_dist, distances[cur_track][nxt_track]);
 
         // For next time through the loop
         cur_track = nxt_track;
-        order.push_back(std::make_pair(tracks[cur_track], cur_track));
+        order.emplace_back(TrackSpot(&tracks[cur_track], cur_track));
       }
+
+      // OPTION 1: Normalize for the number of tracks
+      total_dist /= tracks.size();
 
       // This is the best this run
       if (total_dist < min_run_dist) {
@@ -159,11 +168,11 @@ Mix MixAnt::FindMix(Tracks const& tracks)
     // Lay down a set amount of pheromone along the track from this ant, and reduce all pheromone by twice that amount
 
     // Reward the start track
-    pheromone[min_run_order.front().second][min_run_order.front().second] += kPheromonePop;
+    pheromone[min_run_order.front().idx][min_run_order.front().idx] += kPheromonePop;
 
     // Reward all choices along the route (edges from i->j)
     for (size_t i = 1; i < min_run_order.size(); ++i) {
-      pheromone[min_run_order[i-1].second][min_run_order[i].second] += kPheromonePop;
+      pheromone[min_run_order[i-1].idx][min_run_order[i].idx] += kPheromonePop;
     }
 
     // Now drop everything across the board
@@ -178,6 +187,10 @@ Mix MixAnt::FindMix(Tracks const& tracks)
 
   std::cout << "Final min dist: " << min_dist << std::endl;
 
+  if (min_dist_val) {
+    *min_dist_val = min_dist;
+  }
+
   return MakeMix(min_order);
 }
 
@@ -187,14 +200,14 @@ Mix MixAnt::MakeMix(TrackOrder const& order)
 
   // If there's only one track, we're done!
   if (order.size() < 2) {
-    mix.steps.push_back(order.front().first);
+    mix.steps.push_back(*order.front().track);
     return mix;
   }
 
   // For now, just play the first song and only change its BPM
   // such that it ends at a balance between its BPM and the next BPM
-  MixStep prv_ms(order.front().first);
-  prv_ms.bpm_end = (prv_ms.bpm_beg + order[1].first.bpm) / 2;
+  MixStep prv_ms(*order.front().track);
+  prv_ms.bpm_end = (prv_ms.bpm_beg + order[1].track->bpm) / 2;
   mix.steps.push_back(prv_ms);
 
   // Create instructions for the mix
@@ -202,8 +215,8 @@ Mix MixAnt::MakeMix(TrackOrder const& order)
   for (size_t i = 1; i < order.size()-1; ++i) {
 
     // Our current and next tracks
-    Track const* cur = &order[i].first;
-    Track const* nxt = i < order.size() - 1 ? &order[i+1].first : nullptr;
+    Track const* cur = order[i].track;
+    Track const* nxt = i < order.size() - 1 ? order[i+1].track : nullptr;
 
     // Set up our current mix step
     MixStep cur_ms(*cur);
