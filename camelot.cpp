@@ -168,13 +168,10 @@ int Camelot::GetTransposeDistance(Camelot::Key const& k1, Camelot::Key const& k2
   // Must be of the same type!
   assert(k1.type == k2.type);
 
-  // Get the ordering
-  Keys ordering = Camelot::GetOrdering(k1.type);
-
   // Find the two indices for each key, then calculate modular distance
   int i1, i2;
   int idx = 0;
-  for (auto k : ordering) {
+  for (auto k : Camelot::GetOrdering(k1.type)) {
     if (k == k1) {
       i1 = idx;
     }
@@ -191,6 +188,7 @@ int Camelot::GetTransposeDistance(Camelot::Key const& k1, Camelot::Key const& k2
 Camelot::Keys Camelot::GetCompatibleKeys(Camelot::Key const& key)
 {
   Keys keys;
+  keys.reserve(4);
 
   int  root_num  = key.num;
   Type root_type = key.type;

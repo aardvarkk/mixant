@@ -6,8 +6,16 @@
 
 typedef std::vector< std::vector<double> > Matrix;
 
+static const int kMixRuns = 500;
+static const int kNumAnts = 1000;
+static const double kPheromoneDrop = 2.0 / kMixRuns;
+static const double kPheromonePop = 2 * kPheromoneDrop;
+static const double kDistThreshold = 2;
+
 struct TrackSpot
 {
+  TrackSpot() : track(nullptr), idx(-1) {}
+
   TrackSpot& operator=(TrackSpot const& ts)
   {
     this->track = ts.track;
@@ -28,18 +36,22 @@ class MixAnt
 public:
 
   Mix FindMix(Tracks const& tracks);
-  static void FindTrackDistance(
+  
+  static double FindDistance(
+    double bpm_a,
+    double bpm_b,
+    Camelot::Key const& key_a,
+    Camelot::Key const& key_b
+    );
+
+  static double FindTrackDistance(
     Track const& a,
-    Track const& b, 
-    double& total_dist, 
-    double* bpm_dist = nullptr,
-    double* key_dist = nullptr,
-    double* tuning_dist = nullptr
+    Track const& b
     );
 
 protected:
   
-  Mix MakeMix(TrackOrder const& order);
+  //Mix MakeMix(TrackOrder const& order);
 
   Matrix FindTrackDistances(Tracks const& tracks);
 

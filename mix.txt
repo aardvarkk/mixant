@@ -1,437 +1,174 @@
-Min  Dist: 0
-Mean Dist: 1.37449
-Max  Dist: 5.5783
-
-Fire Island
-Am -> Am (+0) 
-94bpm -> 96bpm (94 bpm)
-
-BPM      Distance: -0.721452
-Key      Distance: 0
-Tuning   Distance: -0.721452
-Semitone Distance: -1
-Cent     Distance: 28
-Total    Distance: 1.4429
-
-Hay Loft
-Am -> Am (+0) 
-96bpm -> 93bpm (98 bpm)
-
-BPM      Distance: 1.86334
-Key      Distance: 0
-Tuning   Distance: 1.86334
-Semitone Distance: 2
-Cent     Distance: -14
-Total    Distance: 3.72668
-
-Khyber
-C -> C (+0) 
-93bpm -> 91bpm (88 bpm)
-
-BPM      Distance: -1.14189
-Key      Distance: -1
-Tuning   Distance: -0.141887
-Semitone Distance: 0
-Cent     Distance: -14
-Total    Distance: 1.28377
-
-Stereo
-Bbm -> Am (-1) 
-91bpm -> 92.5bpm (94 bpm)
-
-BPM      Distance: 0.561531
-Key      Distance: -1
-Tuning   Distance: 1.56153
-Semitone Distance: 2
-Cent     Distance: -44
-Total    Distance: 2.56153
-
-Yaa I Get It
-F#m -> Em (-2) 
-92.5bpm -> 105.5bpm (91 bpm)
-
-BPM      Distance: -4.78915
-Key      Distance: -4
-Tuning   Distance: -0.789151
-Semitone Distance: -1
-Cent     Distance: 21
-Total    Distance: 5.5783
-
-Constant Surprises
-Db -> G (+6) 
-105.5bpm -> 115bpm (120 bpm)
-
-BPM      Distance: 1.50637
-Key      Distance: 3
-Tuning   Distance: -1.49363
-Semitone Distance: -1
-Cent     Distance: -49
-Total    Distance: 4.49363
-
-Bangarang
-Gm -> Em (-3) 
-115bpm -> 108.5bpm (110 bpm)
-
-BPM      Distance: 0.478713
-Key      Distance: 0
-Tuning   Distance: 0.478713
-Semitone Distance: 0
-Cent     Distance: 48
-Total    Distance: 0.957425
-
-Annie
-Cm -> Bm (-1) 
-108.5bpm -> 112.5bpm (107 bpm)
-
-BPM      Distance: -1.69411
-Key      Distance: -1
-Tuning   Distance: -0.694113
-Semitone Distance: -1
-Cent     Distance: 31
-Total    Distance: 2.38823
-
-Murder on the Dancefloor
-E -> D (-2) 
-112.5bpm -> 119bpm (118 bpm)
-
-BPM      Distance: -0.290971
-Key      Distance: -1
-Tuning   Distance: 0.709029
-Semitone Distance: 1
-Cent     Distance: -29
-Total    Distance: 1.70903
-
-Genesis
-Dm -> Bm (-3) 
-119bpm -> 120bpm (120 bpm)
-
-BPM      Distance: 0
-Key      Distance: 0
-Tuning   Distance: 0
-Semitone Distance: 0
-Cent     Distance: 0
-Total    Distance: 0
-
-Courtship Dating
-Gm -> F#m (-1) 
-120bpm -> 125.5bpm (120 bpm)
-
-BPM      Distance: -1.51839
-Key      Distance: -1
-Tuning   Distance: -0.518389
-Semitone Distance: -1
-Cent     Distance: 48
-Total    Distance: 2.03678
-
-Heads Will Roll
-Abm -> F#m (-2) 
-125.5bpm -> 130.5bpm (131 bpm)
-
-BPM      Distance: 0.132662
-Key      Distance: -1
-Tuning   Distance: 1.13266
-Semitone Distance: 1
-Cent     Distance: 13
-Total    Distance: 2.13266
-
 Beneath You
-Am -> Bm (+2) 
-130.5bpm -> 131bpm (130 bpm)
-
-BPM      Distance: -0.264316
-Key      Distance: 0
-Tuning   Distance: -0.264316
-Semitone Distance: 0
-Cent     Distance: -26
-Total    Distance: 0.528631
-
-Teenage Spaceman
-Dm -> Em (+2) 
-131bpm -> 131bpm (132 bpm)
-
-BPM      Distance: 0.264316
-Key      Distance: 0
-Tuning   Distance: 0.264316
-Semitone Distance: 0
-Cent     Distance: 26
-Total    Distance: 0.528631
-
-I Kissed
 Am -> Am (+0) 
-131bpm -> 127.5bpm (130 bpm)
-
-BPM      Distance: 0.679002
-Key      Distance: 1
-Tuning   Distance: -0.320998
-Semitone Distance: 0
-Cent     Distance: -32
-Total    Distance: 1.321
-
-Oh! (A-Trak Remix)
-Ebm -> Em (+1) 
-127.5bpm -> 118.5bpm (125 bpm)
-
-BPM      Distance: 1.90115
-Key      Distance: -1
-Tuning   Distance: 2.90115
-Semitone Distance: 3
-Cent     Distance: -10
-Total    Distance: 4.8023
-
-Fish
-G -> G (+0) 
-118.5bpm -> 118.5bpm (112 bpm)
-
-BPM      Distance: -1.90115
-Key      Distance: -2
-Tuning   Distance: 0.0988476
-Semitone Distance: 0
-Cent     Distance: 10
-Total    Distance: 2.09885
-
-Halcyon
-F#m -> Em (-2) 
-118.5bpm -> 126.5bpm (125 bpm)
-
-BPM      Distance: -0.410589
-Key      Distance: 1
-Tuning   Distance: -1.41059
-Semitone Distance: -1
-Cent     Distance: -41
-Total    Distance: 2.41059
-
-Household Goods
-Cm -> Bm (-1) 
-126.5bpm -> 127bpm (128 bpm)
-
-BPM      Distance: 0.272641
-Key      Distance: 0
-Tuning   Distance: 0.272641
-Semitone Distance: 0
-Cent     Distance: 27
-Total    Distance: 0.545282
-
-Yeah Yeah
-Cm -> Bm (-1) 
-127bpm -> 125.5bpm (126 bpm)
-
-BPM      Distance: 0.137948
-Key      Distance: 0
-Tuning   Distance: 0.137948
-Semitone Distance: 0
-Cent     Distance: 14
-Total    Distance: 0.275895
-
-Bad Touch
-Cm -> Bm (-1) 
-125.5bpm -> 124bpm (125 bpm)
-
-BPM      Distance: 0.279237
-Key      Distance: 0
-Tuning   Distance: 0.279237
-Semitone Distance: 0
-Cent     Distance: 28
-Total    Distance: 0.558475
-
-The Looks
-Gm -> F#m (-1) 
-124bpm -> 124.5bpm (123 bpm)
-
-BPM      Distance: -0.417185
-Key      Distance: 0
-Tuning   Distance: -0.417185
-Semitone Distance: 0
-Cent     Distance: -42
-Total    Distance: 0.83437
-
-Turbine
-Dm -> Dbm (-1) 
-124.5bpm -> 127bpm (126 bpm)
-
-BPM      Distance: -0.272641
-Key      Distance: -1
-Tuning   Distance: 0.727359
-Semitone Distance: 1
-Cent     Distance: -27
-Total    Distance: 1.72736
-
-Poison Lips
-Bbm -> Abm (-2) 
-127bpm -> 129bpm (128 bpm)
-
-BPM      Distance: -0.268414
-Key      Distance: 0
-Tuning   Distance: -0.268414
-Semitone Distance: 0
-Cent     Distance: -27
-Total    Distance: 0.536828
-
-Street Justice
-Fm -> Ebm (-2) 
-129bpm -> 130bpm (130 bpm)
-
-BPM      Distance: 0
-Key      Distance: 0
-Tuning   Distance: 0
-Semitone Distance: 0
-Cent     Distance: 0
-Total    Distance: 0
-
-Flat Beat
-Bbm -> Bbm (+0) 
-130bpm -> 132.5bpm (130 bpm)
-
-BPM      Distance: -0.653373
-Key      Distance: 0
-Tuning   Distance: -0.653373
-Semitone Distance: -1
-Cent     Distance: 35
-Total    Distance: 1.30675
-
-Smack My Bitch
-Bbm -> Bbm (+0) 
-132.5bpm -> 137.5bpm (135 bpm)
-
-BPM      Distance: -0.629609
-Key      Distance: -1
-Tuning   Distance: 0.370391
-Semitone Distance: 0
-Cent     Distance: 37
-Total    Distance: 1.37039
-
-Shudder
-Bm -> Bbm (-1) 
-137.5bpm -> 140bpm (140 bpm)
-
-BPM      Distance: 0
-Key      Distance: 0
-Tuning   Distance: 0
-Semitone Distance: 0
-Cent     Distance: 0
-Total    Distance: 0
-
-Succexy
-F#m -> Fm (-1) 
-140bpm -> 143bpm (140 bpm)
-
-BPM      Distance: -0.726499
-Key      Distance: -1
-Tuning   Distance: 0.273501
-Semitone Distance: 0
-Cent     Distance: 27
-Total    Distance: 1.2735
-
-Joker & The Thief
-Dm -> Cm (-2) 
-143bpm -> 143bpm (146 bpm)
-
-BPM      Distance: 0.726499
-Key      Distance: 0
-Tuning   Distance: 0.726499
-Semitone Distance: 1
-Cent     Distance: -27
-Total    Distance: 1.453
-
-Let Go
-F -> Eb (-2) 
-143bpm -> 146.5bpm (140 bpm)
-
-BPM      Distance: -1.53726
-Key      Distance: -2
-Tuning   Distance: 0.462742
-Semitone Distance: 0
-Cent     Distance: 46
-Total    Distance: 2.46274
-
-We Will Become
-D -> Eb (+1) 
-146.5bpm -> 155bpm (153 bpm)
-
-BPM      Distance: -0.446795
-Key      Distance: 1
-Tuning   Distance: -1.44679
-Semitone Distance: -1
-Cent     Distance: -45
-Total    Distance: 2.44679
-
-Rich Wife
-Db -> Eb (+2) 
-155bpm -> 151.5bpm (157 bpm)
-
-BPM      Distance: 1.25755
-Key      Distance: 1
-Tuning   Distance: 0.257554
-Semitone Distance: 0
-Cent     Distance: 26
-Total    Distance: 1.51511
-
-Family Band
-C -> Bb (-2) 
-151.5bpm -> 141bpm (146 bpm)
-
-BPM      Distance: 1.22834
-Key      Distance: -1
-Tuning   Distance: 2.22834
-Semitone Distance: 2
-Cent     Distance: 23
-Total    Distance: 3.45668
+130bpm -> 136bpm
 
 Juanita
-B -> Bb (-1) 
-141bpm -> 132bpm (136 bpm)
+B -> C (-1) 
+136bpm -> 140bpm
 
-BPM      Distance: 1.04955
-Key      Distance: 2
-Tuning   Distance: -0.950446
-Semitone Distance: -1
-Cent     Distance: 5
-Total    Distance: 2.95045
+Let Go
+F -> F (+0) 
+140bpm -> 146bpm
+
+Joker & The Thief
+Dm -> Dm (+0) 
+146bpm -> 140bpm
+
+Succexy
+F#m -> Gm (+1) 
+140bpm -> 138bpm
+
+Idioteque
+Gm -> Gm (+0) 
+138bpm -> 140bpm
+
+Shudder
+Bm -> Cm (-1) 
+140bpm -> 138bpm
+
+Scary Monsters
+Gm -> Gm (+0) 
+138bpm -> 128bpm
 
 Tau
 F#m -> Gm (+1) 
-132bpm -> 126.5bpm (128 bpm)
+128bpm -> 128bpm
 
-BPM      Distance: 0.410589
-Key      Distance: 1
-Tuning   Distance: -0.589411
-Semitone Distance: -1
-Cent     Distance: 41
-Total    Distance: 1.58941
+Household Goods
+Cm -> Cm (+0) 
+128bpm -> 125bpm
 
 Tapes & Money
 Cm -> Cm (+0) 
-126.5bpm -> 125bpm (125 bpm)
+125bpm -> 120bpm
 
-BPM      Distance: 0
-Key      Distance: 0
-Tuning   Distance: 0
-Semitone Distance: 0
-Cent     Distance: 0
-Total    Distance: 0
+Courtship Dating
+Gm -> Gm (+0) 
+120bpm -> 120bpm
+
+Genesis
+Dm -> Dm (+0) 
+120bpm -> 130bpm
+
+Flat Beat
+Bbm -> Am (-1) 
+130bpm -> 135bpm
+
+Smack My Bitch
+Bbm -> Am (-1) 
+135bpm -> 125bpm
+
+Oh! (A-Trak Remix)
+Ebm -> Dm (-1) 
+125bpm -> 126bpm
+
+Turbine
+Dm -> Dm (+0) 
+126bpm -> 118bpm
+
+Murder on the Dancefloor
+E -> F (+1) 
+118bpm -> 120bpm
+
+Constant Surprises
+Db -> C (-1) 
+120bpm -> 128bpm
+
+Poison Lips
+Bbm -> Am (-1) 
+128bpm -> 130bpm
+
+Street Justice
+Fm -> Em (-1) 
+130bpm -> 130bpm
+
+I Kissed
+Am -> Am (+0) 
+130bpm -> 132bpm
+
+Teenage Spaceman
+Dm -> Dm (+0) 
+132bpm -> 125bpm
+
+Halcyon
+F#m -> Gm (+1) 
+125bpm -> 126bpm
+
+Yeah Yeah
+Cm -> Cm (+0) 
+126bpm -> 123bpm
+
+The Looks
+Gm -> Gm (+0) 
+123bpm -> 131bpm
+
+Heads Will Roll
+Abm -> Gm (-1) 
+131bpm -> 125bpm
+
+Bad Touch
+Cm -> Cm (+0) 
+125bpm -> 125bpm
 
 Open Up
 Fm -> Fm (+0) 
-125bpm -> 126.5bpm (125 bpm)
-
-BPM      Distance: -0.410589
-Key      Distance: 0
-Tuning   Distance: -0.410589
-Semitone Distance: 0
-Cent     Distance: -41
-Total    Distance: 0.821177
+125bpm -> 128bpm
 
 Clarity
 Ab -> Ab (+0) 
-126.5bpm -> 133bpm (128 bpm)
+128bpm -> 128bpm
 
-BPM      Distance: -1.30229
-Key      Distance: -2
-Tuning   Distance: 0.697707
-Semitone Distance: 1
-Cent     Distance: -30
-Total    Distance: 2.69771
+BREAK
 
-Scary Monsters
-Gm -> Fm (-2) 
-133bpm -> 138bpm (138 bpm)
+Khyber
+C -> C (+0) 
+88bpm -> 94bpm
+
+Stereo
+Bbm -> Am (-1) 
+94bpm -> 98bpm
+
+Hay Loft
+Am -> Am (+0) 
+98bpm -> 94bpm
+
+Fire Island
+Am -> Am (+0) 
+94bpm -> 94bpm
+
+BREAK
+
+Yaa I Get It
+F#m -> F#m (+0) 
+91bpm -> 91bpm
+
+BREAK
+
+Rich Wife
+Db -> Db (+0) 
+157bpm -> 146bpm
+
+Family Band
+C -> Db (+1) 
+146bpm -> 153bpm
+
+We Will Become
+D -> Db (-1) 
+153bpm -> 153bpm
+
+BREAK
+
+Bangarang
+Gm -> Gm (+0) 
+110bpm -> 107bpm
+
+Annie
+Cm -> Cm (+0) 
+107bpm -> 107bpm
+
+BREAK
+
+Annie
+Cm -> Cm (+0) 
+107bpm -> 107bpm
 
