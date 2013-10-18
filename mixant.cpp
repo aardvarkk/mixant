@@ -1,3 +1,4 @@
+#include <ctime>
 #include <iostream>
 #include <random>
 
@@ -13,7 +14,14 @@ static double kPheromonePop = 2 * kPheromoneDrop;
 // Find distance from one track to another
 // We assume that the first track is "already playing", so how much do you have to adjust
 // the second track to match with the first?
-void MixAnt::FindTrackDistance(Track const& a, Track const& b, double& total_dist, double* bpm_dist, double* key_dist)
+void MixAnt::FindTrackDistance(
+  Track const& a,
+  Track const& b,
+  double& total_dist, 
+  double* bpm_dist, 
+  double* key_dist,
+  double* tuning_dist
+  )
 {
   // Get the (directional!) BPM portion (in semitones)
   // It can be positive or negative depending on whether we're speeding up or slowing down
@@ -37,13 +45,18 @@ void MixAnt::FindTrackDistance(Track const& a, Track const& b, double& total_dis
 
   double this_bpm_dist = bpm_ratio_st;
   double this_key_dist = min_transpose_dist;
-  total_dist = abs(this_bpm_dist - this_key_dist) + std::max(abs(this_bpm_dist), abs(this_key_dist));
+  double this_tuning_dist = this_bpm_dist - this_key_dist;
+
+  total_dist = abs(this_tuning_dist) + std::max(abs(this_bpm_dist), abs(this_key_dist));
 
   if (bpm_dist) {
     *bpm_dist = this_bpm_dist;
   }
   if (key_dist) {
     *key_dist = this_key_dist;
+  }
+  if (tuning_dist) {
+    *tuning_dist = this_tuning_dist;
   }
 }
 
@@ -69,8 +82,10 @@ Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
   return dists;
 }
 
-Mix MixAnt::FindMix(Tracks const& tracks, double* min_dist_val)
+Mix MixAnt::FindMix(Tracks const& tracks)
 {
+  eng.seed(time(NULL));
+
   distances = FindTrackDistances(tracks);
 
   // Just for curiosity, find the minimum distance
@@ -205,16 +220,16 @@ Mix MixAnt::FindMix(Tracks const& tracks, double* min_dist_val)
 
   std::cout << "Final min dist: " << min_dist << std::endl;
 
-  if (min_dist_val) {
-    *min_dist_val = min_dist;
-  }
-
   return MakeMix(min_order);
 }
 
 Mix MixAnt::MakeMix(TrackOrder const& order)
 {
   Mix mix;
+
+  mix.max_dist  = 0;
+  mix.min_dist  = DBL_MAX;
+  mix.mean_dist = 0;
 
   // If there's only one track, we're done!
   if (order.size() < 2) {
@@ -275,9 +290,19 @@ Mix MixAnt::MakeMix(TrackOrder const& order)
       }
     }
 
+    // Adjust our distances
+    double total_dist;
+    MixAnt::FindTrackDistance(prv_ms.track, cur_ms.track, total_dist);
+
+    mix.min_dist = std::min(mix.min_dist, total_dist);
+    mix.max_dist = std::max(mix.max_dist, total_dist);
+    mix.mean_dist += total_dist;
+
     mix.steps.push_back(cur_ms);
     prv_ms = cur_ms;
   }
+
+  mix.mean_dist /= (mix.steps.size() - 1);
 
   return mix;
 }

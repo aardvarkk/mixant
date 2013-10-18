@@ -297,15 +297,13 @@ int main(int argc, char* argv[])
 
   // Find a mix that works!
   MixAnt ma;
-  double min_dist;
-  Mix m = ma.FindMix(tracks, &min_dist);
+  Mix m = ma.FindMix(tracks);
 
   // Print the mix
   //std::cout << m << std::endl;
 
   // Save the mix to a file
   std::ofstream ofs("mix.txt");
-  ofs << "Score: " << min_dist << std::endl << std::endl;
   ofs << m;
   ofs.close();
 

@@ -29,6 +29,8 @@ typedef std::vector<MixStep> MixSteps;
 
 struct Mix
 {
+  double min_dist, mean_dist, max_dist;
+
   MixSteps steps;
 
   friend std::ostream& operator<<(std::ostream& out, const Mix& mix);

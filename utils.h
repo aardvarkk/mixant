@@ -8,6 +8,7 @@ class Utils
 public:
 
   static double GetSemitoneRatio();
+  static double GetCentRatio();
   
   template <typename T> static int sgn(T val) 
   { 

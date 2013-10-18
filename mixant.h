@@ -27,8 +27,15 @@ class MixAnt
 {
 public:
 
-  Mix FindMix(Tracks const& tracks, double* min_dist_val = nullptr);
-  static void FindTrackDistance(Track const& a, Track const& b, double& total_dist, double* bpm_dist = nullptr, double* key_dist = nullptr);
+  Mix FindMix(Tracks const& tracks);
+  static void FindTrackDistance(
+    Track const& a,
+    Track const& b, 
+    double& total_dist, 
+    double* bpm_dist = nullptr,
+    double* key_dist = nullptr,
+    double* tuning_dist = nullptr
+    );
 
 protected:
   
