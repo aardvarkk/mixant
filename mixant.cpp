@@ -79,6 +79,7 @@ Mix MixAnt::FindMix(Tracks const& tracks)
 
   Mix best_mix;
   double best_dist = DBL_MAX;
+  size_t best_chain = 0;
 
   // Do a whole bunch of runs
   for (size_t r = 0; r < kMixRuns; ++r) {
@@ -92,6 +93,7 @@ Mix MixAnt::FindMix(Tracks const& tracks)
       Mix m;
       MixStep cur_ms(tracks[i]);
       MixStep prv_ms(tracks[i]);
+      int chain = 1;
 
       //std::cout << "Trying " << tracks[i].name << " as start..." << std::endl;
 
@@ -123,23 +125,12 @@ Mix MixAnt::FindMix(Tracks const& tracks)
         // We've run out of usable tracks, so we need a hard break
         // We'll choose a random track to continue with
         if (usable.empty()) {
-          //std::cout << "No usable tracks! Inserting a break." << std::endl;
-          m.steps.push_back(prv_ms);
-          m.steps.push_back(BreakTrack);
-
-          // Choose a random available track and remove it
-          std::tr1::uniform_int<> rnd_avail(0, available.size() - 1);
-          int avail_idx = rnd_avail(eng);
-          prv_ms = MixStep(*available[avail_idx].track);
-          for (auto it = available.begin(); it != available.end(); ++it) {
-            if (it->idx == available[avail_idx].idx) {
-              available.erase(it);
-              break;
-            }
-          }
-
-          continue;
+          //std::cout << "End of chain reached -- no more usable tracks" << std::endl;
+          break;
         }
+
+        // We've added another track
+        ++chain;
 
         // We have our starting track, so now randomly pick a second one that falls under a distance threshold
         std::tr1::uniform_int<> rnd_usable(0, usable.size() - 1);
@@ -193,11 +184,15 @@ next:
       m.steps.push_back(cur_ms);
 
       // How'd we do? Calculate the entire mix distance
-      double dist = m.CalculateDistance();
-      if (dist < best_dist) {
-        best_dist = dist;
-        best_mix = m;
-        std::cout << "Found new best mix with total distance " << best_dist << std::endl;
+      if (chain >= best_chain) {
+        double dist = m.CalculateDistance();
+
+        if (chain > best_chain || dist < best_dist) {
+          best_chain = chain;
+          best_dist = dist;
+          best_mix = m;
+          std::cout << "Found new best mix of length " << best_chain << " with total distance " << best_dist << std::endl;
+        }
       }
     }
 

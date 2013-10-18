@@ -17,6 +17,4 @@ struct Track
 
 typedef std::vector<Track> Tracks;
 
-static const Track BreakTrack("BREAK", 0, Camelot::GetKeys().front());
-
 #endif

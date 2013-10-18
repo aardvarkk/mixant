@@ -1,44 +1,36 @@
-Beneath You
-Am -> Am (+0) 
-130bpm -> 136bpm
-
-Juanita
-B -> C (-1) 
-136bpm -> 140bpm
-
-Let Go
-F -> F (+0) 
-140bpm -> 146bpm
-
-Joker & The Thief
-Dm -> Dm (+0) 
-146bpm -> 140bpm
+Street Justice
+Fm -> Fm (+0) 
+130bpm -> 140bpm
 
 Succexy
-F#m -> Gm (+1) 
-140bpm -> 138bpm
+F#m -> Fm (-1) 
+140bpm -> 130bpm
 
-Idioteque
-Gm -> Gm (+0) 
-138bpm -> 140bpm
+Beneath You
+Am -> Bbm (+1) 
+130bpm -> 140bpm
 
 Shudder
-Bm -> Cm (-1) 
-140bpm -> 138bpm
+Bm -> Bbm (-1) 
+140bpm -> 135bpm
 
-Scary Monsters
-Gm -> Gm (+0) 
-138bpm -> 128bpm
+Smack My Bitch
+Bbm -> Bbm (+0) 
+135bpm -> 130bpm
 
-Tau
-F#m -> Gm (+1) 
-128bpm -> 128bpm
+Flat Beat
+Bbm -> Bbm (+0) 
+130bpm -> 128bpm
 
-Household Goods
-Cm -> Cm (+0) 
+Poison Lips
+Bbm -> Bbm (+0) 
 128bpm -> 125bpm
 
-Tapes & Money
+Open Up
+Fm -> Fm (+0) 
+125bpm -> 125bpm
+
+Bad Touch
 Cm -> Cm (+0) 
 125bpm -> 120bpm
 
@@ -48,23 +40,11 @@ Gm -> Gm (+0)
 
 Genesis
 Dm -> Dm (+0) 
-120bpm -> 130bpm
-
-Flat Beat
-Bbm -> Am (-1) 
-130bpm -> 135bpm
-
-Smack My Bitch
-Bbm -> Am (-1) 
-135bpm -> 125bpm
+120bpm -> 125bpm
 
 Oh! (A-Trak Remix)
 Ebm -> Dm (-1) 
-125bpm -> 126bpm
-
-Turbine
-Dm -> Dm (+0) 
-126bpm -> 118bpm
+125bpm -> 118bpm
 
 Murder on the Dancefloor
 E -> F (+1) 
@@ -74,13 +54,13 @@ Constant Surprises
 Db -> C (-1) 
 120bpm -> 128bpm
 
-Poison Lips
-Bbm -> Am (-1) 
-128bpm -> 130bpm
+Clarity
+Ab -> G (-1) 
+128bpm -> 136bpm
 
-Street Justice
-Fm -> Em (-1) 
-130bpm -> 130bpm
+Juanita
+B -> C (-1) 
+136bpm -> 130bpm
 
 I Kissed
 Am -> Am (+0) 
@@ -88,87 +68,61 @@ Am -> Am (+0)
 
 Teenage Spaceman
 Dm -> Dm (+0) 
-132bpm -> 125bpm
+132bpm -> 126bpm
 
-Halcyon
-F#m -> Gm (+1) 
-125bpm -> 126bpm
-
-Yeah Yeah
-Cm -> Cm (+0) 
+Turbine
+Dm -> Dm (+0) 
 126bpm -> 123bpm
 
 The Looks
 Gm -> Gm (+0) 
-123bpm -> 131bpm
+123bpm -> 126bpm
+
+Yeah Yeah
+Cm -> Cm (+0) 
+126bpm -> 128bpm
+
+Household Goods
+Cm -> Cm (+0) 
+128bpm -> 125bpm
+
+Halcyon
+F#m -> Fm (-1) 
+125bpm -> 128bpm
+
+Tau
+F#m -> Fm (-1) 
+128bpm -> 125bpm
+
+Tapes & Money
+Cm -> Cm (+0) 
+125bpm -> 131bpm
 
 Heads Will Roll
 Abm -> Gm (-1) 
-131bpm -> 125bpm
+131bpm -> 138bpm
 
-Bad Touch
-Cm -> Cm (+0) 
-125bpm -> 125bpm
+Scary Monsters
+Gm -> Gm (+0) 
+138bpm -> 138bpm
 
-Open Up
-Fm -> Fm (+0) 
-125bpm -> 128bpm
+Idioteque
+Gm -> Gm (+0) 
+138bpm -> 146bpm
 
-Clarity
-Ab -> Ab (+0) 
-128bpm -> 128bpm
+Joker & The Thief
+Dm -> Dm (+0) 
+146bpm -> 140bpm
 
-BREAK
-
-Khyber
-C -> C (+0) 
-88bpm -> 94bpm
-
-Stereo
-Bbm -> Am (-1) 
-94bpm -> 98bpm
-
-Hay Loft
-Am -> Am (+0) 
-98bpm -> 94bpm
-
-Fire Island
-Am -> Am (+0) 
-94bpm -> 94bpm
-
-BREAK
-
-Yaa I Get It
-F#m -> F#m (+0) 
-91bpm -> 91bpm
-
-BREAK
-
-Rich Wife
-Db -> Db (+0) 
-157bpm -> 146bpm
+Let Go
+F -> F (+0) 
+140bpm -> 146bpm
 
 Family Band
-C -> Db (+1) 
-146bpm -> 153bpm
+C -> C (+0) 
+146bpm -> 157bpm
 
-We Will Become
-D -> Db (-1) 
-153bpm -> 153bpm
-
-BREAK
-
-Bangarang
-Gm -> Gm (+0) 
-110bpm -> 107bpm
-
-Annie
-Cm -> Cm (+0) 
-107bpm -> 107bpm
-
-BREAK
-
-Annie
-Cm -> Cm (+0) 
-107bpm -> 107bpm
+Rich Wife
+Db -> C (-1) 
+157bpm -> 157bpm
 
