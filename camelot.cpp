@@ -157,9 +157,9 @@ Camelot::Key Camelot::GetShiftedKey(Camelot::Key const& original_key, double old
 
 int Camelot::GetCamelotDistance(Camelot::Key const& k1, Camelot::Key const& k2)
 {
-  int diff = k2.num - k1.num;
-  int keydiff = abs(diff) > 6 ? 12 - abs(diff) : diff;
-  return keydiff + Utils::sgn(diff) * abs(k1.type - k2.type);
+  int diff = abs(k2.num - k1.num);
+  diff = diff > 6 ? 12 - abs(diff) : diff;
+  return diff + abs(k1.type - k2.type);
 }
 
 // Use a lookup: http://community.mixedinkey.com/Topics/6718
@@ -210,7 +210,7 @@ Camelot::Keys Camelot::GetCompatibleKeys(Camelot::Key const& key)
 
 bool Camelot::AreCompatibleKeys(Camelot::Key const& k1, Camelot::Key const& k2)
 {
-  return abs(Camelot::GetCamelotDistance(k1, k2)) <= 1;
+  return Camelot::GetCamelotDistance(k1, k2) <= 1;
 }
 
 Camelot::Key Camelot::GetKey(int num, Type type)

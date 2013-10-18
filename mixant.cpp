@@ -9,8 +9,43 @@ static int kMixRuns = 500;
 static int kNumAnts = 1000;
 static double kPheromoneDrop = 2.0 / kMixRuns;
 static double kPheromonePop = 2 * kPheromoneDrop;
-static double kBPMDiffMult = 0.75; // People can "feel" the correct BPM, but can't "feel" the correct key as much
-static double kTransposeDiffMult = 1 - kBPMDiffMult;
+
+// Find distance from one track to another
+// We assume that the first track is "already playing", so how much do you have to adjust
+// the second track to match with the first?
+void MixAnt::FindTrackDistance(Track const& a, Track const& b, double& total_dist, double* bpm_dist, double* key_dist)
+{
+  // Get the (directional!) BPM portion (in semitones)
+  // It can be positive or negative depending on whether we're speeding up or slowing down
+  // That way, the distances are more careful that you're not slowing a song down (reducing pitch)
+  // but also tuning it up (increasing pitch).
+  double bpm_ratio    = a.bpm / b.bpm;
+  double bpm_ratio_st = log(bpm_ratio) / log(Utils::GetSemitoneRatio());
+
+  // How far must we transpose the "second" track to make it compatible with the "first"?
+  int min_transpose_dist = INT_MAX;
+  for (auto k : Camelot::GetCompatibleKeys(a.key)) {
+    // Only care about keys compatible with "first", and ones of the same type as our "second" track
+    if (k.type != b.key.type) {
+      continue;
+    }
+    int transpose_dist = Camelot::GetTransposeDistance(b.key, k);
+    if (abs(transpose_dist) < abs(min_transpose_dist)) {
+      min_transpose_dist = transpose_dist;
+    }
+  }
+
+  double this_bpm_dist = bpm_ratio_st;
+  double this_key_dist = min_transpose_dist;
+  total_dist = abs(this_bpm_dist - this_key_dist) + std::max(abs(this_bpm_dist), abs(this_key_dist));
+
+  if (bpm_dist) {
+    *bpm_dist = this_bpm_dist;
+  }
+  if (key_dist) {
+    *key_dist = this_key_dist;
+  }
+}
 
 Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
 {
@@ -23,29 +58,12 @@ Matrix MixAnt::FindTrackDistances(Tracks const& tracks)
 
   for (size_t i = 0; i < tracks.size(); ++i) {
     for (size_t j = i+1; j < tracks.size(); ++j) {
-      // Get the BPM portion (in semitones)
-      double max_bpm      = std::max(tracks[i].bpm, tracks[j].bpm);
-      double min_bpm      = std::min(tracks[i].bpm, tracks[j].bpm);
-      double bpm_diff     = max_bpm - min_bpm;
-      double bpm_ratio    = (min_bpm + bpm_diff) / min_bpm;
-      double bpm_ratio_st = log(bpm_ratio) / log(Utils::GetSemitoneRatio());
+      
+      double total_dist;
+      MixAnt::FindTrackDistance(tracks[i], tracks[j], total_dist); 
 
-      // How far must we transpose the "second" track to make it compatible with the "first"?
-      int min_transpose_dist = INT_MAX;
-      for (auto k : Camelot::GetKeys()) {
-        // Only care about keys compatible with "first", and ones of the same type as our "second" track
-        if (!Camelot::AreCompatibleKeys(k, tracks[i].key) || k.type != tracks[j].key.type) {
-          continue;
-        }
-        int transpose_dist = Camelot::GetTransposeDistance(tracks[j].key, k);
-        if (abs(transpose_dist) < min_transpose_dist) {
-          min_transpose_dist = abs(transpose_dist);
-        }
-      }
-
-      double dist = kBPMDiffMult * bpm_ratio_st + kTransposeDiffMult * min_transpose_dist;
-      dists[i][j] = dist;
-      dists[j][i] = dist;
+      dists[i][j] = total_dist;
+      dists[j][i] = total_dist;
     }
   }
   return dists;

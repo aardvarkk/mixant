@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cassert>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -131,20 +132,35 @@ void GetTracks(std::string const& path, Tracks& tracks)
   ifs.close();
 }
 
-int main(int argc, char* argv[])
+void RunTests()
 {
-  //// TESTS
-  //Camelot::Key Am = Camelot::KeyFromString("Am");
-  //Camelot::Key F = Camelot::KeyFromString("F");
-  //int d = Camelot::GetCamelotDistance(Am, F); // should be 2
+  Camelot::Key Am = Camelot::KeyFromString("Am");
+  Camelot::Key F = Camelot::KeyFromString("F");
+  assert(Camelot::GetCamelotDistance(Am, F) == 2);
 
-  //Camelot::Key Fm = Camelot::KeyFromString("Fm");
-  //Camelot::Key Eb = Camelot::KeyFromString("Eb");
-  //bool c = Camelot::AreCompatibleKeys(Fm, Eb); // should be false
+  Camelot::Key Fm = Camelot::KeyFromString("Fm");
+  Camelot::Key Eb = Camelot::KeyFromString("Eb");
+  assert(!Camelot::AreCompatibleKeys(Fm, Eb));
 
   Camelot::Key Db = Camelot::KeyFromString("Db");
   Camelot::Key B = Camelot::KeyFromString("B");
-  int d = Camelot::GetTransposeDistance(Db, B);
+  assert(Camelot::GetTransposeDistance(Db, B) == -2);
+
+  auto keys = Camelot::GetKeys();
+  for (auto i = 0; i < keys.size(); ++i) {
+    for (auto j = 0; j < keys.size(); ++j) {
+      // Can only check keys of the same type (minor/major)
+      if (keys[i].type != keys[j].type) {
+        continue;
+      }
+      assert(Camelot::GetTransposeDistance(keys[i], keys[j]) >= -6 && Camelot::GetTransposeDistance(keys[i], keys[j]) <= 6);
+    }
+  }
+}
+
+int main(int argc, char* argv[])
+{
+  RunTests();
 
   // Our tracks
   Tracks tracks;

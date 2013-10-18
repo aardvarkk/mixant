@@ -1,166 +1,326 @@
-Score: 0.611843
+Score: 1.82877
 
-Spitfire (Kill the Noise)
+Yaa I Get It
 F#m -> F#m (+0) 
-+170bpm -> +158bpm
+91bpm -> 92.5bpm (91 bpm)
 
-Joker & The Thief
-Dm -> Dbm (-1) 
-+158bpm -> +149.5bpm
+BPM Distance: -0.561531
+Key Distance: 1
+Tot Distance: 2.56153
 
-We Will Become
-D -> E (+2) 
-+149.5bpm -> +155bpm
-
-Rich Wife
-Db -> B (-2) 
-+155bpm -> +151.5bpm
-
-Family Band
-C -> B (-1) 
-+151.5bpm -> +143bpm
-
-Let Go
-F -> E (-1) 
-+143bpm -> +140bpm
-
-Shudder
-Bm -> Dbm (-2) 
-+140bpm -> +140bpm
-
-Succexy
-F#m -> F#m (+0) 
-+140bpm -> +139bpm
-
-Scary Monsters
-Gm -> F#m (-1) 
-+139bpm -> +138bpm
-
-Idioteque
-Gm -> F#m (-1) 
-+138bpm -> +137bpm
-
-Juanita
-B -> A (-2) 
-+137bpm -> +135.5bpm
-
-Smack My Bitch
-Bbm -> F#m (-4) 
-+135.5bpm -> +132.5bpm
-
-Beneath You
-Am -> Bm (+2) 
-+132.5bpm -> +130bpm
-
-I Kissed
-Am -> Bm (+2) 
-+130bpm -> +131bpm
-
-Teenage Spaceman
-Dm -> Em (+2) 
-+131bpm -> +131.5bpm
-
-Heads Will Roll
-Abm -> Am (+1) 
-+131.5bpm -> +124.5bpm
-
-Murder on the Dancefloor
-E -> C (-4) 
-+124.5bpm -> +119bpm
-
-Genesis
-Dm -> Am (-5) 
-+119bpm -> +120bpm
-
-Courtship Dating
-Gm -> Am (+2) 
-+120bpm -> +121.5bpm
-
-The Looks
-Gm -> Am (+2) 
-+121.5bpm -> +124bpm
-
-Oh! (A-Trak Remix)
-Ebm -> Em (+1) 
-+124bpm -> +125.5bpm
-
-Turbine
-Dm -> Em (+2) 
-+125.5bpm -> +125.5bpm
-
-Halcyon
-F#m -> Em (-2) 
-+125.5bpm -> +125bpm
-
-Bad Touch
-Cm -> Bm (-1) 
-+125bpm -> +125bpm
-
-Tapes & Money
-Cm -> Bm (-1) 
-+125bpm -> +125.5bpm
-
-Yeah Yeah
-Cm -> Bm (-1) 
-+125.5bpm -> +127bpm
-
-Tau
-F#m -> F#m (+0) 
-+127bpm -> +128bpm
-
-Clarity
-Ab -> A (+1) 
-+128bpm -> +126.5bpm
-
-Open Up
-Fm -> F#m (+1) 
-+126.5bpm -> +126.5bpm
-
-Poison Lips
+Stereo
 Bbm -> Bm (+1) 
-+126.5bpm -> +129bpm
+92.5bpm -> 91bpm (94 bpm)
 
-Flat Beat
-Bbm -> Bm (+1) 
-+129bpm -> +130bpm
+BPM Distance: 1.14189
+Key Distance: 1
+Tot Distance: 1.28377
 
-Street Justice
-Fm -> F#m (+1) 
-+130bpm -> +129bpm
+Khyber
+C -> D (+2) 
+91bpm -> 91bpm (88 bpm)
 
-Household Goods
-Cm -> Dbm (+1) 
-+129bpm -> +119bpm
+BPM Distance: -1.14189
+Key Distance: 0
+Tot Distance: 2.28377
+
+Fire Island
+Am -> Bm (+2) 
+91bpm -> 96bpm (94 bpm)
+
+BPM Distance: -0.721452
+Key Distance: 0
+Tot Distance: 1.4429
+
+Hay Loft
+Am -> Bm (+2) 
+96bpm -> 104bpm (98 bpm)
+
+BPM Distance: -1.9998
+Key Distance: 2
+Tot Distance: 5.9998
 
 Bangarang
 Gm -> F#m (-1) 
-+119bpm -> +108.5bpm
+104bpm -> 108.5bpm (110 bpm)
+
+BPM Distance: 0.478713
+Key Distance: 0
+Tot Distance: 0.957425
 
 Annie
 Cm -> Dbm (+1) 
-+108.5bpm -> +102.5bpm
+108.5bpm -> 112.5bpm (107 bpm)
 
-Hay Loft
-Am -> Abm (-1) 
-+102.5bpm -> +96bpm
+BPM Distance: -1.69411
+Key Distance: -1
+Tot Distance: 2.38823
 
-Fire Island
-Am -> Abm (-1) 
-+96bpm -> +94bpm
+Murder on the Dancefloor
+E -> E (+0) 
+112.5bpm -> 125bpm (118 bpm)
 
-Stereo
-Bbm -> Abm (-2) 
-+94bpm -> +92.5bpm
+BPM Distance: -1.94101
+Key Distance: -1
+Tot Distance: 2.88203
 
-Yaa I Get It
-F#m -> Abm (+2) 
-+92.5bpm -> +89.5bpm
+Teenage Spaceman
+Dm -> Dbm (-1) 
+125bpm -> 135bpm (132 bpm)
 
-Khyber
-C -> B (-1) 
-+89.5bpm -> +100bpm
+BPM Distance: -0.769564
+Key Distance: 0
+Tot Distance: 1.53913
+
+Scary Monsters
+Gm -> F#m (-1) 
+135bpm -> 133bpm (138 bpm)
+
+BPM Distance: 1.30229
+Key Distance: 1
+Tot Distance: 1.60459
+
+Tau
+F#m -> F#m (+0) 
+133bpm -> 126.5bpm (128 bpm)
+
+BPM Distance: 0.410589
+Key Distance: 0
+Tot Distance: 0.821177
+
+Halcyon
+F#m -> F#m (+0) 
+126.5bpm -> 118.5bpm (125 bpm)
+
+BPM Distance: 1.90115
+Key Distance: 2
+Tot Distance: 2.09885
 
 Fish
-G -> F# (-1) 
-+100bpm -> +116bpm
+G -> A (+2) 
+118.5bpm -> 116bpm (112 bpm)
+
+BPM Distance: -1.19443
+Key Distance: 1
+Tot Distance: 3.38886
+
+Constant Surprises
+Db -> D (+1) 
+116bpm -> 124bpm (120 bpm)
+
+BPM Distance: -1.11731
+Key Distance: 0
+Tot Distance: 2.23463
+
+Clarity
+Ab -> A (+1) 
+124bpm -> 126.5bpm (128 bpm)
+
+BPM Distance: 0.410589
+Key Distance: 0
+Tot Distance: 0.821177
+
+Open Up
+Fm -> F#m (+1) 
+126.5bpm -> 125.5bpm (125 bpm)
+
+BPM Distance: -0.137948
+Key Distance: 0
+Tot Distance: 0.275895
+
+Yeah Yeah
+Cm -> Dbm (+1) 
+125.5bpm -> 128bpm (126 bpm)
+
+BPM Distance: -0.541055
+Key Distance: 0
+Tot Distance: 1.08211
+
+Street Justice
+Fm -> F#m (+1) 
+128bpm -> 138bpm (130 bpm)
+
+BPM Distance: -2.00948
+Key Distance: -2
+Tot Distance: 2.01896
+
+Joker & The Thief
+Dm -> Dbm (-1) 
+138bpm -> 142bpm (146 bpm)
+
+BPM Distance: 0.975601
+Key Distance: 0
+Tot Distance: 1.9512
+
+Idioteque
+Gm -> F#m (-1) 
+142bpm -> 142bpm (138 bpm)
+
+BPM Distance: -0.975601
+Key Distance: -2
+Tot Distance: 3.0244
+
+Family Band
+C -> A (-3) 
+142bpm -> 143bpm (146 bpm)
+
+BPM Distance: 0.726499
+Key Distance: 0
+Tot Distance: 1.453
+
+Let Go
+F -> E (-1) 
+143bpm -> 138bpm (140 bpm)
+
+BPM Distance: 0.501842
+Key Distance: -1
+Tot Distance: 2.50184
+
+Juanita
+B -> B (+0) 
+138bpm -> 146.5bpm (136 bpm)
+
+BPM Distance: -2.48589
+Key Distance: -2
+Tot Distance: 2.97179
+
+Rich Wife
+Db -> B (-2) 
+146.5bpm -> 155bpm (157 bpm)
+
+BPM Distance: 0.446795
+Key Distance: -1
+Tot Distance: 2.44679
+
+We Will Become
+D -> E (+2) 
+155bpm -> 138bpm (153 bpm)
+
+BPM Distance: 3.77848
+Key Distance: 4
+Tot Distance: 4.22152
+
+The Looks
+Gm -> Dbm (-6) 
+138bpm -> 124bpm (123 bpm)
+
+BPM Distance: -0.279237
+Key Distance: 0
+Tot Distance: 0.558475
+
+Bad Touch
+Cm -> Dbm (+1) 
+124bpm -> 125bpm (125 bpm)
+
+BPM Distance: 0
+Key Distance: 0
+Tot Distance: 0
+
+Tapes & Money
+Cm -> Dbm (+1) 
+125bpm -> 126.5bpm (125 bpm)
+
+BPM Distance: -0.410589
+Key Distance: 0
+Tot Distance: 0.821177
+
+Household Goods
+Cm -> Dbm (+1) 
+126.5bpm -> 124bpm (128 bpm)
+
+BPM Distance: 1.11731
+Key Distance: 0
+Tot Distance: 2.23463
+
+Courtship Dating
+Gm -> F#m (-1) 
+124bpm -> 120bpm (120 bpm)
+
+BPM Distance: 0
+Key Distance: 0
+Tot Distance: 0
+
+Genesis
+Dm -> Dbm (-1) 
+120bpm -> 123bpm (120 bpm)
+
+BPM Distance: -0.844672
+Key Distance: 0
+Tot Distance: 1.68934
+
+Turbine
+Dm -> Dbm (-1) 
+123bpm -> 128.5bpm (126 bpm)
+
+BPM Distance: -0.673717
+Key Distance: 1
+Tot Distance: 2.67372
+
+Heads Will Roll
+Abm -> Abm (+0) 
+128.5bpm -> 128bpm (131 bpm)
+
+BPM Distance: 0.811665
+Key Distance: 0
+Tot Distance: 1.62333
+
+Oh! (A-Trak Remix)
+Ebm -> Ebm (+0) 
+128bpm -> 126.5bpm (125 bpm)
+
+BPM Distance: -0.410589
+Key Distance: 0
+Tot Distance: 0.821177
+
+Poison Lips
+Bbm -> Bbm (+0) 
+126.5bpm -> 131.5bpm (128 bpm)
+
+BPM Distance: -0.921787
+Key Distance: 0
+Tot Distance: 1.84357
+
+Smack My Bitch
+Bbm -> Bbm (+0) 
+131.5bpm -> 132.5bpm (135 bpm)
+
+BPM Distance: 0.653373
+Key Distance: 1
+Tot Distance: 1.34663
+
+Beneath You
+Am -> Bbm (+1) 
+132.5bpm -> 130bpm (130 bpm)
+
+BPM Distance: 0
+Key Distance: 0
+Tot Distance: 0
+
+I Kissed
+Am -> Bbm (+1) 
+130bpm -> 130bpm (130 bpm)
+
+BPM Distance: 0
+Key Distance: -1
+Tot Distance: 2
+
+Flat Beat
+Bbm -> Bbm (+0) 
+130bpm -> 135bpm (130 bpm)
+
+BPM Distance: -1.28298
+Key Distance: -1
+Tot Distance: 1.56596
+
+Shudder
+Bm -> Bbm (-1) 
+135bpm -> 140bpm (140 bpm)
+
+BPM Distance: 0
+Key Distance: 0
+Tot Distance: 0
+
+Succexy
+F#m -> Fm (-1) 
+140bpm -> 155bpm (140 bpm)
 
