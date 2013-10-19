@@ -147,9 +147,12 @@ void RunTests()
   Camelot::Key B = Camelot::KeyFromString("B");
   assert(Camelot::GetTransposeDistance(Db, B) == -2);
 
+  Camelot::Key C = Camelot::KeyFromString("C");
+  assert(Camelot::GetTransposeDistance(B, C) == 1);
+
   auto keys = Camelot::GetKeys();
-  for (auto i = 0; i < keys.size(); ++i) {
-    for (auto j = 0; j < keys.size(); ++j) {
+  for (size_t i = 0; i < keys.size(); ++i) {
+    for (size_t j = 0; j < keys.size(); ++j) {
       // Can only check keys of the same type (minor/major)
       if (keys[i].type != keys[j].type) {
         continue;

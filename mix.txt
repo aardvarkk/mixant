@@ -1,86 +1,30 @@
-Street Justice
-Fm -> Fm (+0) 
-130bpm -> 140bpm
-
-Succexy
-F#m -> Fm (-1) 
-140bpm -> 130bpm
-
-Beneath You
-Am -> Bbm (+1) 
-130bpm -> 140bpm
-
-Shudder
-Bm -> Bbm (-1) 
-140bpm -> 135bpm
-
-Smack My Bitch
-Bbm -> Bbm (+0) 
-135bpm -> 130bpm
-
-Flat Beat
-Bbm -> Bbm (+0) 
-130bpm -> 128bpm
-
-Poison Lips
-Bbm -> Bbm (+0) 
-128bpm -> 125bpm
-
 Open Up
 Fm -> Fm (+0) 
-125bpm -> 125bpm
+125bpm -> 130bpm
 
-Bad Touch
-Cm -> Cm (+0) 
-125bpm -> 120bpm
-
-Courtship Dating
-Gm -> Gm (+0) 
-120bpm -> 120bpm
-
-Genesis
-Dm -> Dm (+0) 
-120bpm -> 125bpm
-
-Oh! (A-Trak Remix)
-Ebm -> Dm (-1) 
-125bpm -> 118bpm
-
-Murder on the Dancefloor
-E -> F (+1) 
-118bpm -> 120bpm
-
-Constant Surprises
-Db -> C (-1) 
-120bpm -> 128bpm
-
-Clarity
-Ab -> G (-1) 
-128bpm -> 136bpm
-
-Juanita
-B -> C (-1) 
-136bpm -> 130bpm
-
-I Kissed
-Am -> Am (+0) 
-130bpm -> 132bpm
-
-Teenage Spaceman
-Dm -> Dm (+0) 
-132bpm -> 126bpm
-
-Turbine
-Dm -> Dm (+0) 
-126bpm -> 123bpm
-
-The Looks
-Gm -> Gm (+0) 
-123bpm -> 126bpm
+Street Justice
+Fm -> Fm (+0) 
+130bpm -> 126bpm
 
 Yeah Yeah
 Cm -> Cm (+0) 
-126bpm -> 128bpm
+126bpm -> 131bpm
+
+Heads Will Roll
+Abm -> Gm (-1) 
+131bpm -> 125bpm
+
+Bad Touch
+Cm -> Cm (+0) 
+125bpm -> 125bpm
+
+Tapes & Money
+Cm -> Cm (+0) 
+125bpm -> 123bpm
+
+The Looks
+Gm -> Gm (+0) 
+123bpm -> 128bpm
 
 Household Goods
 Cm -> Cm (+0) 
@@ -92,37 +36,89 @@ F#m -> Fm (-1)
 
 Tau
 F#m -> Fm (-1) 
-128bpm -> 125bpm
+128bpm -> 130bpm
 
-Tapes & Money
-Cm -> Cm (+0) 
-125bpm -> 131bpm
+Flat Beat
+Bbm -> Bbm (+0) 
+130bpm -> 125bpm
 
-Heads Will Roll
-Abm -> Gm (-1) 
-131bpm -> 138bpm
+Oh! (A-Trak Remix)
+Ebm -> Ebm (+0) 
+125bpm -> 120bpm
 
-Scary Monsters
-Gm -> Gm (+0) 
-138bpm -> 138bpm
+Courtship Dating
+Gm -> Abm (+1) 
+120bpm -> 130bpm
 
-Idioteque
-Gm -> Gm (+0) 
-138bpm -> 146bpm
+I Kissed
+Am -> Abm (-1) 
+130bpm -> 120bpm
 
-Joker & The Thief
-Dm -> Dm (+0) 
-146bpm -> 140bpm
+Genesis
+Dm -> Dbm (-1) 
+120bpm -> 118bpm
 
-Let Go
-F -> F (+0) 
-140bpm -> 146bpm
+Murder on the Dancefloor
+E -> E (+0) 
+118bpm -> 126bpm
+
+Turbine
+Dm -> Dbm (-1) 
+126bpm -> 130bpm
+
+Beneath You
+Am -> Abm (-1) 
+130bpm -> 136bpm
+
+Juanita
+B -> B (+0) 
+136bpm -> 146bpm
 
 Family Band
-C -> C (+0) 
-146bpm -> 157bpm
+C -> B (-1) 
+146bpm -> 138bpm
 
-Rich Wife
-Db -> C (-1) 
-157bpm -> 157bpm
+Idioteque
+Gm -> Abm (+1) 
+138bpm -> 132bpm
+
+Teenage Spaceman
+Dm -> Dbm (-1) 
+132bpm -> 140bpm
+
+Let Go
+Dm -> Dbm (-1) 
+140bpm -> 146bpm
+
+Joker & The Thief
+Dm -> Dbm (-1) 
+146bpm -> 140bpm
+
+Succexy
+F#m -> F#m (+0) 
+140bpm -> 140bpm
+
+Shudder
+Bm -> Bm (+0) 
+140bpm -> 135bpm
+
+Smack My Bitch
+Bbm -> Bm (+1) 
+135bpm -> 128bpm
+
+Poison Lips
+Bbm -> Bm (+1) 
+128bpm -> 138bpm
+
+Scary Monsters
+Gm -> F#m (-1) 
+138bpm -> 128bpm
+
+Clarity
+Ab -> A (+1) 
+128bpm -> 120bpm
+
+Constant Surprises
+Db -> D (+1) 
+120bpm -> 120bpm
 

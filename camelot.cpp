@@ -182,7 +182,7 @@ int Camelot::GetTransposeDistance(Camelot::Key const& k1, Camelot::Key const& k2
   }
 
   int diff = i2 - i1;
-  return abs(diff) > 6 ? abs(diff) - 12 : diff;
+  return abs(diff) > 6 ? diff - Utils::sgn(diff) * 12 : diff;
 }
 
 void Camelot::GetCompatibleKeys(Camelot::Key const& key, Camelot::Keys& compatible)
