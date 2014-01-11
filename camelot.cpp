@@ -1,4 +1,4 @@
-#include <boost/math/special_functions.hpp>
+#include <cassert>
 #include <cmath>
 #include <exception>
 
@@ -151,7 +151,7 @@ Camelot::Key Camelot::GetShiftedKey(Camelot::Key const& original_key, double old
   double bpm_ratio_st = log(bpm_ratio) / log(Utils::GetSemitoneRatio());
 
   // Cast to an integer to get how many keys to shift...
-  int shift = static_cast<int>(boost::math::iround(bpm_ratio_st));
+  int shift = static_cast<int>(rint(bpm_ratio_st));
   return original_key + shift;
 }
 

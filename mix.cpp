@@ -2,7 +2,6 @@
 #include "mixant.h"
 #include "utils.h"
 
-#include <boost/math/special_functions/round.hpp>
 #include <string>
 
 MixStep::MixStep(Track const& track) : track(track), bpm_beg(track.bpm), bpm_end(track.bpm), play_key(track.key), tuning(0)
