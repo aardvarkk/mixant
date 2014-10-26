@@ -11,8 +11,8 @@ static std::tr1::mt19937 eng;
 double MixAnt::FindDistance(
   double bpm_a,
   double bpm_b,
-  Camelot::Key const& key_a,
-  Camelot::Key const& key_b
+  Key const& key_a,
+  Key const& key_b
   )
 {
   // Get the (directional!) BPM portion (in semitones)
@@ -24,14 +24,14 @@ double MixAnt::FindDistance(
 
   // How far must we transpose the "second" track to make it compatible with the "first"?
   int min_transpose_dist = INT_MAX;
-  Camelot::Keys compatible;
-  Camelot::GetCompatibleKeys(key_a, compatible);
+  Keys compatible;
+  Key::GetCompatibleKeys(key_a, compatible);
   for (auto k : compatible) {
     // Only care about keys compatible with "first", and ones of the same type as our "second" track
     if (k.type != key_b.type) {
       continue;
     }
-    int transpose_dist = Camelot::GetTransposeDistance(key_b, k);
+    int transpose_dist = Key::GetTransposeDistance(key_b, k);
     if (abs(transpose_dist) < abs(min_transpose_dist)) {
       min_transpose_dist = transpose_dist;
     }
@@ -145,7 +145,7 @@ Mix MixAnt::FindMix(Tracks const& tracks)
         prv_ms.bpm_end = cur_ms.bpm_beg;
 
         // Is the current track compatible with the previous?
-        bool compatible = Camelot::AreCompatibleKeys(cur_ms.track.key, prv_ms.GetPlayKey());
+        bool compatible = Key::AreCompatibleKeys(cur_ms.track.key, prv_ms.GetPlayKey());
 
         // We're done if we're already compatible
         if (compatible) {
@@ -156,8 +156,8 @@ Mix MixAnt::FindMix(Tracks const& tracks)
         // Choose the key with the smallest combined distance between previous and next
         {
           int min_dist = INT_MAX;
-          Camelot::Keys compatible_keys;
-          Camelot::GetCompatibleKeys(prv_ms.GetPlayKey(), compatible_keys);
+          Keys compatible_keys;
+          Key::GetCompatibleKeys(prv_ms.GetPlayKey(), compatible_keys);
           for (auto k : compatible_keys) {
 
             // Can't switch between min-maj!
@@ -167,7 +167,7 @@ Mix MixAnt::FindMix(Tracks const& tracks)
             }
 
             // Want the smallest distance between our natural key and the next one
-            int cur_dist = Camelot::GetTransposeDistance(cur_ms.track.key, k);
+            int cur_dist = Key::GetTransposeDistance(cur_ms.track.key, k);
             // Check the total distance -- want the best value
             if (abs(cur_dist) <= min_dist) {
               min_dist = abs(cur_dist);
@@ -386,7 +386,7 @@ next:
 //    }
 //
 //    // Is the current track compatible with the previous?
-//    bool compatible = Camelot::AreCompatibleKeys(cur_ms.track.key, prv_ms.GetPlayKey());
+//    bool compatible = AreCompatibleKeys(cur_ms.track.key, prv_ms.GetPlayKey());
 //
 //    // We're done if we're already compatible
 //    if (compatible) {
@@ -398,16 +398,16 @@ next:
 //    // We're not compatible, so we need a tuning change in the current track
 //    // Choose the key with the smallest combined distance between previous and next
 //    int min_dist = INT_MAX;
-//    for (auto k : Camelot::GetKeys()) {
+//    for (auto k : GetKeys()) {
 //      
 //      // Can't switch between min-maj!
 //      // And we only care about compatible keys
-//      if (k.type != cur_ms.track.key.type || !Camelot::AreCompatibleKeys(k, prv_ms.GetPlayKey())) {
+//      if (k.type != cur_ms.track.key.type || !AreCompatibleKeys(k, prv_ms.GetPlayKey())) {
 //        continue;
 //      }
 //
 //      // Want the smallest distance between our natural key and the next one
-//      int cur_dist = Camelot::GetTransposeDistance(cur_ms.track.key, k);
+//      int cur_dist = GetTransposeDistance(cur_ms.track.key, k);
 //      // Check the total distance -- want the best value
 //      if (abs(cur_dist) <= min_dist) {
 //        min_dist = abs(cur_dist);

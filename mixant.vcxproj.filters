@@ -18,9 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="camelot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mixant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,6 +27,9 @@
     <ClCompile Include="mix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="key.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="tracks.txt">
@@ -37,9 +37,6 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="camelot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="track.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -50,6 +47,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="key.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,10 +1,12 @@
-#ifndef CAMELOT_H
-#define CAMELOT_H
+#pragma once
 
 #include <string>
 #include <vector>
 
-class Camelot
+class Key;
+typedef std::vector<Key> Keys;
+
+class Key
 {
 public:
 
@@ -14,23 +16,18 @@ public:
     kMajor
   };
 
-  struct Key
-  {
-    std::string short_name;
-    int         num;
-    Type        type;
-    std::string name;
-    std::string alternate;
+  std::string short_name;
+  int         num;
+  Type        type;
+  std::string name;
+  std::string alternate;
 
-    Key() : num(0), type(static_cast<Type>(0)) {}
-    Key(int num, Type type, std::string name, std::string short_name, std::string alternate) : num(num), type(type), name(name), short_name(short_name), alternate(alternate) {}
-    bool operator==(Camelot::Key const& key) const;
-    Key operator+(int semitones) const;
-    Key operator-(int semitones) const;
-    bool operator<(Camelot::Key const& k) const;
-  };
-
-  typedef std::vector<Key> Keys;
+  Key() : num(0), type(static_cast<Type>(0)) {}
+  Key(int num, Type type, std::string name, std::string short_name, std::string alternate) : num(num), type(type), name(name), short_name(short_name), alternate(alternate) {}
+  bool operator==(Key const& key) const;
+  Key  operator +(int semitones) const;
+  Key  operator -(int semitones) const;
+  bool operator <(Key const& k) const;
 
   static Keys const& GetKeys();
   static Keys const& GetOrdering(Type type);
@@ -43,5 +40,3 @@ public:
   static void GetCompatibleKeys(Key const& key, Keys& compatible);
   static Key  GetKey(int num, Type type);
 };
-
-#endif

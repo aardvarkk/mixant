@@ -15,13 +15,13 @@ public:
   double       bpm_end;
 
   MixStep(Track const& track);
-  Camelot::Key GetPlayKey() const;
-  void SetPlayKey(Camelot::Key const& key);
+  Key GetPlayKey() const;
+  void SetPlayKey(Key const& key);
   int GetTuning() const;
 
 protected:
 
-  Camelot::Key play_key;
+  Key play_key;
   int          tuning;
 };
 

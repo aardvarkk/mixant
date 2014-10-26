@@ -8,7 +8,7 @@ MixStep::MixStep(Track const& track) : track(track), bpm_beg(track.bpm), bpm_end
 {
 }
 
-Camelot::Key MixStep::GetPlayKey() const
+Key MixStep::GetPlayKey() const
 {
   return play_key;
 }
@@ -18,10 +18,10 @@ int MixStep::GetTuning() const
   return tuning;
 }
 
-void MixStep::SetPlayKey(Camelot::Key const& key)
+void MixStep::SetPlayKey(Key const& key)
 {
   play_key = key;
-  tuning = Camelot::GetTransposeDistance(track.key, play_key);
+  tuning = Key::GetTransposeDistance(track.key, play_key);
 }
 
 std::ostream& operator<<(std::ostream& out, const Mix& mix)

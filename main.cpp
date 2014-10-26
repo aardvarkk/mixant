@@ -7,7 +7,7 @@
 #include <set>
 #include <sstream>
 
-#include "camelot.h"
+#include "key.h"
 #include "mixant.h"
 #include "track.h"
 #include "utils.h"
@@ -21,9 +21,9 @@ struct TrackOption
   TrackOption(Track const& track, double bpm_ratio, int idx) : track(track), bpm_ratio(bpm_ratio), idx(idx) {}
 };
 
-//typedef std::map< Camelot::Key, std::vector<Track> > KeyCount
-typedef std::set<Camelot::Key> KeySet;
-typedef std::map<Camelot::Key, int> KeyCount;
+//typedef std::map< Key, std::vector<Track> > KeyCount
+typedef std::set<Key> KeySet;
+typedef std::map<Key, int> KeyCount;
 
 KeySet GetAvailableKeys(KeyCount const& kc)
 {
@@ -37,7 +37,7 @@ KeySet GetAvailableKeys(KeyCount const& kc)
   return available;
 }
 
-bool ChooseKey(Camelot::Key const& key, KeyCount const& key_count, Camelot::Keys order, int depth, int& max_depth)
+bool ChooseKey(Key const& key, KeyCount const& key_count, Keys order, int depth, int& max_depth)
 {
   if (depth > max_depth) {
     max_depth = depth;
@@ -62,8 +62,8 @@ bool ChooseKey(Camelot::Key const& key, KeyCount const& key_count, Camelot::Keys
   
   // Find all compatible tracks, then try to choose each one in turn
   bool found_compatible = false;
-  Camelot::Keys compatible;
-  Camelot::GetCompatibleKeys(key, compatible);
+  Keys compatible;
+  Key::GetCompatibleKeys(key, compatible);
   for (auto k : compatible) {
     if (new_counts.find(k) != new_counts.end()) {
       ChooseKey(k, new_counts, order, depth + 1, max_depth);
@@ -75,48 +75,48 @@ bool ChooseKey(Camelot::Key const& key, KeyCount const& key_count, Camelot::Keys
   return found_compatible;
 }
 
-bool ChooseTrack(Track const& track, Tracks const& available, Tracks order)
-{
-  // We've run out of tracks!
-  // We've found a potential solution!
-  if (available.empty()) {
-    return true;
-  }
-
-  // Add it to our order, but it's no longer available
-  order.push_back(track);
-
-  // Make our own copy to iterate through...
-  Tracks now_available(available);
-  
-  // Erase the one we just took
-  now_available.erase(std::find(now_available.begin(), now_available.end(), track));
-
-  // Find all compatible tracks, then try to choose each one in turn
-  bool found_compatible = false;
-  for (auto t : now_available) {
-    if (Camelot::AreCompatibleKeys(track.key, t.key)) {
-      ChooseTrack(t, now_available, order);
-      found_compatible = true;
-    }
-  }
-
-  // Dead end solution...
-  return found_compatible;
-}
+//bool ChooseTrack(Track const& track, Tracks const& available, Tracks order)
+//{
+//  // We've run out of tracks!
+//  // We've found a potential solution!
+//  if (available.empty()) {
+//    return true;
+//  }
+//
+//  // Add it to our order, but it's no longer available
+//  order.push_back(track);
+//
+//  // Make our own copy to iterate through...
+//  Tracks now_available(available);
+//  
+//  // Erase the one we just took
+//  now_available.erase(std::find(now_available.begin(), now_available.end(), track));
+//
+//  // Find all compatible tracks, then try to choose each one in turn
+//  bool found_compatible = false;
+//  for (auto t : now_available) {
+//    if (Key::AreCompatibleKeys(track.key, t.key)) {
+//      ChooseTrack(t, now_available, order);
+//      found_compatible = true;
+//    }
+//  }
+//
+//  // Dead end solution...
+//  return found_compatible;
+//}
 
 void GetTracks(std::string const& path, Tracks& tracks)
 {
   tracks.clear();
 
   // Read the file to get our tracks
-  std::ifstream ifs("tracks.txt");
+  std::ifstream ifs(path);
   std::string line;
   while (std::getline(ifs, line)) {
     std::string name = line;
 
     std::getline(ifs, line);
-    Camelot::Key key = Camelot::KeyFromString(line);
+    Key key = Key::KeyFromString(line);
 
     double bpm;
     std::getline(ifs, line);
@@ -133,31 +133,190 @@ void GetTracks(std::string const& path, Tracks& tracks)
   ifs.close();
 }
 
+void GetTracksTabSeparated(std::string const& path, Tracks& tracks)
+{
+  tracks.clear();
+
+  // Read the file to get our tracks
+  std::ifstream ifs(path);
+  std::string line;
+  while (std::getline(ifs, line)) {
+    std::stringstream ss(line);
+    
+    std::string name;
+    std::getline(ss, name, '\t');
+
+    std::string key_str;
+    std::getline(ss, key_str, '\t');
+    Key key = Key::KeyFromString(key_str);
+
+    double bpm;
+    ss >> bpm;
+
+    // Allow commenting out tracks
+    if (!name.substr(0, 2).compare("//")) {
+      continue;
+    }
+
+    tracks.push_back(Track(name, bpm, key));
+  }
+  ifs.close();
+}
+
 void RunTests()
 {
-  Camelot::Key Am = Camelot::KeyFromString("Am");
-  Camelot::Key F = Camelot::KeyFromString("F");
-  assert(Camelot::GetCamelotDistance(Am, F) == 2);
+  Key Am = Key::KeyFromString("Am");
+  Key F = Key::KeyFromString("F");
+  assert(Key::GetCamelotDistance(Am, F) == 2);
+  assert(Key::GetCamelotDistance(F, Am) == 2);
 
-  Camelot::Key Fm = Camelot::KeyFromString("Fm");
-  Camelot::Key Eb = Camelot::KeyFromString("Eb");
-  assert(!Camelot::AreCompatibleKeys(Fm, Eb));
+  Key Fm = Key::KeyFromString("Fm");
+  Key Eb = Key::KeyFromString("Eb");
+  assert(!Key::AreCompatibleKeys(Fm, Eb));
 
-  Camelot::Key Db = Camelot::KeyFromString("Db");
-  Camelot::Key B = Camelot::KeyFromString("B");
-  assert(Camelot::GetTransposeDistance(Db, B) == -2);
+  Key Db = Key::KeyFromString("Db");
+  Key B = Key::KeyFromString("B");
+  assert(Key::GetTransposeDistance(Db, B) == -2);
 
-  Camelot::Key C = Camelot::KeyFromString("C");
-  assert(Camelot::GetTransposeDistance(B, C) == 1);
+  Key C = Key::KeyFromString("C");
+  assert(Key::GetTransposeDistance(B, C) == 1);
 
-  auto keys = Camelot::GetKeys();
+  auto keys = Key::GetKeys();
   for (size_t i = 0; i < keys.size(); ++i) {
     for (size_t j = 0; j < keys.size(); ++j) {
       // Can only check keys of the same type (minor/major)
       if (keys[i].type != keys[j].type) {
         continue;
       }
-      assert(Camelot::GetTransposeDistance(keys[i], keys[j]) >= -6 && Camelot::GetTransposeDistance(keys[i], keys[j]) <= 6);
+      assert(Key::GetTransposeDistance(keys[i], keys[j]) >= -6 && Key::GetTransposeDistance(keys[i], keys[j]) <= 6);
+    }
+  }
+}
+
+static const double kBPMThresh = 0.15;
+static const int kKeyShiftThresh = 1;
+
+// ASSUME:
+// t1 cannot be changed (bpm, key)
+// t2 can be changed (only deal with key right now)
+// We'll transpose within the key threshold
+// We assume tempo we can change kind of however we want within BPM thresholds
+// Keys we need to follow so that we don't shift down a bunch and then try to match
+// with something high in the next track
+bool AreCompatibleTracks(
+  Track const& t1, 
+  Track const& t2,
+  double bpm_thr,
+  int key_thr,
+  Key& t2_adj
+  )
+{
+  auto min_bpm = std::min(t1.bpm, t2.bpm);
+  auto max_bpm = std::max(t1.bpm, t2.bpm);
+  auto bpm_rat = abs(max_bpm / min_bpm);
+  bool compatible_bpm = bpm_rat < (1 + bpm_thr);
+
+  if (!compatible_bpm) {
+    return false;
+  }
+
+  // Find smallest compatible transpose distance from t2's natural key to t1
+  int min_shift_dist = INT_MAX;
+  bool compatible_keys = false;
+
+  // Try shifting t2's key to all keys within the threshold
+  for (int shift = -key_thr; shift <= key_thr; ++shift) {
+    Key shifted = t2.key + shift;
+
+    // If they're compatible, mark it!
+    if (Key::AreCompatibleKeys(t1.key, shifted)) {
+      compatible_keys = true;
+
+      // Better than previous
+      if (abs(shift) < min_shift_dist) {
+        min_shift_dist = abs(shift);
+        t2_adj = shifted;
+      }
+    }
+  }
+
+  return compatible_keys;
+}
+
+void ChooseTrack(
+  Tracks& available, 
+  Tracks& chosen, 
+  std::string const& prev_name,
+  Key prev_key, 
+  double prev_bpm,
+  Tracks& best
+  )
+{
+  // We have a new best
+  if (chosen.size() > best.size()) {
+    best = chosen;
+    std::cout << "New best of length " << best.size() << " found." << std::endl;
+  }
+
+  // Nothing to look at
+  if (available.empty()) {
+    std::cout << "No more tracks to choose." << std::endl;
+    return;
+  }
+
+  // If we haven't chosen anything, all available tracks are candidates
+  if (chosen.empty()) {
+    for (size_t i = 0; i < available.size(); ++i) {
+      Tracks now_available = available;
+      Track t = now_available[i];
+      now_available.erase(now_available.begin() + i);
+      Tracks now_chosen = chosen;
+      now_chosen.push_back(t);
+      std::cout << "Starting with " << t.name << std::endl;
+      ChooseTrack(now_available, now_chosen, t.name, t.key, t.bpm, best);
+    }
+  }
+  // If we've chosen something, the track we choose must be compatible with the last one
+  else {
+    Track prev(prev_name, prev_bpm, prev_key);
+
+    // Go through all available and find those compatible
+    Tracks candidates;
+    Keys candidates_adj;
+    for (auto t : available) {
+      Key candidate_adj;
+      if (AreCompatibleTracks(
+        prev, 
+        t, 
+        kBPMThresh, 
+        kKeyShiftThresh,
+        candidate_adj
+        )) {
+        candidates.push_back(t);
+        candidates_adj.push_back(candidate_adj);
+      }
+    }
+
+    for (size_t i = 0; i < candidates.size(); ++i) {
+      Tracks now_available = available;
+      Track t = candidates[i];
+      
+      // Erase the candidate from the now available list
+      for (size_t j = 0; j < now_available.size(); ++j) {
+        if (now_available[j] == t) {
+          now_available.erase(now_available.begin() + j);
+          break;
+        }
+      }
+
+      // Set to our new key
+      t.key = candidates_adj[i];
+
+      Tracks now_chosen = chosen;
+      now_chosen.push_back(t);
+
+      // NOTE: We send in an ADJUSTED key for this track!
+      ChooseTrack(now_available, now_chosen, t.name, t.key, t.bpm, best);
     }
   }
 }
@@ -168,7 +327,8 @@ int main(int argc, char* argv[])
 
   // Our tracks
   Tracks tracks;
-  GetTracks("tracks.txt", tracks);
+  //GetTracks("tracks.txt", tracks);
+  GetTracksTabSeparated("tracks_tsv.txt", tracks);
 
   //// Write separate values out
   //std::ofstream names("names.txt");
@@ -195,6 +355,23 @@ int main(int argc, char* argv[])
     std::cout << k.first.short_name << ": " << k.second << std::endl;
   }
 
+  // Exhaustive solution
+  // Start at each track and try to get as many tracks into a mix as possible
+  // We will exhaustively try to join into each possible next track that is compatible
+  Tracks available = tracks;
+  Tracks chosen;
+  Tracks best;
+  ChooseTrack(available, chosen, "", Key(), 0, best);
+
+  // Show our results
+  for (auto t : best) {
+    std::cout 
+      << std::setw(3) << t.key.short_name << " @ " 
+      << std::setw(3) << static_cast<int>(t.bpm) << "bpm" 
+      << ", " << t.name << std::endl;
+  }
+  return EXIT_SUCCESS;
+
   //// Sort by BPM
   //std::sort(tracks.begin(), tracks.end(), [](Track const& a, Track const& b)
   //{
@@ -218,7 +395,7 @@ int main(int argc, char* argv[])
   //  std::vector<TrackOption> options;
   //  for (size_t i = 0; i < tracks.size(); ++i) {
   //    // Must be compatible
-  //    if (!Camelot::AreCompatibleKeys(selected.key, tracks[i].key)) {
+  //    if (!AreCompatibleKeys(selected.key, tracks[i].key)) {
   //      continue;
   //    }
 
@@ -278,12 +455,12 @@ int main(int argc, char* argv[])
   //}
 
   //// Select a key ordering
-  //std::vector<Camelot::Keys> options;
+  //std::vector<Keys> options;
   //int max_depth = 0;
   //for (auto k : key_counts) {
   //  std::cout << "Starting with " << k.first.short_name << std::endl;
-  //  Camelot::Keys order;
-  //  if (ChooseKey(Camelot::KeyFromString("Dbm") /*k.first*/, key_counts, order, 1, max_depth)) {
+  //  Keys order;
+  //  if (ChooseKey(KeyFromString("Dbm") /*k.first*/, key_counts, order, 1, max_depth)) {
   //    options.push_back(order);
   //    std::cout << "Found " << options.size() << " solutions!" << std::endl;
   //  }

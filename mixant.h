@@ -40,8 +40,8 @@ public:
   static double FindDistance(
     double bpm_a,
     double bpm_b,
-    Camelot::Key const& key_a,
-    Camelot::Key const& key_b
+    Key const& key_a,
+    Key const& key_b
     );
 
   static double FindTrackDistance(
