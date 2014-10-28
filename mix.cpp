@@ -31,8 +31,8 @@ std::ostream& operator<<(std::ostream& out, const Mix& mix)
     MixStep const& s = mix.steps[i];
 
     out 
-        << s.track.name << std::endl
-        << s.track.key.short_name << " -> " << s.GetPlayKey().short_name
+        //<< s.track.name << std::endl
+        //<< s.track.key.short_name << " -> " << s.GetPlayKey().short_name
         << " (" << std::showpos << s.GetTuning() << ") " 
         << std::endl
         << std::noshowpos << s.bpm_beg << "bpm -> " << s.bpm_end << "bpm"

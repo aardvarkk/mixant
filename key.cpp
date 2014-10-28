@@ -9,36 +9,116 @@ static Keys keys;
 static Keys ordering_min;
 static Keys ordering_maj;
 
+static std::string kKeyNames[][2] = {
+  { "A-Flat Minor", "B Major" },
+  { "E-Flat Minor", "F-Sharp Major" },
+  { "B-Flat Minor", "D-Flat Major" },
+  { "F Minor", "A-Flat Major" },
+  { "C Minor", "E-Flat Major" },
+  { "G Minor", "B-Flat Major" },
+  { "D Minor", "F Major" },
+  { "A Minor", "C Major" },
+  { "E Minor", "G Major" },
+  { "B Minor", "D Major" },
+  { "F-Sharp Minor", "A Major" },
+  { "D-Flat Minor", "E Major" }
+};
+
+static std::string kKeyShortNames[][2] = {
+  { "Abm", "B" },
+  { "Ebm", "F#" },
+  { "Bbm", "Db" },
+  { "Fm", "Ab" },
+  { "Cm", "Eb" },
+  { "Gm", "Bb" },
+  { "Dm", "F" },
+  { "Am", "C" },
+  { "Em", "G" },
+  { "Bm", "D" },
+  { "F#m", "A" },
+  { "Dbm", "E" }
+};
+
+static std::string kKeyAlternateNames[][2] = {
+  { "G#m", "B" },
+  { "D#m", "Gb" },
+  { "A#m", "C#" },
+  { "Fm", "G#" },
+  { "Cm", "D#" },
+  { "Gm", "A#" },
+  { "Dm", "F" },
+  { "Am", "C" },
+  { "Em", "G" },
+  { "Bm", "D" },
+  { "Gbm", "A" },
+  { "C#m", "E" }
+};
+
+//void Key::GetKeyInfo(
+//  int num,
+//  Key::Type type,
+//  std::string& name,
+//  std::string& short_name
+//  )
+//{
+//  name = kKeyNames[num][type];
+//  short_name = kKeyShortNames[num][type];
+//}
+
+std::string Key::GetName(
+  int num,
+  Key::Type type
+  )
+{
+  return kKeyNames[num-1][type];
+}
+
+std::string Key::GetShortName(
+  int num,
+  Key::Type type
+  )
+{
+  return kKeyShortNames[num-1][type];
+}
+
+std::string Key::GetAlternateName(
+  int num,
+  Key::Type type
+  )
+{
+  return kKeyAlternateNames[num-1][type];
+}
+
 Keys const& Key::GetKeys()
 {
   if (!keys.empty()) {
     return keys;
   }
 
-  keys.push_back(Key(1,  Key::kMinor, "A-Flat Minor", "Abm", "G#m"));
-  keys.push_back(Key(1,  Key::kMajor, "B Major", "B", ""));
-  keys.push_back(Key(2,  Key::kMinor, "E-Flat Minor", "Ebm", "D#m"));
-  keys.push_back(Key(2,  Key::kMajor, "F-Sharp Major", "F#", "Gb"));
-  keys.push_back(Key(3,  Key::kMinor, "B-Flat Minor", "Bbm", "A#m"));
-  keys.push_back(Key(3,  Key::kMajor, "D-Flat Major", "Db", "C#"));
-  keys.push_back(Key(4,  Key::kMinor, "F Minor", "Fm", ""));
-  keys.push_back(Key(4,  Key::kMajor, "A-Flat Major", "Ab", "G#"));
-  keys.push_back(Key(5,  Key::kMinor, "C Minor", "Cm", ""));
-  keys.push_back(Key(5,  Key::kMajor, "E-Flat Major", "Eb", "D#"));
-  keys.push_back(Key(6,  Key::kMinor, "G Minor", "Gm", ""));
-  keys.push_back(Key(6,  Key::kMajor, "B-Flat Major", "Bb", "A#"));
-  keys.push_back(Key(7,  Key::kMinor, "D Minor", "Dm", ""));
-  keys.push_back(Key(7,  Key::kMajor, "F Major", "F", ""));
-  keys.push_back(Key(8,  Key::kMinor, "A Minor", "Am", ""));
-  keys.push_back(Key(8,  Key::kMajor, "C Major", "C", ""));
-  keys.push_back(Key(9,  Key::kMinor, "E Minor", "Em", ""));
-  keys.push_back(Key(9,  Key::kMajor, "G Major", "G", ""));
-  keys.push_back(Key(10, Key::kMinor, "B Minor", "Bm", ""));
-  keys.push_back(Key(10, Key::kMajor, "D Major", "D", ""));
-  keys.push_back(Key(11, Key::kMinor, "F-Sharp Minor", "F#m", "Gbm"));
-  keys.push_back(Key(11, Key::kMajor, "A Major", "A", ""));
-  keys.push_back(Key(12, Key::kMinor, "D-Flat Minor", "Dbm", "C#m"));
-  keys.push_back(Key(12, Key::kMajor, "E Major", "E", ""));
+  keys.push_back(Key(1,  Key::kMinor));
+  keys.push_back(Key(4,  Key::kMajor));
+  keys.push_back(Key(8,  Key::kMinor));
+  keys.push_back(Key(11, Key::kMajor));
+  keys.push_back(Key(3,  Key::kMinor));
+  keys.push_back(Key(6,  Key::kMajor));
+  keys.push_back(Key(10, Key::kMinor));
+  keys.push_back(Key(1,  Key::kMajor));
+  keys.push_back(Key(5,  Key::kMinor));
+  keys.push_back(Key(8,  Key::kMajor));
+  keys.push_back(Key(12, Key::kMinor));
+  keys.push_back(Key(3,  Key::kMajor));
+  keys.push_back(Key(7,  Key::kMinor));
+  keys.push_back(Key(10, Key::kMajor));
+  keys.push_back(Key(2,  Key::kMinor));
+  keys.push_back(Key(5,  Key::kMajor));
+  keys.push_back(Key(9,  Key::kMinor));
+  keys.push_back(Key(12, Key::kMajor));
+  keys.push_back(Key(4,  Key::kMinor));
+  keys.push_back(Key(7,  Key::kMajor));
+  keys.push_back(Key(11, Key::kMinor));
+  keys.push_back(Key(2,  Key::kMajor));
+  keys.push_back(Key(6,  Key::kMinor));
+  keys.push_back(Key(9,  Key::kMajor));
 
   return keys;
 }
@@ -90,11 +170,13 @@ Key Key::KeyFromString(std::string const& str)
   Keys keys = GetKeys();
   
   for (auto i : keys) {
-    if (!i.name.compare(str)) {
+    if (!Key::GetShortName(i.num, i.type).compare(str)) {
       return i;
-    } else if (!i.short_name.compare(str)) {
+    }
+    else if (!Key::GetName(i.num, i.type).compare(str)) {
       return i;
-    } else if (!i.alternate.compare(str)) {
+    } 
+    else if (!Key::GetAlternateName(i.num, i.type).compare(str)) {
       return i;
     }
   }
@@ -145,13 +227,17 @@ int Key::GetKeyIndex(Key const& key)
   return 0;
 }
 
+int round_int(double r) {
+    return static_cast<int>((r > 0.0) ? (r + 0.5) : (r - 0.5));
+}
+
 Key Key::GetShiftedKey(Key const& original_key, double old_bpm, double new_bpm)
 {
   double bpm_ratio = new_bpm / old_bpm;
   double bpm_ratio_st = log(bpm_ratio) / log(Utils::GetSemitoneRatio());
 
   // Cast to an integer to get how many keys to shift...
-  int shift = static_cast<int>(rint(bpm_ratio_st));
+  int shift = static_cast<int>(round_int(bpm_ratio_st));
   return original_key + shift;
 }
 

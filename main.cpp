@@ -105,13 +105,14 @@ bool ChooseKey(Key const& key, KeyCount const& key_count, Keys order, int depth,
 //  return found_compatible;
 //}
 
-void GetTracks(std::string const& path, Tracks& tracks)
+void GetTracks(std::string const& path, Tracks& tracks, std::vector<std::string>& names)
 {
   tracks.clear();
 
   // Read the file to get our tracks
   std::ifstream ifs(path);
   std::string line;
+  int idx = 0;
   while (std::getline(ifs, line)) {
     std::string name = line;
 
@@ -128,18 +129,20 @@ void GetTracks(std::string const& path, Tracks& tracks)
       continue;
     }
 
-    tracks.push_back(Track(name, bpm, key));
+    tracks.push_back(Track(idx++, bpm, key));
+    names.push_back(name);
   }
   ifs.close();
 }
 
-void GetTracksTabSeparated(std::string const& path, Tracks& tracks)
+void GetTracksTabSeparated(std::string const& path, Tracks& tracks, std::vector<std::string>& names)
 {
   tracks.clear();
 
   // Read the file to get our tracks
   std::ifstream ifs(path);
   std::string line;
+  int idx = 0;
   while (std::getline(ifs, line)) {
     std::stringstream ss(line);
     
@@ -158,7 +161,8 @@ void GetTracksTabSeparated(std::string const& path, Tracks& tracks)
       continue;
     }
 
-    tracks.push_back(Track(name, bpm, key));
+    tracks.push_back(Track(idx++, bpm, key));
+    names.push_back(name);
   }
   ifs.close();
 }
@@ -193,8 +197,9 @@ void RunTests()
   }
 }
 
-static const double kBPMThresh = 0.15;
-static const int kKeyShiftThresh = 1;
+static const double kBPMThresh = 0.3;
+static const int kKeyShiftThresh = 0;
+static const int kMixSongLen = 20;
 
 // ASSUME:
 // t1 cannot be changed (bpm, key)
@@ -208,7 +213,8 @@ bool AreCompatibleTracks(
   Track const& t2,
   double bpm_thr,
   int key_thr,
-  Key& t2_adj
+  Key& t2_adj,
+  double& cost
   )
 {
   auto min_bpm = std::min(t1.bpm, t2.bpm);
@@ -240,22 +246,42 @@ bool AreCompatibleTracks(
     }
   }
 
+  // Cost function
+  // It's cheaper to adjust tempo (less noticeable) than to adjust key
+  cost = (bpm_rat-1) + min_shift_dist;
+
   return compatible_keys;
 }
 
 void ChooseTrack(
+  std::vector<std::string> names,
   Tracks& available, 
   Tracks& chosen, 
-  std::string const& prev_name,
+  int prev_idx,
   Key prev_key, 
   double prev_bpm,
+  double cost,
+  double& best_cost,
+  int max_len,
   Tracks& best
   )
 {
-  // We have a new best
+  // We're too long!
+  if (chosen.size() >= static_cast<size_t>(max_len)) {
+    return;
+  }
+
+  // We have a new best length (more important than cost)
   if (chosen.size() > best.size()) {
+    best_cost = cost;
     best = chosen;
     std::cout << "New best of length " << best.size() << " found." << std::endl;
+  } 
+  // Mix length is the same, but less cost
+  else if (chosen.size() == best.size() && cost < best_cost && !chosen.empty()) {
+    best_cost = cost;
+    std::cout << "New best cost of " << best_cost << " found." << std::endl;
+    best = chosen;
   }
 
   // Nothing to look at
@@ -272,28 +298,33 @@ void ChooseTrack(
       now_available.erase(now_available.begin() + i);
       Tracks now_chosen = chosen;
       now_chosen.push_back(t);
-      std::cout << "Starting with " << t.name << std::endl;
-      ChooseTrack(now_available, now_chosen, t.name, t.key, t.bpm, best);
+      std::cout << "Starting with " << names[t.idx]<< std::endl;
+      ChooseTrack(names, now_available, now_chosen, t.idx, t.key, t.bpm, cost, best_cost, max_len, best);
     }
   }
   // If we've chosen something, the track we choose must be compatible with the last one
   else {
-    Track prev(prev_name, prev_bpm, prev_key);
+    Track prev(prev_idx, prev_bpm, prev_key);
 
     // Go through all available and find those compatible
     Tracks candidates;
     Keys candidates_adj;
+    std::vector<double> candidate_costs;
+
     for (auto t : available) {
       Key candidate_adj;
+      double this_cost;
       if (AreCompatibleTracks(
         prev, 
         t, 
         kBPMThresh, 
         kKeyShiftThresh,
-        candidate_adj
+        candidate_adj,
+        this_cost
         )) {
         candidates.push_back(t);
         candidates_adj.push_back(candidate_adj);
+        candidate_costs.push_back(this_cost);
       }
     }
 
@@ -316,7 +347,7 @@ void ChooseTrack(
       now_chosen.push_back(t);
 
       // NOTE: We send in an ADJUSTED key for this track!
-      ChooseTrack(now_available, now_chosen, t.name, t.key, t.bpm, best);
+      ChooseTrack(names, now_available, now_chosen, t.idx, t.key, t.bpm, cost + candidate_costs[i], best_cost, max_len, best);
     }
   }
 }
@@ -327,8 +358,9 @@ int main(int argc, char* argv[])
 
   // Our tracks
   Tracks tracks;
+  std::vector<std::string> names;
   //GetTracks("tracks.txt", tracks);
-  GetTracksTabSeparated("tracks_tsv.txt", tracks);
+  GetTracksTabSeparated("tracks_tsv.txt", tracks, names);
 
   //// Write separate values out
   //std::ofstream names("names.txt");
@@ -352,7 +384,7 @@ int main(int argc, char* argv[])
 
   // Write the key counts
   for (auto k : key_counts) {
-    std::cout << k.first.short_name << ": " << k.second << std::endl;
+    std::cout << Key::GetShortName(k.first.num, k.first.type) << ": " << k.second << std::endl;
   }
 
   // Exhaustive solution
@@ -361,14 +393,16 @@ int main(int argc, char* argv[])
   Tracks available = tracks;
   Tracks chosen;
   Tracks best;
-  ChooseTrack(available, chosen, "", Key(), 0, best);
+  double cost = 0;
+  double best_cost = DBL_MAX;
+  ChooseTrack(names, available, chosen, -1, Key(), 0, cost, best_cost, kMixSongLen, best);
 
   // Show our results
   for (auto t : best) {
     std::cout 
-      << std::setw(3) << t.key.short_name << " @ " 
+      << std::setw(3) << Key::GetShortName(t.key.num, t.key.type) << " @ " 
       << std::setw(3) << static_cast<int>(t.bpm) << "bpm" 
-      << ", " << t.name << std::endl;
+      << ", " << names[t.idx] << std::endl;
   }
   return EXIT_SUCCESS;
 
@@ -493,8 +527,8 @@ int main(int argc, char* argv[])
     
   std::ofstream unused_f("unused.txt");
   for (auto u : unused) {
-    unused_f << u.name << std::endl;
-    unused_f << u.key.short_name << std::endl;
+    //unused_f << u.name << std::endl;
+    //unused_f << u.key.short_name << std::endl;
     unused_f << u.bpm << std::endl;
   }
   unused_f.close();

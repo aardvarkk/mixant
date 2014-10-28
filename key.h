@@ -16,18 +16,35 @@ public:
     kMajor
   };
 
-  std::string short_name;
+  //std::string short_name;
   int         num;
   Type        type;
-  std::string name;
-  std::string alternate;
+  //std::string name;
+  //std::string alternate;
 
   Key() : num(0), type(static_cast<Type>(0)) {}
-  Key(int num, Type type, std::string name, std::string short_name, std::string alternate) : num(num), type(type), name(name), short_name(short_name), alternate(alternate) {}
+  Key(int num, Type type/*, std::string name, std::string short_name, std::string alternate*/) :
+    num(num), type(type)/*, name(name), short_name(short_name), alternate(alternate)*/ {}
+
   bool operator==(Key const& key) const;
   Key  operator +(int semitones) const;
   Key  operator -(int semitones) const;
   bool operator <(Key const& k) const;
+
+  static std::string GetName(
+    int num,
+    Key::Type type
+    );
+
+  static std::string GetShortName(
+    int num,
+    Key::Type type
+    );
+
+  static std::string GetAlternateName(
+    int num,
+    Key::Type type
+    );
 
   static Keys const& GetKeys();
   static Keys const& GetOrdering(Type type);
