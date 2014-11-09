@@ -12,6 +12,10 @@
 #include "track.h"
 #include "utils.h"
 
+static const double kBPMThresh = 0.3;
+static const int kKeyShiftThresh = 1;
+static const int kMixSongLen = 20;
+
 struct TrackOption
 {
   Track track;
@@ -196,10 +200,6 @@ void RunTests()
     }
   }
 }
-
-static const double kBPMThresh = 0.3;
-static const int kKeyShiftThresh = 0;
-static const int kMixSongLen = 20;
 
 // ASSUME:
 // t1 cannot be changed (bpm, key)
