@@ -12,6 +12,8 @@
 #include "track.h"
 #include "utils.h"
 
+using namespace std;
+
 static const double kBPMThresh = 0.3;
 static const int kKeyShiftThresh = 1;
 static const int kMixSongLen = 20;
@@ -25,9 +27,9 @@ struct TrackOption
   TrackOption(Track const& track, double bpm_ratio, int idx) : track(track), bpm_ratio(bpm_ratio), idx(idx) {}
 };
 
-//typedef std::map< Key, std::vector<Track> > KeyCount
-typedef std::set<Key> KeySet;
-typedef std::map<Key, int> KeyCount;
+//typedef map< Key, vector<Track> > KeyCount
+typedef set<Key> KeySet;
+typedef map<Key, int> KeyCount;
 
 KeySet GetAvailableKeys(KeyCount const& kc)
 {
@@ -45,7 +47,7 @@ bool ChooseKey(Key const& key, KeyCount const& key_count, Keys order, int depth,
 {
   if (depth > max_depth) {
     max_depth = depth;
-    std::cout << "New max depth: " << max_depth << std::endl;
+    cout << "New max depth: " << max_depth << endl;
   }
 
   // We've run out of tracks!
@@ -94,7 +96,7 @@ bool ChooseKey(Key const& key, KeyCount const& key_count, Keys order, int depth,
 //  Tracks now_available(available);
 //  
 //  // Erase the one we just took
-//  now_available.erase(std::find(now_available.begin(), now_available.end(), track));
+//  now_available.erase(find(now_available.begin(), now_available.end(), track));
 //
 //  // Find all compatible tracks, then try to choose each one in turn
 //  bool found_compatible = false;
@@ -109,23 +111,23 @@ bool ChooseKey(Key const& key, KeyCount const& key_count, Keys order, int depth,
 //  return found_compatible;
 //}
 
-void GetTracks(std::string const& path, Tracks& tracks, std::vector<std::string>& names)
+void GetTracks(string const& path, Tracks& tracks, vector<string>& names)
 {
   tracks.clear();
 
   // Read the file to get our tracks
-  std::ifstream ifs(path);
-  std::string line;
+  ifstream ifs(path);
+  string line;
   int idx = 0;
-  while (std::getline(ifs, line)) {
-    std::string name = line;
+  while (getline(ifs, line)) {
+    string name = line;
 
-    std::getline(ifs, line);
+    getline(ifs, line);
     Key key = Key::KeyFromString(line);
 
     double bpm;
-    std::getline(ifs, line);
-    std::stringstream ss(line);
+    getline(ifs, line);
+    stringstream ss(line);
     ss >> bpm;
 
     // Allow commenting out tracks
@@ -139,22 +141,22 @@ void GetTracks(std::string const& path, Tracks& tracks, std::vector<std::string>
   ifs.close();
 }
 
-void GetTracksTabSeparated(std::string const& path, Tracks& tracks, std::vector<std::string>& names)
+void GetTracksTabSeparated(string const& path, Tracks& tracks, vector<string>& names)
 {
   tracks.clear();
 
   // Read the file to get our tracks
-  std::ifstream ifs(path);
-  std::string line;
+  ifstream ifs(path);
+  string line;
   int idx = 0;
-  while (std::getline(ifs, line)) {
-    std::stringstream ss(line);
+  while (getline(ifs, line)) {
+    stringstream ss(line);
     
-    std::string name;
-    std::getline(ss, name, '\t');
+    string name;
+    getline(ss, name, '\t');
 
-    std::string key_str;
-    std::getline(ss, key_str, '\t');
+    string key_str;
+    getline(ss, key_str, '\t');
     Key key = Key::KeyFromString(key_str);
 
     double bpm;
@@ -217,8 +219,8 @@ bool AreCompatibleTracks(
   double& cost
   )
 {
-  auto min_bpm = std::min(t1.bpm, t2.bpm);
-  auto max_bpm = std::max(t1.bpm, t2.bpm);
+  auto min_bpm = min(t1.bpm, t2.bpm);
+  auto max_bpm = max(t1.bpm, t2.bpm);
   auto bpm_rat = abs(max_bpm / min_bpm);
   bool compatible_bpm = bpm_rat < (1 + bpm_thr);
 
@@ -254,7 +256,7 @@ bool AreCompatibleTracks(
 }
 
 void ChooseTrack(
-  std::vector<std::string> names,
+  vector<string> names,
   Tracks& available, 
   Tracks& chosen, 
   int prev_idx,
@@ -263,7 +265,8 @@ void ChooseTrack(
   double cost,
   double& best_cost,
   int max_len,
-  Tracks& best
+  Tracks& best,
+  int& its
   )
 {
   // We're too long!
@@ -275,80 +278,77 @@ void ChooseTrack(
   if (chosen.size() > best.size()) {
     best_cost = cost;
     best = chosen;
-    std::cout << "New best of length " << best.size() << " found." << std::endl;
+    cout << "New best of length " << best.size() << " found." << endl;
+    its = 0;
   } 
   // Mix length is the same, but less cost
   else if (chosen.size() == best.size() && cost < best_cost && !chosen.empty()) {
     best_cost = cost;
-    std::cout << "New best cost of " << best_cost << " found." << std::endl;
+    cout << "New best cost of " << best_cost << " found." << endl;
     best = chosen;
+    its = 0;
+  }
+  // No improvement!
+  else {
+    ++its;
+  }
+
+  // We've spent too long, so bail!
+  if (its >= 1000000) {
+    cout << "Too many iterations without improvement!" << endl;
+    return;
   }
 
   // Nothing to look at
   if (available.empty()) {
-    std::cout << "No more tracks to choose." << std::endl;
+    cout << "No more tracks to choose." << endl;
     return;
   }
 
-  // If we haven't chosen anything, all available tracks are candidates
-  if (chosen.empty()) {
-    for (size_t i = 0; i < available.size(); ++i) {
-      Tracks now_available = available;
-      Track t = now_available[i];
-      now_available.erase(now_available.begin() + i);
-      Tracks now_chosen = chosen;
-      now_chosen.push_back(t);
-      std::cout << "Starting with " << names[t.idx]<< std::endl;
-      ChooseTrack(names, now_available, now_chosen, t.idx, t.key, t.bpm, cost, best_cost, max_len, best);
+  Track prev(prev_idx, prev_bpm, prev_key);
+
+  // Go through all available and find those compatible
+  Tracks candidates;
+  Keys candidates_adj;
+  vector<double> candidate_costs;
+
+  for (auto t : available) {
+    Key candidate_adj;
+    double this_cost;
+    if (AreCompatibleTracks(
+      prev, 
+      t, 
+      kBPMThresh, 
+      kKeyShiftThresh,
+      candidate_adj,
+      this_cost
+      )) {
+      candidates.push_back(t);
+      candidates_adj.push_back(candidate_adj);
+      candidate_costs.push_back(this_cost);
     }
   }
-  // If we've chosen something, the track we choose must be compatible with the last one
-  else {
-    Track prev(prev_idx, prev_bpm, prev_key);
 
-    // Go through all available and find those compatible
-    Tracks candidates;
-    Keys candidates_adj;
-    std::vector<double> candidate_costs;
-
-    for (auto t : available) {
-      Key candidate_adj;
-      double this_cost;
-      if (AreCompatibleTracks(
-        prev, 
-        t, 
-        kBPMThresh, 
-        kKeyShiftThresh,
-        candidate_adj,
-        this_cost
-        )) {
-        candidates.push_back(t);
-        candidates_adj.push_back(candidate_adj);
-        candidate_costs.push_back(this_cost);
-      }
-    }
-
-    for (size_t i = 0; i < candidates.size(); ++i) {
-      Tracks now_available = available;
-      Track t = candidates[i];
+  for (size_t i = 0; i < candidates.size(); ++i) {
+    Tracks now_available = available;
+    Track t = candidates[i];
       
-      // Erase the candidate from the now available list
-      for (size_t j = 0; j < now_available.size(); ++j) {
-        if (now_available[j] == t) {
-          now_available.erase(now_available.begin() + j);
-          break;
-        }
+    // Erase the candidate from the now available list
+    for (size_t j = 0; j < now_available.size(); ++j) {
+      if (now_available[j] == t) {
+        now_available.erase(now_available.begin() + j);
+        break;
       }
-
-      // Set to our new key
-      t.key = candidates_adj[i];
-
-      Tracks now_chosen = chosen;
-      now_chosen.push_back(t);
-
-      // NOTE: We send in an ADJUSTED key for this track!
-      ChooseTrack(names, now_available, now_chosen, t.idx, t.key, t.bpm, cost + candidate_costs[i], best_cost, max_len, best);
     }
+
+    // Set to our new key
+    t.key = candidates_adj[i];
+
+    Tracks now_chosen = chosen;
+    now_chosen.push_back(t);
+
+    // NOTE: We send in an ADJUSTED key for this track!
+    ChooseTrack(names, now_available, now_chosen, t.idx, t.key, t.bpm, cost + candidate_costs[i], best_cost, max_len, best, its);
   }
 }
 
@@ -358,18 +358,18 @@ int main(int argc, char* argv[])
 
   // Our tracks
   Tracks tracks;
-  std::vector<std::string> names;
+  vector<string> names;
   //GetTracks("tracks.txt", tracks);
   GetTracksTabSeparated("tracks_tsv.txt", tracks, names);
 
   //// Write separate values out
-  //std::ofstream names("names.txt");
-  //std::ofstream bpms("bpms.txt");
-  //std::ofstream keys("keys.txt");
+  //ofstream names("names.txt");
+  //ofstream bpms("bpms.txt");
+  //ofstream keys("keys.txt");
   //for (auto t : tracks) {
-  //  names << t.name           << std::endl;
-  //  bpms  << t.bpm            << std::endl;
-  //  keys  << t.key.short_name << std::endl;
+  //  names << t.name           << endl;
+  //  bpms  << t.bpm            << endl;
+  //  keys  << t.key.short_name << endl;
   //}
   //names.close();
   //bpms.close();
@@ -384,36 +384,60 @@ int main(int argc, char* argv[])
 
   // Write the key counts
   for (auto k : key_counts) {
-    std::cout << Key::GetShortName(k.first.num, k.first.type) << ": " << k.second << std::endl;
+    cout << Key::GetShortName(k.first.num, k.first.type) << ": " << k.second << endl;
   }
 
   // Exhaustive solution
   // Start at each track and try to get as many tracks into a mix as possible
   // We will exhaustively try to join into each possible next track that is compatible
   Tracks available = tracks;
-  Tracks chosen;
   Tracks best;
-  double cost = 0;
   double best_cost = DBL_MAX;
-  ChooseTrack(names, available, chosen, -1, Key(), 0, cost, best_cost, kMixSongLen, best);
+  for (size_t i = 0; i < available.size(); ++i) {
+    Tracks chosen;
+    Tracks this_best;
+    double cost = 0;
+    double this_best_cost = DBL_MAX;
+
+    int its = 0;
+    Tracks now_available = available;
+    Track t = now_available[i];
+    now_available.erase(now_available.begin() + i);
+    Tracks now_chosen = chosen;
+    now_chosen.push_back(t);
+    cout << "Starting with " << names[t.idx] << endl;
+    ChooseTrack(names, now_available, now_chosen, t.idx, t.key, t.bpm, cost, this_best_cost, kMixSongLen, this_best, its);
+
+    if (this_best.size() > best.size()) {
+      best = this_best;
+      cout << "New OVERALL best of " << best.size() << " found!" << endl;
+    }
+    else if (this_best.size() == best.size() && this_best_cost < best_cost) {
+      best_cost = this_best_cost;
+      best = this_best;
+      cout << "New OVERALL best cost of " << best_cost << " found!" << endl;
+    }
+  }
 
   // Show our results
   for (auto t : best) {
-    std::cout 
-      << std::setw(3) << Key::GetShortName(t.key.num, t.key.type) << " @ " 
-      << std::setw(3) << static_cast<int>(t.bpm) << "bpm" 
-      << ", " << names[t.idx] << std::endl;
+    cout
+      << setw(3) << Key::GetShortName(t.key.num, t.key.type) << " @ "
+      << setw(3) << static_cast<int>(t.bpm) << "bpm"
+      << ", " << names[t.idx] << endl;
   }
+  cout << "Cost is " << best_cost << endl;
+
   return EXIT_SUCCESS;
 
   //// Sort by BPM
-  //std::sort(tracks.begin(), tracks.end(), [](Track const& a, Track const& b)
+  //sort(tracks.begin(), tracks.end(), [](Track const& a, Track const& b)
   //{
   //  return a.bpm < b.bpm;
   //});
 
   //// Interactive selection
-  //std::vector<Track> order;
+  //vector<Track> order;
   //int idx = 0;
 
   //for (;;) {
@@ -423,10 +447,10 @@ int main(int argc, char* argv[])
   //  tracks.erase(tracks.begin() + idx);
   //  order.push_back(selected);
 
-  //  std::cout << "Your current track: " << selected.name << std::endl;
+  //  cout << "Your current track: " << selected.name << endl;
 
   //  // Get options...
-  //  std::vector<TrackOption> options;
+  //  vector<TrackOption> options;
   //  for (size_t i = 0; i < tracks.size(); ++i) {
   //    // Must be compatible
   //    if (!AreCompatibleKeys(selected.key, tracks[i].key)) {
@@ -434,7 +458,7 @@ int main(int argc, char* argv[])
   //    }
 
   //    // Get the BPM ratio
-  //    double bpm_ratio = std::max(selected.bpm, tracks[i].bpm) / std::min(selected.bpm, tracks[i].bpm);
+  //    double bpm_ratio = max(selected.bpm, tracks[i].bpm) / min(selected.bpm, tracks[i].bpm);
   //    //double bpm_ratio_st = log(bpm_ratio) / log(Utils::GetSemitoneRatio());
 
   //    // We have an option
@@ -443,60 +467,60 @@ int main(int argc, char* argv[])
   //  }
 
   //  // Sort by BPM ratio
-  //  std::sort(options.begin(), options.end(), [](TrackOption const& a, TrackOption const& b) 
+  //  sort(options.begin(), options.end(), [](TrackOption const& a, TrackOption const& b) 
   //  {
   //    return a.bpm_ratio < b.bpm_ratio;
   //  }
   //  );
 
   //  // Print options
-  //  std::cout << "Options: " << std::endl;
+  //  cout << "Options: " << endl;
   //  for (size_t i = 0; i < options.size(); ++i) {
-  //    std::cout << i << "\t" << std::fixed << std::setw(4) << options[i].bpm_ratio << "\t" << options[i].track.name << " (" << options[i].track.key.short_name << ")" << std::endl;
+  //    cout << i << "\t" << fixed << setw(4) << options[i].bpm_ratio << "\t" << options[i].track.name << " (" << options[i].track.key.short_name << ")" << endl;
   //  }
 
-  //  std::cout << "You have selected " << order.size() << " tracks" << std::endl;
+  //  cout << "You have selected " << order.size() << " tracks" << endl;
 
-  //  std::string choice;
-  //  std::getline(std::cin, choice);
+  //  string choice;
+  //  getline(cin, choice);
 
   //  if (!choice.compare("q")) {
   //    break;
   //  }
 
-  //  std::stringstream ss(choice);
+  //  stringstream ss(choice);
   //  ss >> idx;
   //  idx = options[idx].idx;
   //}
 
   //// Write our order
-  //std::ofstream order_f("order.txt");
+  //ofstream order_f("order.txt");
   //for (auto t : order) {
-  //  order_f << t.bpm << "\t" << t.name << " (" << t.key.short_name << ")" << std::endl;
+  //  order_f << t.bpm << "\t" << t.name << " (" << t.key.short_name << ")" << endl;
   //}
   //order_f.close();
 
   //// Start by just choosing a base track (try each one)
-  //std::vector<Tracks> options;
+  //vector<Tracks> options;
   //// Our starting track
   //for (auto t : tracks) {
-  //  std::cout << "Starting with " << t.name << std::endl;
+  //  cout << "Starting with " << t.name << endl;
   //  Tracks order;
   //  if (ChooseTrack(t, tracks, order)) {
   //    options.push_back(order);
-  //    std::cout << "Found " << options.size() << " solutions!" << std::endl;
+  //    cout << "Found " << options.size() << " solutions!" << endl;
   //  }
   //}
 
   //// Select a key ordering
-  //std::vector<Keys> options;
+  //vector<Keys> options;
   //int max_depth = 0;
   //for (auto k : key_counts) {
-  //  std::cout << "Starting with " << k.first.short_name << std::endl;
+  //  cout << "Starting with " << k.first.short_name << endl;
   //  Keys order;
   //  if (ChooseKey(KeyFromString("Dbm") /*k.first*/, key_counts, order, 1, max_depth)) {
   //    options.push_back(order);
-  //    std::cout << "Found " << options.size() << " solutions!" << std::endl;
+  //    cout << "Found " << options.size() << " solutions!" << endl;
   //  }
   //}
 
@@ -505,12 +529,12 @@ int main(int argc, char* argv[])
   Mix m = ma.FindMix(tracks);
 
   // Print the mix
-  //std::cout << m << std::endl;
+  //cout << m << endl;
 
-  std::cout << "Mix uses " << m.steps.size() << " of " << tracks.size() << " input tracks" << std::endl << std::endl;
+  cout << "Mix uses " << m.steps.size() << " of " << tracks.size() << " input tracks" << endl << endl;
 
   // Save the mix to a file
-  std::ofstream ofs("mix.txt");
+  ofstream ofs("mix.txt");
   ofs << m;
   ofs.close();
 
@@ -525,13 +549,13 @@ int main(int argc, char* argv[])
     }
   }
     
-  std::ofstream unused_f("unused.txt");
+  ofstream unused_f("unused.txt");
   for (auto u : unused) {
-    //unused_f << u.name << std::endl;
-    //unused_f << u.key.short_name << std::endl;
-    unused_f << u.bpm << std::endl;
+    //unused_f << u.name << endl;
+    //unused_f << u.key.short_name << endl;
+    unused_f << u.bpm << endl;
   }
   unused_f.close();
 
-  //std::cin.get();
+  //cin.get();
 }
